@@ -12,6 +12,10 @@ body{
     padding: 10vh 15vh;
 }
 
+.general-padding2{
+    padding: 10vh 20vh;
+}
+
 .header-navigation{
     display: grid;
     grid-template-columns: 30% 70%;
@@ -89,11 +93,46 @@ body{
 
 .homepage-our-mandate-bottom{
     width: 55%;
-    /* font-size: 300%; */
     font-size: 40px;
-    /* font-weight: bolder; */
     text-align: center;
     line-height: 45px;
+}
+
+.homepage-threeaspects-each-wraps{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2vw;
+}
+
+.homepage-threeaspects-each-wraps-inner{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.homepage-threeaspects-maintext-fonts{
+    font-size: 20px;
+    text-align: right;
+}
+
+.homepage-threeaspects{
+    display: grid;
+    grid-template-columns: 80% 20%;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid rgba(36, 12, 0, 0.2);
+    padding-bottom: 2vh;
+}
+
+.homepage-threeaspects:hover{
+    border-bottom: 1px solid rgba(36, 12, 0, 1);
+}
+
+.homepage-threeaspects-maintext{
+    font-size: 30px;
+}
+
+.general-font-style{
     font-family: "Kumbh Sans", sans-serif;
     font-style: normal;
     font-variant-caps: normal;
@@ -101,4 +140,122 @@ body{
     font-variant-ligatures: normal;
     font-variant-numeric: normal;
     font-weight: 700;
+}
+
+.first-smaller-text{
+    margin-bottom: 10px;
+    color: rgba(36, 12, 0, 1);
+    font-size: 20px;
+}
+
+.public-whyfoursquare-grid{
+    display: grid;
+    grid-template-columns: 40% 40%;
+    gap: 15%;
+}
+
+.public-whyfoursquare-grid-left{
+    font-size: 30px;
+    line-height: 35px;
+}
+
+.public-whyfoursquare-grid-right-text{
+    color: rgba(36, 12, 0, 0.8);
+}
+
+.public-three-arm-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    justify-content: center;
+    background: #f9f7f5;
+}
+
+.public-three-arm-grid-each-text{
+    display: flex;
+    justify-content: center;
+}
+
+.public-three-arm-grid-each-text-actual{
+    width: 70%;
+    font-family: Lora serif;
+    font-size: 30px;
+    text-align: center;
+    line-height: 35px;
+}
+
+.public-three-arm-grid-each-description{
+    font-family: Lora serif;
+    width: 85%;
+    font-size: 20px;
+    font-weight: normal;
+    text-align: center;
+}
+
+.three-arm-image-style{
+    border-right: 3px solid rgba(255,255,255,0.9);
+}
+
+.three-arm-under-border-right{
+    display: flex;
+    justify-content: center;
+    border-right: 1px solid #ebe9e7;
+}
+
+.three-arm-under-flex{
+    display: flex;
+    justify-content: center;
+    width: 85%;
+    font-size: 20px;
+    font-weight: normal;
+    text-align: center;
+}
+
+.three-arm-button{
+    border-radius: 10px;
+    padding: 5px 40px;
+    background: #dbb66d;
+}
+
+.public-our-doctrine-section{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.public-ourbelief-wraps{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 20px;
+    margin-top: 60px;
+}
+
+.public-ourbelief-each{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.public-ourbelief-flex-img{
+    display: flex;
+    justify-content: center;
+}
+
+.public-maintext{
+    margin-bottom: 10px;font-size: 20px;
+}
+
+.public-description{
+    color: rgba(36, 12, 0, 0.8);
+}
+
+.public-upcoming-events-header{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border-bottom: 2px solid rgba(36, 12, 0, 1);
+    padding: 20px 0px;
+    font-weight: normal;
 }
