@@ -259,3 +259,48 @@ body{
     padding: 20px 0px;
     font-weight: normal;
 }
+
+.public-upcomingevents-list{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.public-upcomingevents-list-inner{
+    display: flex;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+    padding: 20px 0px;
+}
+
+.public-upcomingevents-date{
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+.public-upcomingevents-time{
+    font-weight: normal;
+}
+
+.public-upcomingevents-eventname{
+    width: 25%;font-size: 20px;font-weight: bolder;
+}
+
+.public-upcomingevents-hostname{
+    font-weight: bolder;
+    font-size: 20px;
+}
+
+.public-upcomingevents-event-location{
+    font-weight: bolder;
+    font-size: 20px;
+}
+
+.public-upcomingevents-event-address{
+    font-weight: normal;
+}
+
+.public-upcomingevents-icon-wrap{
+    width: 15%;
+    font-size: 20px;
+    text-align: right;
+}

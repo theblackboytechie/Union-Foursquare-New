@@ -243,24 +243,24 @@
                 <div>June 2023</div>
                 <div>July 2023</div>
             </div>
-            <div style="display: flex;flex-direction: column;gap: 10px;">
+            <div class="public-upcomingevents-list">
                 @for ($i = 2; $i <= 10; $i++)
-                    <div style="display: flex; border-bottom: 1px solid rgba(128, 128, 128, 0.2);padding: 20px 0px;">
+                    <div class="public-upcomingevents-list-inner">
                         <div style="width: 15%;">
-                            <div style="font-weight: bolder;font-size: 20px;">1 July</div>
-                            <div style="font-weight: normal;">12:00 am</div>
+                            <div class="public-upcomingevents-date">1 July</div>
+                            <div class="public-upcomingevents-time">12:00 am</div>
                         </div>
-                        <div style="width: 25%;font-size: 20px;font-weight: bolder;">Newcomers Lunch</div>
+                        <div class="public-upcomingevents-eventname">Newcomers Lunch</div>
                         <div style="width: 25%;">
                             <!--  -->
-                            <div style="font-weight: bolder;font-size: 20px;">Rev. Lawrence Amajor</div>
+                            <div class="public-upcomingevents-hostname">Rev. Lawrence Amajor</div>
                             <div style="font-weight: normal;">Lead Pastor</div>
                         </div>
                         <div style="width: 20%;">
-                            <div style="font-weight: bolder;font-size: 20px;">Main Church Auditorium</div>
-                            <div style="font-weight: normal;">Elizabeth, Newwark New Jersey</div>
+                            <div class="public-upcomingevents-event-location">Main Church Auditorium</div>
+                            <div class="public-upcomingevents-event-address">Elizabeth, Newwark New Jersey</div>
                         </div>
-                        <div style="width: 15%;font-size: 20px;text-align: right;"><i class="fa-regular fa-circle-right"></i></div>
+                        <div class="public-upcomingevents-icon-wrap"><i class="fa-regular fa-circle-right"></i></div>
                     </div>
                 @endfor
             </div>
@@ -268,8 +268,12 @@
     </div>
 
     <!--  -->
-    <div class="" style="height: 400px;background: url('storage/assets/images/section-bckg.jpg'); background-position: center;background-repeat: no-repeat;background-size: cover; width: 100%;padding-bottom: 10vh;">
-
+    <div class="general-padding2" style="height: 400x;background: url('storage/assets/images/section-bckg.jpg'); background-position: center;background-repeat: no-repeat;background-size: cover; width: 100%;padding-bottom: 10vh;">
+        <div class="first-smaller-text">LATEST SERMON</div>
+        <div style="display: grid;">
+            <div class="homepage-our-mandate-bottom" style="text-align: left;">THE SPIRIT OF WORSHIP</div>
+            <div></div>
+        </div>
     </div>
 
     <div>
