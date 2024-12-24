@@ -1,0 +1,104 @@
+body{
+    font-family: "Kumbh Sans", sans-serif;
+    font-style: normal;
+    font-variant-caps: normal;
+    font-variant-east-asian: normal;
+    font-variant-ligatures: normal;
+    font-variant-numeric: normal;
+    font-weight: 700;
+}
+
+.general-padding{
+    padding: 10vh 15vh;
+}
+
+.header-navigation{
+    display: grid;
+    grid-template-columns: 30% 70%;
+    align-items: center;
+    color: white;
+}
+
+.header-right-navigation{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    /* flex-direction: row-reverse; */
+    gap: 2vw;
+}
+
+.header-button{
+    padding: 2vh;
+    background: #dbb66d;
+}
+
+.header-church-logo{
+    width: 50%;
+}
+
+.header-homepage-banner-content{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 15vh;
+}
+
+.header-homepage-banner-content-top{
+    color: white;
+    /* font-family: "Playwrite AU VIC Guides", serif;
+    font-weight: 400;
+    font-style: normal; */
+    font-size: 120%;
+}
+
+.header-homepage-banner-content-bottom{
+    color: white;
+    font-size: 300%;
+    /* font-family: "Frank Ruhl Libre", serif; */
+    font-size: 45px;
+    font-style: normal;
+    font-variant-caps: normal;
+    font-variant-east-asian: normal;
+    font-variant-ligatures: normal;
+    font-variant-numeric: normal;
+    font-weight: 900;
+}
+
+.header-homepage-banner-content-description{
+    padding: 1% 20%;
+    text-align: center;
+    color: white;
+}
+
+.homepage-our-mandate{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 5vh;
+    padding: 20vh 1vw;
+    text-decoration: none solid rgb(36, 12, 0);
+    color:RGB(36, 12, 0);
+}
+
+.homepage-our-mandate-top{
+    font-size: 14px;
+    font-stretch: 100%;
+    font-weight: bolder;
+}
+
+.homepage-our-mandate-bottom{
+    width: 55%;
+    /* font-size: 300%; */
+    font-size: 40px;
+    /* font-weight: bolder; */
+    text-align: center;
+    line-height: 45px;
+    font-family: "Kumbh Sans", sans-serif;
+    font-style: normal;
+    font-variant-caps: normal;
+    font-variant-east-asian: normal;
+    font-variant-ligatures: normal;
+    font-variant-numeric: normal;
+    font-weight: 700;
+}
