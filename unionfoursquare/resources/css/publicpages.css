@@ -169,6 +169,7 @@ body{
     display: grid;
     grid-template-columns: 40% 40%;
     gap: 15%;
+    transition: 0.5s;
 }
 
 .public-whyfoursquare-grid-left{
@@ -186,6 +187,7 @@ body{
     align-items: center;
     justify-content: center;
     background: #f9f7f5;
+    transition: 0.5s;
 }
 
 .public-three-arm-grid-each-text{
@@ -353,6 +355,11 @@ body{
     .general-padding2{
         padding: 10vh 10vh;
     }
+
+    .public-whyfoursquare-grid{
+        grid-template-columns: 45% 45%;
+        gap: 10%;
+    }
 }
 
 @media only screen and (max-width: 1000px) {
@@ -383,6 +390,15 @@ body{
     .homepage-threeaspects-each-wraps{
         grid-template-columns: 1fr 1fr;
     }
+
+    .public-whyfoursquare-grid{
+        grid-template-columns: 47.5% 47.5%;
+        gap: 5%;
+    }
+
+    .public-three-arm-grid{
+        grid-template-columns: 1fr 1fr;
+    }
 }
 
 @media only screen and (max-width: 900px) {
@@ -403,6 +419,14 @@ body{
     .header-mobilemenu-icon{
         display: block;
     }
+
+    .public-whyfoursquare-grid{
+        grid-template-columns: 100%;
+        gap: 0%;
+    }
+    .public-whyfoursquare-grid-left{
+        margin-bottom: 10px;
+    }
 }
 
 @media only screen and (max-width: 800px) {
@@ -420,6 +444,14 @@ body{
 
     .homepage-threeaspects-each-wraps{
         grid-template-columns: 1fr;
+    }
+
+    .public-three-arm-grid{
+        grid-template-columns: 1fr;
+    }
+
+    .three-arm-under-border-right, .three-arm-image-style{
+        border-right: 0px;
     }
 }
 

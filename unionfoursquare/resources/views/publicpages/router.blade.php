@@ -83,7 +83,7 @@
         </div>
     </div>
 
-    <!--  -->
+    <!-- why Union Foursquare -->
     <div class="general-padding2 general-font-style">
         <div class="first-smaller-text">Why Union Foursquare?</div>
         <div class="public-whyfoursquare-grid">
@@ -97,5 +97,74 @@
                 <div style="margin-top: 10px;font-weight: bold;">View More <i class="fa-regular fa-circle-right"></i></div>
             </div>
         </div>
+    </div>
+
+    <!--  -->
+        <div class="public-three-arm-grid">
+        <div>
+            <div>
+                <img 
+                    loading="lazy" 
+                    decoding="async" 
+                    width="100%" 
+                    src="/storage/assets/images/three-grid-1.jpg"
+                    class="three-arm-image-style" 
+                    alt=""
+                >
+            </div>
+            <div class="public-three-arm-grid-each-text three-arm-under-border-right">
+                <div class="public-three-arm-grid-each-text-actual">Join Our Christian Community</div>
+            </div>
+            <div class="three-arm-under-border-right">
+                <div class="public-three-arm-grid-each-description">Upstream seeks out people that are impacting the world around them but lack the necessities to further their work.</div>
+            </div>
+            <div class="three-arm-under-border-right" style="padding-bottom: 100px;">
+                <button class="three-arm-button">Join</button>
+            </div>
+        </div>
+        <div>
+            <div>
+                <img 
+                    loading="lazy" 
+                    decoding="async" 
+                    width="100%" 
+                    src="/storage/assets/images/three-grid-2.jpg"
+                    class="three-arm-image-style" 
+                    alt=""
+                >
+            </div>
+            <div class="public-three-arm-grid-each-text three-arm-under-border-right">
+                <div class="public-three-arm-grid-each-text-actual">Join Our Christian Community</div>
+            </div>
+            <div class="three-arm-under-border-right">
+                <div class="public-three-arm-grid-each-description">Upstream seeks out people that are impacting the world around them but lack the necessities to further their work.</div>
+            </div>
+            <div class="three-arm-under-border-right" style="padding-bottom: 100px;">
+                <button class="three-arm-button">Join</button>
+            </div>
+        </div>
+        <div>
+            <div>
+                <img 
+                    loading="lazy" 
+                    decoding="async" 
+                    width="100%" 
+                    src="/storage/assets/images/three-grid-3.jpg"
+                    class="" 
+                    alt=""
+                >
+            </div>
+            <div class="public-three-arm-grid-each-text three-arm-under-border-right" style="border-right: 0px;">
+                <div class="public-three-arm-grid-each-text-actual">Join Our Christian Community</div>
+            </div>
+            <div class="three-arm-under-border-right" style="border-right: 0px;">
+                <div class="public-three-arm-grid-each-description">Upstream seeks out people that are impacting the world around them but lack the necessities to further their work.</div>
+            </div>
+            <div class="three-arm-under-border-right" style="padding-bottom: 100px;border-right: 0px;">
+                <button class="three-arm-button">Join</button>
+            </div>
+        </div>
+        <!-- <div>2</div>
+        <div>3</div> -->
     </div>
 </x-app-layout>
