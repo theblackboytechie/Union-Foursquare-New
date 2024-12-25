@@ -1,19 +1,28 @@
 body{
-    font-family: "Kumbh Sans", sans-serif;
+    /* font-family: "Kumbh Sans", sans-serif; */
+    font-family: "Poppins", serif;
+    /* font-weight: 100; */
     font-style: normal;
     font-variant-caps: normal;
     font-variant-east-asian: normal;
     font-variant-ligatures: normal;
     font-variant-numeric: normal;
-    font-weight: 700;
+    /* font-weight: 700; */
+}
+
+.header-mobilemenu-icon{
+    display: none;
+    font-size: 20px;
 }
 
 .general-padding{
     padding: 10vh 15vh;
+    transition: 0.5s;
 }
 
 .general-padding2{
     padding: 10vh 20vh;
+    transition: 0.5s;
 }
 
 .header-navigation{
@@ -108,10 +117,12 @@ body{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 2vw;
+    transition: 0.5s;
 }
 
 .homepage-threeaspects-each-wraps-inner{
     display: flex;
+
     flex-direction: column;
     gap: 10px;
 }
@@ -311,3 +322,110 @@ body{
     text-align: right;
 }
 
+.footer-text{
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: normal;
+}
+
+.footer-reachout{
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 40px;
+    font-weight: normal;
+    line-height: 60px;
+
+    font-size: 56px;
+    font-style: normal;
+    font-variant-caps: normal;
+    font-variant-east-asian: normal;
+    font-variant-ligatures: normal;
+    font-variant-numeric: normal;
+    font-weight: 300;
+    text-decoration: none solid rgb(216, 206, 182);
+}
+
+.footer-subheader{
+    margin-bottom: 20px;
+    color: white;
+    font-weight: bold;
+}
+
+@media only screen and (max-width: 1100px) {
+    .general-padding2{
+        padding: 10vh 10vh;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    /* CSS rules for devices with a maximum width of 900px go here */
+    .header-church-logo{
+        width: 80%;
+        transition: 0.5s;
+    }
+
+    .general-padding{
+        padding: 10vh 10vh;
+    }
+
+    .header-homepage-banner-content-description{
+        padding: 1% 10%;
+    }
+
+    .header-homepage-banner-content-bottom{
+        font-size: 200%;
+    }
+
+    .homepage-our-mandate-bottom{
+        width: 90%;
+        font-size: 30px;
+        line-height: 40px;
+    }
+
+    .homepage-threeaspects-each-wraps{
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    /* CSS rules for devices with a maximum width of 900px go here */
+    .general-padding{
+        padding: 10vh 5vh;
+    }
+
+    .header-church-logo{
+        width: 80%;
+        transition: 0.5s;
+    }
+
+    .remove-for-mobile{
+        display: none;
+    }
+
+    .header-mobilemenu-icon{
+        display: block;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    /* CSS rules for devices with a maximum width of 900px go here */
+    .header-church-logo{
+        width: 95%;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    /* CSS rules for devices with a maximum width of 900px go here */
+    .header-church-logo{
+        width: 110%;
+    }
+
+    .homepage-threeaspects-each-wraps{
+        grid-template-columns: 1fr;
+    }
+}
+
+@media only screen and (max-width: 550px) {
+    /* CSS rules for devices with a maximum width of 900px go here */
+    .header-church-logo{
+        width: 130%;
+    }
+}
