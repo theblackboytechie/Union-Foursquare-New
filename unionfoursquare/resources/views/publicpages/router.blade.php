@@ -268,10 +268,10 @@
     </div>
 
     <!--  -->
-    <div class="general-padding2" style="height: 400x;background: url('storage/assets/images/section-bckg.jpg'); background-position: center;background-repeat: no-repeat;background-size: cover; width: 100%;padding-bottom: 10vh;">
+    <div class="general-padding2" style="background: url('storage/assets/images/section-bckg.jpg'); background-position: center;background-repeat: no-repeat;background-size: cover; width: 100%;padding-bottom: 10vh;">
         <div class="first-smaller-text">LATEST SERMON</div>
         <div style="display: grid;grid-template-columns: 70% 30%;align-items: center;">
-            <div class="homepage-audioplayer-title">THE SPIRIT OF WORSHIP</div>
+            <div class="homepage-audioplayer-title">Word, Worship and Wonder</div>
             <div style="display: flex;align-items: center;justify-content: flex-end;gap: 10px;">More Audio <i class="fa-regular fa-circle-right"></i></div>
         </div>
             <div style="display: grid;grid-template-columns: 25% 75%;margin-top: 20px;">
@@ -300,6 +300,88 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <!-- our blog -->
+    <div class="general-padding2">
+        <!-- this is higga! -->
+        <div class="first-smaller-text">READ OUR BLOG</div>
+        <div style="display: grid;grid-template-columns: 70% 30%;align-items: center;">
+            <div class="homepage-audioplayer-title">Latest Articles</div>
+            <div style="display: flex;align-items: center;justify-content: flex-end;gap: 10px;">More Posts <i class="fa-regular fa-circle-right"></i></div>
+        </div>
+        <div style="display: grid;grid-template-columns: 1fr 1fr;gap: 50px;margin-top: 20px;">
+            <div>
+                <div>
+                    <img 
+                        loading="lazy" 
+                        decoding="async" 
+                        width="100%" 
+                        src="/storage/assets/images/001post.jpg"
+                        class="" 
+                        alt=""
+                    >
+                </div>
+                <div style="display: grid;grid-template-columns: 15% 75%;align-items: start;gap: 5%;margin-top: 40px;">
+                    <div>
+                        <div style="font-size: 50px;font-weight: bolder;text-align: center;">06</div>
+                        <div style="text-align: center;">APR</div>
+                    </div>
+                    <div class="general-font-style" style="font-size: 40px;line-height: 35px;">Love for our Lord is pure and unconditional</div>
+                </div>
+                <div style="display: grid;grid-template-columns: 15% 78%;gap: 5%;margin-top: 10px;font-weight: normal;">
+                    <div></div>
+                    <div>
+                        <!--  -->
+                        <div style="color:rgba(36, 12, 0, 0.8);">
+                            hv utrgu tfty uftyui fvyuh ifkgyuh jgkyuhj ifkyvuh kgyuh fyvuh
+                            fyvuhji kghj fcgyhj fvhj kfvuhjh fkgvhi fjghjd tfcg fhj tygf
+                        </div>
+                        <div style="display: flex;align-items: center;gap: 10px;margin-top: 10px;color:rgba(36, 12, 0, 0.8);">
+                            <div>0 Likes</div>
+                            <div>0 Comments</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                @for ($i = 0; $i <= 2; $i++)
+                    <div style="display: grid;grid-template-columns: 30% 65%;align-items: center;gap: 5%;margin-bottom: 20px;">
+                        <div>
+                            <!--  -->
+                            <img 
+                                loading="lazy" 
+                                decoding="async" 
+                                width="100%" 
+                                src="/storage/assets/images/blogitem.jpg"
+                                class="" 
+                                alt=""
+                            >
+                        </div>
+                        <div>
+                            <div style="display: flex;align-items: center;gap: 5px;font-weight: normal;">
+                                <div>Rev. Lawrence Amajor</div>
+                                <div style="color:rgba(36, 12, 0, 0.4);font-size: 5px;"><i class="fa-solid fa-circle-dot"></i></div>
+                                <div>3rd Dec., 2023</div>
+                            </div>
+                            <div class="general-font-style" style="font-size: 25px;line-height: 28px;">We bring heaven on earth through Christ</div>
+                            <div style="display: flex;align-items: center;gap: 10px;margin-top: 10px;color:rgba(36, 12, 0, 0.8);">
+                                <div>0 Likes</div>
+                                <div>0 Comments</div>
+                            </div>
+                        </div>
+                    </div>
+                @endfor
+            </div>
+        </div>
+    </div>
+
+    <div class="general-padding2" style="height: 400px;background: url('storage/assets/images/section-bckg.jpg'); background-position: center;background-repeat: no-repeat;background-size: cover; width: 100%;padding-bottom: 10vh;display: flex;flex-direction: column;align-items: center;justify-content: center;">
+        <div style="display: flex;justify-content: center;">
+            <!--  -->
+            <i class="fa-brands fa-telegram"></i>
+        </div>
+        <div>vvv</div>
     </div>
 
     <div>
