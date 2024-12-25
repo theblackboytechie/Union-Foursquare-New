@@ -270,9 +270,35 @@
     <!--  -->
     <div class="general-padding2" style="height: 400x;background: url('storage/assets/images/section-bckg.jpg'); background-position: center;background-repeat: no-repeat;background-size: cover; width: 100%;padding-bottom: 10vh;">
         <div class="first-smaller-text">LATEST SERMON</div>
-        <div style="display: grid;">
-            <div class="homepage-our-mandate-bottom" style="text-align: left;">THE SPIRIT OF WORSHIP</div>
-            <div></div>
+        <div style="display: grid;grid-template-columns: 70% 30%;align-items: center;">
+            <div class="homepage-audioplayer-title">THE SPIRIT OF WORSHIP</div>
+            <div style="display: flex;align-items: center;justify-content: flex-end;gap: 10px;">More Audio <i class="fa-regular fa-circle-right"></i></div>
+        </div>
+            <div style="display: grid;grid-template-columns: 25% 75%;margin-top: 20px;">
+                <div>
+                    <img 
+                        loading="lazy" 
+                        decoding="async" 
+                        width="100%" 
+                        src="/storage/assets/images/audio-message.jpg"
+                        class="" 
+                        alt=""
+                    >
+                </div>
+                <div style="display: flex;align-items: center;justify-content: center;background: white;">
+                    <div style="width: 80%;">
+                        <!--  -->
+                        <div>
+                            <button style="background: rgba(36, 12, 0, 1);margin-bottom: 10px;padding: 5px 20px;color: white;font-size: 12px;">NOW PLAYING</button>
+                        </div>
+                        <div class="general-font-style" style="margin-bottom: 10px;font-size: 35px;">Serve the world: come together</div>
+                        <audio controls loop preload="auto" style="background: rgba(0,0,0,0.2);width: 100%;">
+                            <source src="audio_file.mp3" type="audio/mp3">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
