@@ -281,7 +281,7 @@
     <div class="general-padding2" style="background: url('storage/assets/images/section-bckg.jpg'); background-position: center;background-repeat: no-repeat;background-size: cover; width: 100%;padding-bottom: 10vh;">
         <div class="first-smaller-text">LATEST SERMON</div>
         <div class="public-audioplayer-header">
-            <div class="homepage-audioplayer-title">Word, Worship and Wonder</div>
+            <div class="homepage-audioplayer-title">Worship, Word and Wonder</div>
             <div class="public-audioplayer-more-audios">More Audio <i class="fa-regular fa-circle-right"></i></div>
         </div>
             <div class="public-audioplayer-outer-wraps">
@@ -302,13 +302,173 @@
                             <button class="public-audioplayer-nowplaying">NOW PLAYING</button>
                         </div>
                         <div class="general-font-style public-audioplayer-nowplaying-title">Serve the world: come together</div>
-                        <audio controls loop preload="auto" class="public-audioplayer-audiotag">
-                            <source src="audio_file.mp3" type="audio/mp3">
-                            Your browser does not support the audio element.
-                        </audio>
+                        <?php $viewport = "desktop"; ?>
+                        <x-audio-player-homepage :viewport="$viewport" />
                     </div>
                 </div>
             </div>
+            <div style="background: white;">
+                <?php $viewport = "mobile"; ?>
+                <x-audio-player-homepage :viewport="$viewport" />
+            </div>
         </div>
+    </div>
+
+    <!-- blog on homepage -->
+    <div class="general-padding2">
+        <!-- this is higga! -->
+        <div class="first-smaller-text">READ OUR BLOG</div>
+        <div class="public-blog-header">
+            <div class="homepage-audioplayer-title">Latest Articles</div>
+            <div class="public-blog-moreposts">More Posts <i class="fa-regular fa-circle-right"></i></div>
+        </div>
+        <div class="public-blogposts-main-a">
+            <div>
+                <div>
+                    <img 
+                        loading="lazy" 
+                        decoding="async" 
+                        width="100%" 
+                        src="/storage/assets/images/001post.jpg"
+                        class="" 
+                        alt=""
+                    >
+                </div>
+                <div class="public-blog-mainpost-wraps">
+                    <div style="display: grid;grid-template-columns: 100%;flex-direction: column;align-items: flex-start;background: rgba(128,128,128,0.1);">
+                        <div class="public-blog-mainpost-date">06</div>
+                        <div class="public-blog-mainpost-month">APR</div>
+                    </div>
+                    <div class="public-blog-main-title xgeneral-font-style">Love for our Lord is pure and unconditional</div>
+                    <div></div>
+                    <div>tfuy jgyuh iufy ujtfy ikrydfu fjhg itf fgyuhi fkyuh idtrcfug tgfy fycgu dtfg ujdtgf tfgyh</div>
+                </div>
+                <div class="public-blog-main-content">
+                    <div></div>
+                    <div>
+                        <!--  -->
+                        <div class="public-blog-main-text">
+                            hv utrgu tfty uftyui fvyuh ifkgyuh jgkyuhj ifkyvuh kgyuh fyvuh
+                            fyvuhji kghj fcgyhj fvhj kfvuhjh fkgvhi fjghjd tfcg fhj tygf
+                        </div>
+                        <div class="public-blog-main-engagement">
+                            <div>0 Likes</div>
+                            <div>0 Comments</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                @for ($i = 0; $i <= 2; $i++)
+                    <div class="public-blog-otherstories">
+                        <div>
+                            <!--  -->
+                            <img 
+                                loading="lazy" 
+                                decoding="async" 
+                                width="100%" 
+                                src="/storage/assets/images/blogitem.jpg"
+                                class="" 
+                                alt=""
+                            >
+                        </div>
+                        <div>
+                            <div class="public-blog-otherinfo">
+                                <div>Rev. Lawrence Amajor</div>
+                                <div class="public-blog-otherinfo-dot"><i class="fa-solid fa-circle-dot"></i></div>
+                                <div>3rd Dec., 2023</div>
+                            </div>
+                            <div class="public-blog-otherinfo-title">We bring heaven on earth through Christ</div>
+                            <div class="public-blog-otherinfo-engagement">
+                                <div>0 Likes</div>
+                                <div>0 Comments</div>
+                            </div>
+                        </div>
+                    </div>
+                @endfor
+            </div>
+        </div>
+    </div>
+
+    <!-- newsletter subscription -->
+    <div class="general-padding2" style="height: 400px;background: url('storage/assets/images/section-bckg.jpg'); background-position: center;background-repeat: no-repeat;background-size: cover; width: 100%;padding-bottom: 10vh;display: flex;flex-direction: column;align-items: center;justify-content: center;">
+        <div class="public-newsletter-mainicon">
+            <!--  -->
+            <i style="font-size: 40px;color: #dbb66d;" class="fa-brands fa-telegram"></i>
+            <!-- <div style="height: 20px;width: 20px;background: green;"></div> -->
+        </div>
+        <div class="public-newsletter-text xgeneral-font-style">Get timely messages of hope and inspiration from God's servants.</div>
+        <div class="public-newsletter-form-wraps">
+            <input type="text" class="public-newsletter-inputtag">
+            <div class="public-newsletter-button"><i style="font-size: 30px;color: #dbb66d;" class="fa-brands fa-telegram"></i> <span class="public-newsletter-subscribe-text">SUBSCRIBE</span></div>
+        </div>
+    </div>
+
+    <!-- footer -->
+    <div class="general-padding public-footer-outer">
+        <div class="public-footer-grid">
+            <div class="public-footer-a">
+                <div class="general-font-style footer-reachout">Reachout to Foursquare</div>
+                <hr style="margin: 30px 0px;">
+                <div class="general-font-style footer-reachout">We're happy to help you grow</div>
+
+                <div class="fuller-content-for-mobile-4">
+                    jsql
+                    <!-- <div class="footer-subheader subheader-mobile">Contact Us aaa</div>
+                        <div class="footer-text">404, Northworth Avenue, Central Park Station, Newark New Jersey. NJ. 23401 Archish</div>
+                        <div class="footer-text">----</div>
+                        <div class="footer-text">404, Northworth Avenue, Central Park Station, Newark New Jersey. NJ. 23401 Archish</div>
+                    </div> -->
+                    <!--  -->
+                </div>
+            </div>
+            <div class="public-footer-bx">
+                <div class="footer-subheader subheader-mobile">Contact Us bbb</div>
+                <div class="footer-text">404, Northworth Avenue, Central Park Station, Newark New Jersey. NJ. 23401 Archish</div>
+                <div class="footer-text">----</div>
+                <div class="footer-text">404, Northworth Avenue, Central Park Station, Newark New Jersey. NJ. 23401 Archish</div>
+                <div style="display: none;">
+                    <!--  -->
+                    <div class="footer-subheader subheader-mobile">About Us</div>
+                    <div class="footer-text">Who we are</div>
+                    <div class="footer-text">What we believe</div>
+                    <div class="footer-text">Leadership</div>
+                    <div class="footer-text">Our services</div>
+                    <div class="footer-text">Upcoming Events</div>
+                    <div class="footer-text">Free transportation</div>                        
+                    <!--  -->
+                    <div class="footer-subheader subheader-mobile">Media</div>
+                    <div class="footer-text">Our Blog</div>
+                    <div class="footer-text">Audio Messages</div>
+                    <div class="footer-text">Audible</div>
+                    <div class="footer-text">Youtube</div>
+                    <div class="footer-text">Instagram</div>
+                    <div class="footer-text">Facebook</div>
+                    <div class="footer-text">X</div>
+                    <!--  -->
+                </div>
+            </div>
+            <div class="public-footer-c">
+                <div class="footer-subheader">About Us ccc</div>
+                <div class="footer-text">Who we are</div>
+                <div class="footer-text">What we believe</div>
+                <div class="footer-text">Leadership</div>
+                <div class="footer-text">Our services</div>
+                <div class="footer-text">Upcoming Events</div>
+                <div class="footer-text">Free transportation</div>
+            </div>
+            <div class="public-footer-d">
+                <div class="footer-subheader">Media ddd</div>
+                <div class="footer-text">Our Blog</div>
+                <div class="footer-text">Audio Messages</div>
+                <div class="footer-text">Audible</div>
+                <div class="footer-text">Youtube</div>
+                <div class="footer-text">Instagram</div>
+                <div class="footer-text">Facebook</div>
+                <div class="footer-text">X</div>
+            </div>
+        </div>
+        <hr style="padding: 20px 0px;background: rgba(36, 12, 0, 1);">
+        <div class="general-font-style" style="background: rgba(36, 12, 0, 1);color: rgba(255,255,255,0.8);font-size: 50px;text-align: center;">The Union Foursquare Gospel Church</div>
     </div>
 </x-app-layout>
