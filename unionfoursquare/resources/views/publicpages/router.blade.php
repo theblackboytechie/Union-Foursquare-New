@@ -84,10 +84,10 @@
     </div>
 
     <!-- why Union Foursquare -->
-    <div class="general-padding2 general-font-style">
+    <div class="general-padding2">
         <div class="first-smaller-text">Why Union Foursquare?</div>
         <div class="public-whyfoursquare-grid">
-            <div class="public-whyfoursquare-grid-left">We're a conservative Christian community that encourages you to come the way you are</div>
+            <div class="public-whyfoursquare-grid-left general-font-style">We're a conservative Christian community that encourages you to come the way you are</div>
             <div class="public-whyfoursquare-grid-right" style="font-weight: normal;">
                 <span class="public-whyfoursquare-grid-right-text">
                     Adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis consectetur adipiscing nostrud exercitation ullamco.
@@ -166,5 +166,149 @@
         </div>
         <!-- <div>2</div>
         <div>3</div> -->
+    </div>
+
+    <!-- tenets of faith -->
+    <div class="public-our-doctrine-section general-padding2">
+        <div class="first-smaller-text">OUR BELIEF</div>
+        <div class="public-three-arm-grid-each-text">
+            <div class="homepage-our-mandate-bottom">Loving God, helping others and serving the world</div>
+        </div>
+        <div class="public-ourbelief-wraps">
+            <div class="public-ourbelief-each">
+                <div class="public-ourbelief-flex-img">
+                    <img 
+                        loading="lazy" 
+                        decoding="async" 
+                        width="40%" 
+                        src="/storage/assets/images/animated/holybible.gif"
+                        class="" 
+                        alt=""
+                    >
+                </div>
+                <div class="public-maintext">Holy Scriptures</div>
+                <div class="public-description font-normal">tfgy fgvyuh jgyuh idftgy jfguhi fgyuh ftgyuh jfgvh ufjgyjh fgyvuh jgyh jdfgyh</div>
+            </div>
+            <div class="public-ourbelief-each">
+                <div class="public-ourbelief-flex-img">
+                    <img 
+                        loading="lazy" 
+                        decoding="async" 
+                        width="40%" 
+                        src="/storage/assets/images/animated/church.gif"
+                        class="" 
+                        alt=""
+                    >
+                </div>
+                <div class="public-maintext">Eternal Godhead</div>
+                <div class="public-description font-normal">tfgy fgvyuh jgyuh idftgy jfguhi fgyuh ftgyuh jfgvh ufjgyjh fgyvuh jgyh jdfgyh</div>
+            </div>
+            <div class="public-ourbelief-each">
+                <div class="public-ourbelief-flex-img">
+                    <img 
+                        loading="lazy" 
+                        decoding="async" 
+                        width="40%" 
+                        src="/storage/assets/images/animated/fallofman.gif"
+                        class="" 
+                        alt=""
+                    >
+                </div>
+                <div class="public-maintext">Fall of Man</div>
+                <div class="public-description font-normal">tfgy fgvyuh jgyuh idftgy jfguhi fgyuh ftgyuh jfgvh ufjgyjh fgyvuh jgyh jdfgyh</div>
+            </div>
+            <div class="public-ourbelief-each">
+                <div class="public-ourbelief-flex-img">
+                    <img 
+                        loading="lazy" 
+                        decoding="async" 
+                        width="40%" 
+                        src="/storage/assets/images/animated/plan-redemption.gif"
+                        class="" 
+                        alt=""
+                    >
+                </div>
+                <div class="public-maintext">Plan of Redemption</div>
+                <div class="public-description font-normal">tfgy fgvyuh jgyuh idftgy jfguhi fgyuh ftgyuh jfgvh ufjgyjh fgyvuh jgyh jdfgyh</div>
+            </div>
+        </div>
+        <div style="margin-top: 40px;">
+            <button class="header-button text-white">ALL OUR BELIEFS</button>
+        </div>
+    </div>
+
+    <!-- calendar and upcoming events -->
+    <div class="general-padding2">
+        <div class="first-smaller-text">CALENDAR</div>
+        <div class="homepage-our-mandate-bottom" style="text-align: left;">Event schedule</div>
+        <div>
+            <div class="public-upcoming-events-header">
+                <div>May 2021</div>
+                <div>June 2023</div>
+                <div>July 2023</div>
+            </div>
+            <div class="public-upcomingevents-list">
+                @for ($i = 2; $i <= 10; $i++)
+                    <div class="public-upcomingevents-list-inner">
+                        <div class="upcomingevents-a">
+                            <div class="public-upcomingevents-date">1 July</div>
+                            <div class="public-upcomingevents-time">12:00 am</div>
+                        </div>
+                        <div class="upcomingevents-b">
+                            <div>Newcomers Lunch</div>
+                            <div class="show-for-mobile">
+                                <div class="public-upcomingevents-hostname">Rev. Lawrence Amajor</div>
+                                <div style="font-weight: normal;">Lead Pastor</div>
+                            </div>
+                        </div>
+                        <div class="upcomingevents-c">
+                            <!--  -->
+                            <div class="public-upcomingevents-hostname">Rev. Lawrence Amajor</div>
+                            <div style="font-weight: normal;">Lead Pastor</div>
+                        </div>
+                        <div class="upcomingevents-d">
+                            <div class="public-upcomingevents-event-location">Main Church Auditorium</div>
+                            <div class="public-upcomingevents-event-address">Elizabeth, Newwark New Jersey</div>
+                        </div>
+                        <div class="upcomingevents-e"><i class="fa-regular fa-circle-right"></i></div>
+                    </div>
+                @endfor
+            </div>
+        </div>
+    </div>
+
+    <!-- latest sermon -->
+    <div class="general-padding2" style="background: url('storage/assets/images/section-bckg.jpg'); background-position: center;background-repeat: no-repeat;background-size: cover; width: 100%;padding-bottom: 10vh;">
+        <div class="first-smaller-text">LATEST SERMON</div>
+        <div class="public-audioplayer-header">
+            <div class="homepage-audioplayer-title">Word, Worship and Wonder</div>
+            <div class="public-audioplayer-more-audios">More Audio <i class="fa-regular fa-circle-right"></i></div>
+        </div>
+            <div class="public-audioplayer-outer-wraps">
+                <div>
+                    <img 
+                        loading="lazy" 
+                        decoding="async" 
+                        width="100%" 
+                        src="/storage/assets/images/audio-message.jpg"
+                        class="" 
+                        alt=""
+                    >
+                </div>
+                <div class="public-audioplayer-actualplayer-wraps">
+                    <div class="public-audioplayer-actualplayer-wraps2">
+                        <!--  -->
+                        <div>
+                            <button class="public-audioplayer-nowplaying">NOW PLAYING</button>
+                        </div>
+                        <div class="general-font-style public-audioplayer-nowplaying-title">Serve the world: come together</div>
+                        <audio controls loop preload="auto" class="public-audioplayer-audiotag">
+                            <source src="audio_file.mp3" type="audio/mp3">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </x-app-layout>

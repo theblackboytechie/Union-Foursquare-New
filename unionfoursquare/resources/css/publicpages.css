@@ -300,10 +300,6 @@ body{
     font-weight: normal;
 }
 
-.public-upcomingevents-eventname{
-    width: 25%;font-size: 20px;font-weight: bolder;
-}
-
 .public-upcomingevents-hostname{
     font-weight: bolder;
     font-size: 20px;
@@ -318,10 +314,76 @@ body{
     font-weight: normal;
 }
 
-.public-upcomingevents-icon-wrap{
+.upcomingevents-a{
     width: 15%;
+}
+
+.upcomingevents-b{
+    width: 25%;
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+.upcomingevents-c{
+    width: 25%;
+}
+
+.upcomingevents-d{
+    width: 25%;
+}
+
+.upcomingevents-e{
+    width: 10%;
     font-size: 20px;
     text-align: right;
+}
+
+.public-audioplayer-header{
+    display: grid;
+    grid-template-columns: 70% 30%;
+    align-items: center;
+}
+
+.public-audioplayer-more-audios{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.public-audioplayer-outer-wraps{
+    display: grid;
+    grid-template-columns: 25% 75%;
+    margin-top: 20px;
+}
+
+.public-audioplayer-actualplayer-wraps{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+}
+
+.public-audioplayer-actualplayer-wraps2{
+    width: 80%;
+}
+
+.public-audioplayer-nowplaying{
+    background: rgba(36, 12, 0, 1);
+    margin-bottom: 10px;
+    padding: 5px 20px;
+    color: white;
+    font-size: 12px;
+}
+
+.public-audioplayer-nowplaying-title{
+    margin-bottom: 10px;
+    font-size: 35px;
+}
+
+.public-audioplayer-audiotag{
+    background: rgba(0,0,0,0.2);
+    width: 100%;
 }
 
 .footer-text{
@@ -351,6 +413,10 @@ body{
     font-weight: bold;
 }
 
+.show-for-mobile{
+    display: none;
+}
+
 @media only screen and (max-width: 1100px) {
     .general-padding2{
         padding: 10vh 10vh;
@@ -359,6 +425,11 @@ body{
     .public-whyfoursquare-grid{
         grid-template-columns: 45% 45%;
         gap: 10%;
+    }
+
+    .public-audioplayer-nowplaying-title{
+        margin-bottom: 5px;
+        font-size: 30px;
     }
 }
 
@@ -399,11 +470,19 @@ body{
     .public-three-arm-grid{
         grid-template-columns: 1fr 1fr;
     }
+
+    .public-ourbelief-wraps{
+        grid-template-columns: 1fr 1fr 1fr;
+    }
 }
 
 @media only screen and (max-width: 900px) {
     /* CSS rules for devices with a maximum width of 900px go here */
     .general-padding{
+        padding: 10vh 5vh;
+    }
+
+    .general-padding2{
         padding: 10vh 5vh;
     }
 
@@ -424,8 +503,33 @@ body{
         grid-template-columns: 100%;
         gap: 0%;
     }
+
     .public-whyfoursquare-grid-left{
         margin-bottom: 10px;
+    }
+
+    .homepage-our-mandate-bottom{
+        width: 95%;
+    }
+
+    .upcomingevents-a{
+        width: 20%;
+    }
+    
+    .upcomingevents-b{
+        width: 60%;
+    }
+    
+    .upcomingevents-c, .upcomingevents-d{
+        display: none;
+    }
+    
+    .upcomingevents-e{
+        width: 20%;
+    }
+
+    .show-for-mobile{
+        display: block;
     }
 }
 
@@ -433,6 +537,10 @@ body{
     /* CSS rules for devices with a maximum width of 900px go here */
     .header-church-logo{
         width: 95%;
+    }
+
+    .public-ourbelief-wraps{
+        grid-template-columns: 1fr 1fr;
     }
 }
 
@@ -452,6 +560,10 @@ body{
 
     .three-arm-under-border-right, .three-arm-image-style{
         border-right: 0px;
+    }
+
+    .public-ourbelief-wraps{
+        grid-template-columns: 1fr;
     }
 }
 
