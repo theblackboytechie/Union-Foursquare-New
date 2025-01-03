@@ -411,19 +411,9 @@
                 <div class="general-font-style footer-reachout">Reachout to Foursquare</div>
                 <hr style="margin: 30px 0px;">
                 <div class="general-font-style footer-reachout">We're happy to help you grow</div>
-
-                <div class="fuller-content-for-mobile-4">
-                    jsql
-                    <!-- <div class="footer-subheader subheader-mobile">Contact Us aaa</div>
-                        <div class="footer-text">404, Northworth Avenue, Central Park Station, Newark New Jersey. NJ. 23401 Archish</div>
-                        <div class="footer-text">----</div>
-                        <div class="footer-text">404, Northworth Avenue, Central Park Station, Newark New Jersey. NJ. 23401 Archish</div>
-                    </div> -->
-                    <!--  -->
-                </div>
             </div>
-            <div class="public-footer-bx">
-                <div class="footer-subheader subheader-mobile">Contact Us bbb</div>
+            <div class="mt-8">
+                <div class="footer-subheader">Contact Us</div>
                 <div class="footer-text">404, Northworth Avenue, Central Park Station, Newark New Jersey. NJ. 23401 Archish</div>
                 <div class="footer-text">----</div>
                 <div class="footer-text">404, Northworth Avenue, Central Park Station, Newark New Jersey. NJ. 23401 Archish</div>
@@ -448,8 +438,8 @@
                     <!--  -->
                 </div>
             </div>
-            <div class="public-footer-c">
-                <div class="footer-subheader">About Us ccc</div>
+            <div>
+                <div class="footer-subheader mt-8">About Us</div>
                 <div class="footer-text">Who we are</div>
                 <div class="footer-text">What we believe</div>
                 <div class="footer-text">Leadership</div>
@@ -457,8 +447,8 @@
                 <div class="footer-text">Upcoming Events</div>
                 <div class="footer-text">Free transportation</div>
             </div>
-            <div class="public-footer-d">
-                <div class="footer-subheader">Media ddd</div>
+            <div>
+                <div class="footer-subheader mt-8">Media</div>
                 <div class="footer-text">Our Blog</div>
                 <div class="footer-text">Audio Messages</div>
                 <div class="footer-text">Audible</div>
