@@ -41,29 +41,8 @@
         <div class="dashboard-content">
             <div class="dashboard-header dashboard-header-bottom">header</div>
             <div class="dashboard-content-body">
-                @if($owner == "view_pagesroute_dashboard")
-                    <div class="pages-section">
-                        <div class="pages-section-a">
-                            <div class="dashboard-menu-each">
-                                <div class="dashboard-menu-iconwraps"><i class="fa-solid fa-house-chimney"></i></div>
-                                <div>Home Page</div>
-                            </div>
-                            <div class="dashboard-menu-each">
-                                <div class="dashboard-menu-iconwraps"><i class="fa-brands fa-blogger-b"></i></div>
-                                <div>Blog Page</div>
-                            </div>
-                            <div class="dashboard-menu-each">
-                                <div class="dashboard-menu-iconwraps"><i class="fa-solid fa-user"></i></div>
-                                <div>Who We Are</div>
-                            </div>
-                            <div class="dashboard-menu-each">
-                                <div class="dashboard-menu-iconwraps"><i class="fa-solid fa-file"></i></div>
-                                <div>Resources</div>
-                            </div>
-                        </div>
-                        <div class="pages-section-b">b</div>
-                        <div class="pages-section-c"><!-- c --></div>
-                    </div>
+                @if($owner == "view_pagesroute_dashboard" || $owner == "view_homepage_subsection_jumbotron" || $owner == "view_homepage_subsection_themetext")
+                    <x-backend-pages-dashboard :owner="$owner" />
                 @endif
             </div>
         </div>
