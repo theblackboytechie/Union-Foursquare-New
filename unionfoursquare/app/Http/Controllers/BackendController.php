@@ -42,4 +42,9 @@ class BackendController extends Controller
 
         return view('/publicpages/backendrouter', compact('owner', 'params'));
     }
+
+    public function database_update(Request $request)
+    {
+        return "Jack&Rose!";
+    }
 }

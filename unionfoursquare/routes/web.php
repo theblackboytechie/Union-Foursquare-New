@@ -19,6 +19,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [BackendController::class, 'dashboard'])->name('dashboard');
     Route::get('/pages/{x}', [BackendController::class, 'pagesroute'])->name('pagesroute');
     Route::get('/pages/{x}/{y}', [BackendController::class, 'pages_subsection'])->name('pages_subsection');
+
+    Route::post('/database_update', [BackendController::class, 'database_update'])->name('database_update');
 });
 
 require __DIR__.'/auth.php';

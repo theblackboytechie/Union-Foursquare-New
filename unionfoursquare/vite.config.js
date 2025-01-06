@@ -8,7 +8,8 @@ export default defineConfig({
                 'resources/css/app.css',
                 'resources/css/publicpages.css',
                 'resources/css/backendcss.css',
-                'resources/js/app.js'
+                'resources/js/app.js',
+                'resources/js/backendcrud.js'
             ],
             refresh: true,
         }),

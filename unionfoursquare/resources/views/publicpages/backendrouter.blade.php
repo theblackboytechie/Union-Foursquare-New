@@ -1,4 +1,9 @@
 <x-app-layout>
+    <div
+        id="cadanamaps"
+        database_update="{{ route('database_update') }}"
+    >
+    </div>
     <div class="dashboard-grid">
         <div class="dashboard-menu">
             <div class="dashboard-header">Salesheavy</div>

@@ -145,7 +145,7 @@
                     fgvy uftgyu ytfgvyuhik
                 </div>
                 <div class="pages-section-formwraps">
-                    <input type="text" class="input-form">
+                    <input type="text" class="input-form" id="jumbotron-headline">
                 </div>
                 <div class="subheading-text">Jumbotron Subtext</div>
                 <div class="pages-section-b-desc">
@@ -154,7 +154,7 @@
                     fgvy uftgyu ytfgvyuhik
                 </div>
                 <div class="pages-section-formwraps">
-                    <input type="text" class="input-form">
+                    <input type="text" class="input-form" id="jumbotron-subtext">
                 </div>
                 <div class="subheading-text">Jumbotron background</div>
                 <div class="pages-section-b-desc">
@@ -163,7 +163,7 @@
                     fgvy uftgyu ytfgvyuhik
                 </div>
                 <div class="pages-section-formwraps">
-                    <input type="file">
+                    <input type="file" id="jumbotron-background">
                 </div>
                 <div class="subheading-text">Button Link</div>
                 <div class="pages-section-b-desc">
@@ -171,13 +171,28 @@
                     ifvyuh jfgyh udrtycgu rjcgy jdcrfu drtfbh uygvu tfgyuj ygu ftgyj 
                     fgvy uftgyu ytfgvyuhik
                 </div>
-                <div class="pages-ordinary-text">Button Text</div>
+                <div class="pages-ordinary-text">Button Text (1)</div>
                 <div class="pages-section-formwraps">
-                    <input type="text" class="input-form">
+                    <input type="text" class="input-form" id="jumbotron-text1">
                 </div>
-                <div class="pages-ordinary-text">Button Link</div>
+                <div class="pages-ordinary-text">Button Link (1)</div>
                 <div class="pages-section-formwraps">
-                    <input type="text" class="input-form">
+                    <input type="text" class="input-form" id="jumbotron-link1">
+                </div>
+                <hr style="margin-top: 10px;">
+                <div class="pages-ordinary-text">Button Text (2)</div>
+                <div class="pages-section-formwraps">
+                    <input type="text" class="input-form" id="jumbotron-text2">
+                </div>
+                <div class="pages-ordinary-text">Button Link (2)</div>
+                <div class="pages-section-formwraps">
+                    <input type="text" class="input-form" id="jumbotron-link2">
+                </div>
+                <div class="pages-ordinary-text">
+                    <button class="pages-updatebutton" id="trigger-update-jumbotron">
+                        <div>Update</div>
+                        <div><i class="fa-solid fa-arrow-right-to-bracket"></i></div>
+                    </button>
                 </div>
             </div>
         @elseif($owner == "view_homepage_subsection_themetext")
