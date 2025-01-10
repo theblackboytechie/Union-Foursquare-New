@@ -1,7 +1,8 @@
 <x-app-layout>
     <div
-        id="cadanamaps"
+        id="union4sqmaps"
         database_update="{{ route('database_update') }}"
+        database_upload_image="{{ route('database_upload_image') }}"
     >
     </div>
     <div class="dashboard-grid">

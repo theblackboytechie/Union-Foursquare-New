@@ -21,6 +21,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/pages/{x}/{y}', [BackendController::class, 'pages_subsection'])->name('pages_subsection');
 
     Route::post('/database_update', [BackendController::class, 'database_update'])->name('database_update');
-});
+    Route::post('/database_upload_image', [BackendController::class, 'database_upload_image'])->name('database_upload_image');
+});//
 
 require __DIR__.'/auth.php';

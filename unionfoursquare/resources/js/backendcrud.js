@@ -14,7 +14,17 @@ $(document).ready(function() {
             owner: owner
         };
 
-        var theurl = $("#cadanamaps").attr("database_update");
+        var theurl = $("#union4sqmaps").attr("database_update");
+
+        updateDatabase(theurl, formData);
+
+        // get image
+        $("#jumbotron_background_upload_processing").show();
+        owner = "jumbotron-get-bg";
+
+        var formData = {
+            owner: owner
+        };
 
         updateDatabase(theurl, formData);
     }
@@ -48,7 +58,7 @@ $(document).ready(function() {
             link2: link2
         };
 
-        var theurl = $("#cadanamaps").attr("database_update");
+        var theurl = $("#union4sqmaps").attr("database_update");
 
         updateDatabase(theurl, formData);
     });
@@ -85,6 +95,9 @@ $(document).ready(function() {
                             }
                         }
                     }
+                }else if(formData.owner == "jumbotron-get-bg"){
+                    $("#jumbotron_background_upload_processing").hide();
+                    $("#profile_picture_thumbnail").attr("src", "http://127.0.0.1:8000/storage/uploads/"+response);
                 }
             },
             error: function(response) {
@@ -96,16 +109,13 @@ $(document).ready(function() {
     }
 
     $('#jumbotron-background').change(function() {
-        // alert("change detected!");
-        // return;
+        // to paste preview of the file
         readURL(this);
         // upload the image to the database
         $("#jumbotron_background_upload_processing").show();
         $('.' + 'credentials_error_wraps2').html("");
         var file = event.target.files[0];
 
-        // alert(file);console.log(file);
-        // return;
         var formData = new FormData();
         formData.append('file', file);
     
@@ -117,7 +127,8 @@ $(document).ready(function() {
         var owner = "jumbotron_background";
         formData.append('owner', owner);
     
-        var theurl = $("#cadanamaps").attr("database_upload_image");
+        var theurl = $("#union4sqmaps").attr("database_upload_image");
+
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -131,9 +142,7 @@ $(document).ready(function() {
             contentType: false,
             processData: false,
             success: function(response) {
-            //   console.log(response);
-            //   alert(response);
-              $("#profileimage-uploading-processing-loading").hide();
+              $("#jumbotron_background_upload_processing").hide();
             },
             error: function(xhr, status, error) {
                 // alert("major error!: "+xhr.responseText);

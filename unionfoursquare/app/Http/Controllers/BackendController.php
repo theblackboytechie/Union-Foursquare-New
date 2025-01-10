@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Helpers\CrudHelper;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class BackendController extends Controller
 {
@@ -74,7 +76,7 @@ class BackendController extends Controller
             if(!empty(trim($request->headline)) && !empty(trim($request->subtext)) && !empty(trim($request->text1)) && !empty(trim($request->link1)) && !empty(trim($request->text2)) && !empty(trim($request->link2))){
                 CrudHelper::Update($tabledb, $where_array, $update_array);
             }
-        }elseif($request->owner == "jumbotron-get"){
+        }elseif($request->owner == "jumbotron-get" || $request->owner == "jumbotron-get-bg"){
             $tabledb = "pagesui";
 
             $where_array = [
@@ -83,12 +85,60 @@ class BackendController extends Controller
     
             $output = CrudHelper::Get($tabledb, $where_array);
 
-            foreach($output as $output){
-                // $output->content;
-                $pagesui = json_decode($output->content, true);
+            if($request->owner == "jumbotron-get"){
+                foreach($output as $output){
+                    // $output->content;
+                    $pagesui = json_decode($output->content, true);
+                }
+    
+                return response()->json($pagesui);
+            }elseif($request->owner == "jumbotron-get-bg"){
+                foreach($output as $output){
+                    return $output->mediafile1;
+                }
             }
-
-            return response()->json($pagesui);
         }
+    }
+
+    // database_upload_image
+    public function database_upload_image(Request $request)
+    {
+        // return "shaba!";
+        // return "bangini!";
+        $request->validate([
+            'file' => 'required|mimes:jpeg,png,jpg,bmp,gif,pdf|max:4024',
+        ]);
+        
+        $authorid = Auth::id();
+        $ownerid = $request->ownerid;
+        $currenttime = Carbon::now();
+
+        // if ($ownerid == "settings") {
+        //     $idforuse = $authorid;
+        // } else {
+        //     $idforuse = $ownerid;
+        // }
+
+        $timestamp = time();
+        $randomString = Str::random(10);
+        $file = $request->file('file');
+        $extension = $file->getClientOriginalExtension();
+        $fileName = $randomString . $timestamp . '.' . $extension;
+        $filePath = $file->storeAs('uploads', $fileName, 'public');
+        $file->move(public_path('storage/uploads/'), $fileName);
+
+        // pagesui
+        $tabledb = "pagesui";
+
+        $where_array = [
+            'page_name' => "jumbotron",
+        ];
+
+        $update_array = [
+            'mediafile1' => $fileName,
+            'updated_at' => $currenttime,
+        ];
+
+        CrudHelper::Update($tabledb, $where_array, $update_array);
     }
 }
