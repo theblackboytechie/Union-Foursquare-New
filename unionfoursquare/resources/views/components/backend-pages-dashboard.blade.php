@@ -163,7 +163,15 @@
                     fgvy uftgyu ytfgvyuhik
                 </div>
                 <div class="pages-section-formwraps">
-                    <input type="file" id="jumbotron-background">
+                    <!-- <input type="file" id="jumbotron-background"> -->
+                    <input 
+                        type="file" multiple="" 
+                        class="w-full cursor-pointer rounded-lg border-[1.5px] border-stroke bg-transparent font-normal outline-none transition file:mr-5 file:border-collapse file:cursor-pointer file:border-0 file:border-r file:border-solid file:border-stroke file:bg-whiter file:px-5 file:py-3 file:hover:bg-primary file:hover:bg-opacity-10 focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:file:border-form-strokedark dark:file:bg-white/30 dark:file:text-white dark:focus:border-primary"
+                        name="documentfile" 
+                        id="jumbotron-background"
+                    >
+                    <i class="fa-solid fa-circle-notch fa-spin hidden" id="jumbotron_background_upload_processing"></i>
+                    <img src="" alt="" id="profile_picture_thumbnail" width="20%">
                 </div>
                 <div class="subheading-text">Button Link</div>
                 <div class="pages-section-b-desc">
@@ -192,6 +200,7 @@
                     <button class="pages-updatebutton" id="trigger-update-jumbotron">
                         <div>Update</div>
                         <div><i class="fa-solid fa-arrow-right-to-bracket"></i></div>
+                        <div><i class="fa-solid fa-circle-notch fa-spin hidden spin-processing"></i></div>
                     </button>
                 </div>
             </div>

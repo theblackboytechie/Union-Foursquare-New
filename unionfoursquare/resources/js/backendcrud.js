@@ -1,6 +1,29 @@
 $(document).ready(function() {
+    // on page load for jumbotron
+    var urlPath = window.location.pathname;
+
+    var path = urlPath.split("/");
+    var secondToLast = path[path.length - 2];
+    var thirdToLast = path[path.length - 3];
+    var lastPara = path[path.length - 1];
+
+    if(lastPara == "jumbotron"){
+        let owner = "jumbotron-get";
+
+        var formData = {
+            owner: owner
+        };
+
+        var theurl = $("#cadanamaps").attr("database_update");
+
+        updateDatabase(theurl, formData);
+    }
+
+
     // trigger the uploading of the primary details of the jumbotron
     $('body').on('click', '#trigger-update-jumbotron', function() {
+        // show spin
+        $(".spin-processing").show();
         let owner = "jumbotron-update";
         // jumbotron-headline
         let headline = $("#jumbotron-headline").val();
@@ -41,15 +64,28 @@ $(document).ready(function() {
             url: theurl,
             data: formData,
             success: function (response) {
-                // if(formData.owner == "update_account_type"){
-                //     // refresh current page
-                //     if(response == 1){
-                //         location.reload();
-                //     }else{
-                //         // output error
-                //     }
-                // }
-                alert(response);
+                if(formData.owner == "jumbotron-update"){
+                    $(".spin-processing").hide();
+                }else if(formData.owner == "jumbotron-get"){
+                    for (var key in response) {
+                        if (response.hasOwnProperty(key)) {
+                            console.log(key + ": " + response[key]);
+                            if(key == "headline"){
+                                $("#jumbotron-headline").val(response[key]);
+                            }else if(key == "subtext"){
+                                $("#jumbotron-subtext").val(response[key]);
+                            }else if(key == "text1"){
+                                $("#jumbotron-text1").val(response[key]);
+                            }else if(key == "link1"){
+                                $("#jumbotron-link1").val(response[key]);
+                            }else if(key == "text2"){
+                                $("#jumbotron-text2").val(response[key]);
+                            }else if(key == "link2"){
+                                $("#jumbotron-link2").val(response[key]);
+                            }
+                        }
+                    }
+                }
             },
             error: function(response) {
                 // alert(response);
@@ -57,5 +93,83 @@ $(document).ready(function() {
                 // owner applet_id
             }
         });
+    }
+
+    $('#jumbotron-background').change(function() {
+        // alert("change detected!");
+        // return;
+        readURL(this);
+        // upload the image to the database
+        $("#jumbotron_background_upload_processing").show();
+        $('.' + 'credentials_error_wraps2').html("");
+        var file = event.target.files[0];
+
+        // alert(file);console.log(file);
+        // return;
+        var formData = new FormData();
+        formData.append('file', file);
+    
+        var url = window.location.href;
+        var ownerid = url.substring(url.lastIndexOf('/') + 1);
+        formData.append('ownerid', ownerid);
+        // alert("ownerid: "+ownerid);
+        // return;
+        var owner = "jumbotron_background";
+        formData.append('owner', owner);
+    
+        var theurl = $("#cadanamaps").attr("database_upload_image");
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        
+        $.ajax({
+            type: 'POST',
+            url: theurl,
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(response) {
+            //   console.log(response);
+            //   alert(response);
+              $("#profileimage-uploading-processing-loading").hide();
+            },
+            error: function(xhr, status, error) {
+                // alert("major error!: "+xhr.responseText);
+                $("#document-uploading-processing").hide();
+                // console.log(xhr.responseText);
+                $('#' + 'credentials_error_wraps').text(xhr.responseText);
+                var errorResponse = JSON.parse(xhr.responseText);
+                var errorMessage = errorResponse.message;
+                var errors = errorResponse.errors;
+            
+                var errorHtml = '';
+            
+                // Display general error message
+                errorHtml += '<p>' + errorMessage + '</p>';
+            
+                // Display field-specific errors
+                $.each(errors, function(field, error) {
+                    errorHtml += '<p>' + field + ': ' + error[0] + '</p>';
+                });
+            
+                $('.' + 'credentials_error_wraps2').html(errorHtml);
+    
+                $("#profileimage-uploading-processing-loading").hide();
+            }
+        });
+    });
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+          var reader = new FileReader();
+      
+          reader.onload = function(e) {
+            $('#profile_picture_thumbnail').attr('src', e.target.result);
+          };
+      
+          reader.readAsDataURL(input.files[0]);
+        }
     }
 });
