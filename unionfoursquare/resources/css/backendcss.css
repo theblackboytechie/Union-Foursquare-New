@@ -144,3 +144,67 @@
     padding: 5px 30px;
     background: orangered;
 }
+
+.pages-add-component{
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.pages-different-components-dropdown{
+    position: absolute;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    gap: 5px;
+    height: 300px;
+    width: 500px;
+    overflow-y: scroll;
+    border-radius: 5px;
+    padding: 5px;
+    background: lightgray;
+}
+
+.pages-each-component{
+    height: 75px;
+    border-radius: 5px;
+    background: white;
+    color: dimgray;
+}
+
+.pages-component-single{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.pages-component-single-first{
+    border-bottom: 1px solid lightgray;
+}
+
+.pages-component-single-first, .pages-component-single-second{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50%;
+}
+
+.pages-component-double{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.pages-component-double-first, .single-first-in-double,  .single-first-in-tripple{
+    border-right: 1px solid lightgray;
+}
+
+.pages-component-double-first, .pages-component-double-second{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pages-component-tripple{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}

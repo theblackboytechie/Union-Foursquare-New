@@ -29,6 +29,10 @@ $(document).ready(function() {
         updateDatabase(theurl, formData);
     }
 
+    // toggle-page-componet-wraps
+    $('body').on('click', '#toggle-page-componet-wraps', function() {
+        $("#pages-components-wraps").toggle();
+    });
 
     // trigger the uploading of the primary details of the jumbotron
     $('body').on('click', '#trigger-update-jumbotron', function() {

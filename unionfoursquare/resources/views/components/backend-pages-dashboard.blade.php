@@ -242,7 +242,10 @@
                     ifvyuh jfgyh udrtycgu rjcgy jdcrfu drtfbh uygvu tfgyuj
                 </div>
                 <div class="pages-section-formwraps">
-                    <span>+ Add Component</span>
+                    <span class="pages-add-component" id="toggle-page-componet-wraps">+ Add Component</span>
+                </div>
+                <div class="hidden" id="pages-components-wraps">
+                    <x-backend-create-component />
                 </div>
             </div>
         @endif
