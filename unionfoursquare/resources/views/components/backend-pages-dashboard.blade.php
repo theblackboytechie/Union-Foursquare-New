@@ -45,9 +45,11 @@
                             Theme Text
                         </div>
                     </a>
-                    <div class="pages-each-subsection" style="background: red;">
-                        Why Foursquare
-                    </div>
+                    <a href="/pages/construct/whyfoursquare">
+                        <div class="pages-each-subsection" style="background: red;">
+                            Why Foursquare!!!
+                        </div>
+                    </a>
                     <div class="pages-each-subsection" style="background: brown;">
                         Our Belief
                     </div>
@@ -223,7 +225,28 @@
                     <input type="text" class="input-form">
                 </div>
             </div>
+        @elseif($owner == "view_construct_whyfoursquare")
+            <!-- <div>Eleruniyin!</div> -->
+            <div class="pages-section-b-content">
+                <div class="pages-section-b-header">
+                    <div class="pages-section-b-header-left">
+                        <div class="pages-section-name-abrv">WF</div>
+                        <div>Why Foursquare</div>
+                    </div>
+                    <div class="pages-section-b-header-right">
+                        <div><i class="fa-solid fa-ellipsis"></i></div>
+                    </div>
+                </div>
+                <div class="pages-section-b-desc">
+                    gyfu tg uftyu ftgy udrtfyd utfyu tfyuh ftvyuh ifvyuh 
+                    ifvyuh jfgyh udrtycgu rjcgy jdcrfu drtfbh uygvu tfgyuj
+                </div>
+                <div class="pages-section-formwraps">
+                    <span>+ Add Component</span>
+                </div>
+            </div>
         @endif
+
     </div>
     <div class="pages-section-c"><!-- c --></div>
 </div>

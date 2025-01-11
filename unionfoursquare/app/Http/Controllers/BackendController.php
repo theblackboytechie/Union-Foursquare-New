@@ -39,6 +39,8 @@ class BackendController extends Controller
             $owner = "view_homepage_subsection_jumbotron";
         }elseif($lastParameter == "themetext"){
             $owner = "view_homepage_subsection_themetext";
+        }elseif($lastParameter == "whyfoursquare"){
+            $owner = "view_construct_whyfoursquare";
         }
 
         $params = [];

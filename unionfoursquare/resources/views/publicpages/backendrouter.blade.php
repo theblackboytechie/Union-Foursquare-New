@@ -47,7 +47,7 @@
         <div class="dashboard-content">
             <div class="dashboard-header dashboard-header-bottom">header</div>
             <div class="dashboard-content-body">
-                @if($owner == "view_pagesroute_dashboard" || $owner == "view_homepage_subsection_jumbotron" || $owner == "view_homepage_subsection_themetext")
+                @if($owner == "view_pagesroute_dashboard" || $owner == "view_homepage_subsection_jumbotron" || $owner == "view_homepage_subsection_themetext" || $owner == "view_construct_whyfoursquare")
                     <x-backend-pages-dashboard :owner="$owner" />
                 @endif
             </div>
