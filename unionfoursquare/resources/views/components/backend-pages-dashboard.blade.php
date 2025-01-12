@@ -247,6 +247,7 @@
                 <div class="hidden" id="pages-components-wraps">
                     <x-backend-create-component />
                 </div>
+                <div class="uploaded-pages-component-wraps" owner="whyfoursquare"></div>
             </div>
         @endif
 
