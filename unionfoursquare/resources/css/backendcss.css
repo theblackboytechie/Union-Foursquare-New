@@ -208,3 +208,29 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
 }
+
+.single_text{
+    border-radius: 10px;
+    background: rgba(128,128,128,0.1);
+}
+
+.single_image, .actual_image{
+    border-radius: 10px;
+}
+
+.double_grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.tripple_grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.update_text_button{
+    border-radius: 10px;
+    padding: 0px 10px;
+    background: orangered;
+    box-shadow: 8px 8px 8px -10px rgba(0,0,0,0.75);
+}

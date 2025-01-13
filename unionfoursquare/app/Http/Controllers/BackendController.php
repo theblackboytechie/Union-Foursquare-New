@@ -99,6 +99,441 @@ class BackendController extends Controller
                     return $output->mediafile1;
                 }
             }
+        }elseif(
+            $request->owner == "single-text" || 
+            $request->owner == "single-image" || 
+            $request->owner == "single-image-text" || 
+            $request->owner == "single-text-image" || 
+            $request->owner == "double-text-image" || 
+            $request->owner == "double-image-text" ||
+            $request->owner == "double-image_up-text_down" ||
+            $request->owner == "double-text_up-image_down" ||
+            $request->owner == "tripple-text" ||
+            $request->owner == "tripple-image" ||
+            $request->owner == "tripple-text_up-image_down" ||
+            $request->owner == "tripple-image_up-text_down"
+        ){
+            $tabledb = "pagesui";
+
+            $where_array = [
+                'page_name' => "whyfoursquare",
+            ];
+    
+            $output = CrudHelper::Get($tabledb, $where_array);
+
+            foreach($output as $output){
+                if(empty($output->content)){
+                    $component_array = [];
+                }else{
+                    $component_array = json_decode($output->content, true);
+                }
+
+                $randomString = Str::random(10);
+
+                // ($array, -2, -1, 0);
+                array_unshift($component_array, $randomString);
+
+                $json_pagesui = json_encode($component_array);
+
+                $tabledb = "pagesui";
+
+                $update_array = [
+                    'content' => $json_pagesui,
+                    'updated_at' => $currenttime,
+                ];
+        
+                CrudHelper::Update($tabledb, $where_array, $update_array);
+                // 
+                $randomString2 = Str::random(10);
+                $randomString3 = Str::random(10);
+                $randomString4 = Str::random(10);
+                $randomString5 = Str::random(10);
+                $randomString6 = Str::random(10);
+                $randomString7 = Str::random(10);
+
+                // create style for component wraps
+                $this->create_component_style($randomString);
+
+                if($request->owner == "single-text"){
+                    $component_content_array = [
+                        'text' => $randomString2,
+                    ];
+
+                    $this->create_component_style($randomString2);
+                }elseif($request->owner == "single-image"){
+                    $component_content_array = [
+                        'image' => $randomString2,
+                    ];
+
+                    $this->create_component_style($randomString2);
+                }elseif($request->owner == "single-image-text"){
+                    $component_content_array = [
+                        'image' => $randomString2,
+                        'text' => $randomString3,
+                    ];
+
+                    $this->create_component_style($randomString2);
+                    $this->create_component_style($randomString3);
+                }elseif($request->owner == "single-text-image"){
+                    $component_content_array = [
+                        'text' => $randomString2,
+                        'image' => $randomString3,
+                    ];
+
+                    $this->create_component_style($randomString2);
+                    $this->create_component_style($randomString3);
+                }elseif($request->owner == "double-text-image"){
+                    $component_content_array = [
+                        'text1' => $randomString2,
+                        'image1' => $randomString3,
+                    ];
+
+                    $this->create_component_style($randomString2);
+                    $this->create_component_style($randomString3);
+                }elseif($request->owner == "double-image-text"){
+                    $component_content_array = [
+                        'image1' => $randomString2,
+                        'text1' => $randomString3,
+                    ];
+
+                    $this->create_component_style($randomString2);
+                    $this->create_component_style($randomString3);
+                }elseif($request->owner == "double-image_up-text_down"){
+                    $component_content_array = [
+                        'image1' => $randomString2,
+                        'text1' => $randomString3,
+                        'image2' => $randomString4,
+                        'text2' => $randomString5,
+                    ];
+
+                    $this->create_component_style($randomString2);
+                    $this->create_component_style($randomString3);
+                    $this->create_component_style($randomString4);
+                    $this->create_component_style($randomString5);
+                }elseif($request->owner == "double-text_up-image_down"){
+                    $component_content_array = [
+                        'text1' => $randomString2,
+                        'image1' => $randomString3,
+                        'text2' => $randomString4,
+                        'image2' => $randomString5,
+                    ];
+
+                    $this->create_component_style($randomString2);
+                    $this->create_component_style($randomString3);
+                    $this->create_component_style($randomString4);
+                    $this->create_component_style($randomString5);
+                }elseif($request->owner == "tripple-text"){
+                    $component_content_array = [
+                        'text1' => $randomString2,
+                        'text2' => $randomString3,
+                        'text3' => $randomString4,
+                    ];
+
+                    $this->create_component_style($randomString2);
+                    $this->create_component_style($randomString3);
+                    $this->create_component_style($randomString4);
+                }elseif($request->owner == "tripple-image"){
+                    $component_content_array = [
+                        'image1' => $randomString2,
+                        'image2' => $randomString3,
+                        'image3' => $randomString4,
+                    ];
+
+                    $this->create_component_style($randomString2);
+                    $this->create_component_style($randomString3);
+                    $this->create_component_style($randomString4);
+                }elseif($request->owner == "tripple-text_up-image_down"){
+                    $component_content_array = [
+                        'text1' => $randomString2,
+                        'image1' => $randomString3,
+                        'text2' => $randomString4,
+                        'image2' => $randomString5,
+                        'text3' => $randomString6,
+                        'image3' => $randomString7,
+                    ];
+
+                    $this->create_component_style($randomString2);
+                    $this->create_component_style($randomString3);
+                    $this->create_component_style($randomString4);
+                    $this->create_component_style($randomString5);
+                    $this->create_component_style($randomString6);
+                    $this->create_component_style($randomString7);
+                }elseif($request->owner == "tripple-image_up-text_down"){
+                    $component_content_array = [
+                        'image1' => $randomString2,
+                        'text1' => $randomString3,
+                        'image2' => $randomString4,
+                        'text2' => $randomString5,
+                        'image3' => $randomString6,
+                        'text3' => $randomString7,
+                    ];
+
+                    $this->create_component_style($randomString2);
+                    $this->create_component_style($randomString3);
+                    $this->create_component_style($randomString4);
+                    $this->create_component_style($randomString5);
+                    $this->create_component_style($randomString6);
+                    $this->create_component_style($randomString7);
+                }else{
+
+                }
+
+                $component_content_json = json_encode($component_content_array);
+                // 
+
+                $tabledb = "pagesui_component";
+
+                $create_array = [
+                    'pagesui_id' => "whyfoursquare",
+                    'component_id' => $randomString,
+                    'component_type' => $request->owner,
+                    'content' => $component_content_json,
+                    'created_at' => $currenttime,
+                    'updated_at' => $currenttime,
+                ];
+        
+                CrudHelper::Create($tabledb, $create_array);
+            }
+        }elseif($request->owner == "load_page_construct"){
+            // return "$request->pageowner!";
+            $tabledb = "pagesui";
+
+            $where_array = [
+                'page_name' => $request->pageowner,
+            ];
+    
+            $output = CrudHelper::Get($tabledb, $where_array);
+
+            // return count($output);
+            if(count($output) > 0){
+                foreach($output as $output){
+                    // return $output->content;
+                    $pagesuilist = json_decode($output->content, true);
+                    $wraps = "";
+                    // $wraps .= "$pagesuilist, ";
+                    foreach($pagesuilist as $pagesui){
+                        // this is to get the full details of each components, to know if it is texts and images 
+                        $component_all_details = $this->get_pagesui_component($pagesui);
+                        // $wraps .= "$pagesui!!, ";
+                        // $wraps .= count($component_all_details).", ";
+
+                        foreach($component_all_details as $componentdetails){
+                            // to get the ids of the component members we convert from json to array and loop
+                            $component_content = json_decode($componentdetails->content, true);
+
+                            if($componentdetails->component_type == "single-text"){
+                                foreach($component_content as $key => $value){
+                                    if ($key == 'text') {
+                                        $text_id1 = $value;
+                                    }
+                                }
+                                $wraps .= "<div class='single_text' component_type='text' component_id='$text_id1'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>";
+                            }elseif($componentdetails->component_type == "single-image"){
+                                foreach($component_content as $key => $value){
+                                    if ($key == 'image') {
+                                        $image_id1 = $value;
+                                    }
+                                }
+                                $wraps .= "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' component_type='image' component_id='$image_id1' /></div>";
+                            }elseif($componentdetails->component_type == "single-image-text"){
+                                foreach($component_content as $key => $value){
+                                    if ($key == 'image') {
+                                        $image_id1 = $value;
+                                    }elseif($key == 'text'){
+                                        $text_id1 = $value;
+                                    }
+                                }
+                                $wraps .= "<div component_id='$componentdetails->component_id'>";
+                                    $wraps .= "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' component_type='image' component_id='$image_id1' /></div>";
+                                    $wraps .= "<div class='single_text' component_type='text' component_id='$text_id1'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>";
+                                $wraps .= "</div>";
+                            }elseif($componentdetails->component_type == "single-text-image"){
+                                foreach($component_content as $key => $value){
+                                    if ($key == 'image') {
+                                        $image_id1 = $value;
+                                    }elseif($key == 'text'){
+                                        $text_id1 = $value;
+                                    }
+                                }
+                                $wraps .= "<div component_id='$componentdetails->component_id'>";
+                                    $wraps .= "<div class='single_text' component_type='text' component_id='$text_id1'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>";
+                                    $wraps .= "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' component_type='image' component_id='$image_id1' /></div>";
+                                $wraps .= "</div>";
+                            }elseif($componentdetails->component_type == "double-text-image"){
+                                foreach($component_content as $key => $value){
+                                    if ($key == 'image1') {
+                                        $image_id1 = $value;
+                                    } elseif ($key == 'text1') {
+                                        $text_id1 = $value;
+                                    }
+                                }
+
+                                $wraps .= "<div class='double_grid' component_id='$componentdetails->component_id'>";
+                                    $wraps .= "<div class='single_text' component_type='text' component_id='$text_id1'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>";
+                                    $wraps .= "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' component_type='image' component_id='$image_id1' /></div>";
+                                $wraps .= "</div>";
+                            }elseif($componentdetails->component_type == "double-image-text"){
+                                foreach($component_content as $key => $value){
+                                    if ($key == 'image1') {
+                                        $image_id1 = $value;
+                                    } elseif ($key == 'text1') {
+                                        $text_id1 = $value;
+                                    }
+                                }
+
+                                $wraps .= "<div class='double_grid' component_id='$componentdetails->component_id'>";
+                                    $wraps .= "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' component_type='image' component_id='$image_id1' /></div>";
+                                    $wraps .= "<div class='single_text' component_type='text' component_id='$text_id1'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>";
+                                $wraps .= "</div>";
+                            }elseif($componentdetails->component_type == "double-image_up-text_down"){
+                                foreach($component_content as $key => $value){
+                                    if ($key == 'image1') {
+                                        $image_id1 = $value;
+                                    } elseif ($key == 'text1') {
+                                        $text_id1 = $value;
+                                    } elseif ($key == 'image2') {
+                                        $image_id2 = $value;
+                                    } elseif ($key == 'text2') {
+                                        $text_id2 = $value;
+                                    }
+                                }
+
+                                $wraps .= "<div class='double_grid' component_id='$componentdetails->component_id'>";
+                                    $wraps .= "<div>";
+                                        $wraps .= "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' component_type='image' component_id='$image_id1' /></div>";
+                                        $wraps .= "<div class='single_text' component_type='text' component_id='$text_id1'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>";
+                                    $wraps .= "</div>";
+                                    $wraps .= "<div>";
+                                        $wraps .= "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' component_type='image' component_id='$image_id2' /></div>";
+                                        $wraps .= "<div class='single_text' component_type='text' component_id='$text_id2'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>";
+                                    $wraps .= "</div>";
+                                $wraps .= "</div>";
+                            }elseif($componentdetails->component_type == "double-text_up-image_down"){
+                                foreach($component_content as $key => $value){
+                                    if ($key == 'image1') {
+                                        $image_id1 = $value;
+                                    } elseif ($key == 'text1') {
+                                        $text_id1 = $value;
+                                    } elseif ($key == 'image2') {
+                                        $image_id2 = $value;
+                                    } elseif ($key == 'text2') {
+                                        $text_id2 = $value;
+                                    }
+                                }
+
+                                $wraps .= "<div class='double_grid' component_id='$componentdetails->component_id'>";
+                                    $wraps .= "<div>";
+                                        $wraps .= "<div class='single_text' component_type='text' component_id='$text_id1'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>";
+                                        $wraps .= "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' component_type='image' component_id='$image_id1' /></div>";
+                                    $wraps .= "</div>";
+                                    $wraps .= "<div>";
+                                        $wraps .= "<div class='single_text' component_type='text' component_id='$text_id2'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>";
+                                        $wraps .= "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' component_type='image' component_id='$image_id2' /></div>";
+                                    $wraps .= "</div>";
+                                $wraps .= "</div>";
+                            }elseif($componentdetails->component_type == "tripple-text"){
+                                foreach($component_content as $key => $value){
+                                    if ($key == 'text1') {
+                                        $text_id1 = $value;
+                                    } elseif ($key == 'text2') {
+                                        $text_id2 = $value;
+                                    } elseif ($key == 'text3') {
+                                        $text_id3 = $value;
+                                    }
+                                }
+
+                                $wraps .= "<div class='tripple_grid' component_id='$componentdetails->component_id'>";
+                                    $wraps .= "<div class='single_text' component_type='text' component_id='$text_id1'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>";
+                                    $wraps .= "<div class='single_text' component_type='text' component_id='$text_id2'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>";
+                                    $wraps .= "<div class='single_text' component_type='text' component_id='$text_id3'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>";
+                                $wraps .= "</div>";
+                            }elseif($componentdetails->component_type == "tripple-image"){
+                                foreach($component_content as $key => $value){
+                                    if ($key == 'image1') {
+                                        $image_id1 = $value;
+                                    } elseif ($key == 'image2') {
+                                        $image_id2 = $value;
+                                    } elseif ($key == 'image3') {
+                                        $image_id3 = $value;
+                                    }
+                                }
+
+                                $wraps .= "<div class='tripple_grid' component_id='$componentdetails->component_id'>";
+                                    $wraps .= "<div class='single_image' component_id='$image_id1'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' component_type='image' /></div>";
+                                    $wraps .= "<div class='single_image' component_id='$image_id2'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' component_type='image' /></div>";
+                                    $wraps .= "<div class='single_image' component_id='$image_id3'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' component_type='image' /></div>";
+                                $wraps .= "</div>";
+                            }elseif($componentdetails->component_type == "tripple-text_up-image_down"){
+                                foreach($component_content as $key => $value){
+                                    if ($key == 'text1') {
+                                        $text_id1 = $value;
+                                    } elseif ($key == 'image1') {
+                                        $image_id1 = $value;
+                                    } elseif ($key == 'text2') {
+                                        $text_id2 = $value;
+                                    } elseif ($key == 'image2') {
+                                        $image_id2 = $value;
+                                    } elseif ($key == 'text3') {
+                                        $text_id3 = $value;
+                                    } elseif ($key == 'image3') {
+                                        $image_id3 = $value;
+                                    }
+                                }
+                                
+                                $wraps .= "<div class='tripple_grid' component_id='$componentdetails->component_id'>";
+                                    $wraps .= "<div>";
+                                        $wraps .= "<div class='single_text' component_type='text' component_id='$text_id1'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>";
+                                        $wraps .= "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' component_type='image' component_id='$image_id1' /></div>";
+                                    $wraps .= "</div>";
+                                    $wraps .= "<div>";
+                                        $wraps .= "<div class='single_text' component_type='text' component_id='$text_id2'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>";
+                                        $wraps .= "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' component_type='image' component_id='$image_id2' /></div>";
+                                    $wraps .= "</div>";
+                                    $wraps .= "<div>";
+                                        $wraps .= "<div class='single_text' component_type='text' component_id='$text_id3'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>";
+                                        $wraps .= "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' component_type='image' component_id='$image_id3' /></div>";
+                                    $wraps .= "</div>";
+                                $wraps .= "</div>";
+                            }elseif($componentdetails->component_type == "tripple-image_up-text_down"){
+                                foreach($component_content as $key => $value){
+                                    if ($key == 'text1') {
+                                        $text_id1 = $value;
+                                    } elseif ($key == 'image1') {
+                                        $image_id1 = $value;
+                                    } elseif ($key == 'text2') {
+                                        $text_id2 = $value;
+                                    } elseif ($key == 'image2') {
+                                        $image_id2 = $value;
+                                    } elseif ($key == 'text3') {
+                                        $text_id3 = $value;
+                                    } elseif ($key == 'image3') {
+                                        $image_id3 = $value;
+                                    }
+                                }
+                                
+                                $wraps .= "<div class='tripple_grid' component_id='$componentdetails->component_id'>";
+                                    $wraps .= "<div>";
+                                        $wraps .= "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' component_type='image' component_id='$image_id1' /></div>";
+                                        $wraps .= "<div class='single_text' component_type='text' component_id='$text_id1'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>";
+                                    $wraps .= "</div>";
+                                    $wraps .= "<div>";
+                                        $wraps .= "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' component_type='image' component_id='$image_id2' /></div>";
+                                        $wraps .= "<div class='single_text' component_type='text' component_id='$text_id2'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>";
+                                    $wraps .= "</div>";
+                                    $wraps .= "<div>";
+                                        $wraps .= "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' component_type='image' component_id='$image_id3' /></div>";
+                                        $wraps .= "<div class='single_text' component_type='text' component_id='$text_id3'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>";
+                                    $wraps .= "</div>";
+                                $wraps .= "</div>";
+                            }else{
+                                $wraps .= "$componentdetails->component_type, ";
+                            }
+                        }
+                    }
+
+                    return $wraps;
+                }
+            }
         }
     }
 
@@ -142,5 +577,31 @@ class BackendController extends Controller
         ];
 
         CrudHelper::Update($tabledb, $where_array, $update_array);
+    }
+
+    private function create_component_style($id)
+    {
+        $tabledb = "pagesui_component_style";
+
+        $currenttime = Carbon::now();
+
+        $create_array = [
+            'component_id' => $id,
+            'created_at' => $currenttime,
+            'updated_at' => $currenttime,
+        ];
+
+        CrudHelper::Create($tabledb, $create_array);
+    }
+
+    private function get_pagesui_component($id)
+    {
+        $tabledb = "pagesui_component";
+
+        $where_array = [
+            'component_id' => $id,
+        ];
+
+        return CrudHelper::Get($tabledb, $where_array);
     }
 }

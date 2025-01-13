@@ -29,10 +29,16 @@ $(document).ready(function() {
         updateDatabase(theurl, formData);
     }
 
-    // toggle-page-componet-wraps
-    $('body').on('click', '#toggle-page-componet-wraps', function() {
-        $("#pages-components-wraps").toggle();
-    });
+    // set interval to fix the left navigation and the subsection of the page builder
+    setInterval(function() {
+        // Code to run every interval
+        var a_outerwidth = $(".dashboard-menu").width();
+        $(".dashboard-menu-inner").width(a_outerwidth);
+
+        // 
+        var c_outerwidth = $(".pages-section-c").width();
+        $(".pages-section-c-inner").width(c_outerwidth);
+    }, 1000);
 
     // trigger the uploading of the primary details of the jumbotron
     $('body').on('click', '#trigger-update-jumbotron', function() {
