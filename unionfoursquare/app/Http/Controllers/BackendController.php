@@ -321,13 +321,15 @@ class BackendController extends Controller
                             // to get the ids of the component members we convert from json to array and loop
                             $component_content = json_decode($componentdetails->content, true);
 
+                            // use the id of the text/image to get the content of the text or image
+
                             if($componentdetails->component_type == "single-text"){
                                 foreach($component_content as $key => $value){
                                     if ($key == 'text') {
                                         $text_id1 = $value;
                                     }
                                 }
-                                $wraps .= "<div class='single_text' component_type='text' component_id='$text_id1'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>";
+                                $wraps .= "<div class='single_text' component_type='text' component_id='$text_id1'>$text_id1! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>";
                             }elseif($componentdetails->component_type == "single-image"){
                                 foreach($component_content as $key => $value){
                                     if ($key == 'image') {
@@ -534,6 +536,24 @@ class BackendController extends Controller
                     return $wraps;
                 }
             }
+        }elseif($request->owner == "update_text_content_buildjs"){
+            // return "Babagana!";
+            $tabledb = "pagesui_component_style";
+
+            $currenttime = Carbon::now();
+
+            $where_array = [
+                'component_id' => $request->component_id,
+            ];
+
+            $update_array = [
+                'content' => $request->content,
+                'updated_at' => $currenttime,
+            ];
+    
+            CrudHelper::Update($tabledb, $where_array, $update_array);
+
+            return "$request->component_id---$request->content";
         }
     }
 

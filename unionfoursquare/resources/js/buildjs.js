@@ -36,13 +36,17 @@ $(document).ready(function() {
 
     // 
     $('body').on('dblclick', "[component_type='text']", function() {
+        $("#text_form_update").remove();
+
         var component_id = $(this).attr("component_id");
         var text_Val = $(this).text();
         // alert("yo text!: "+component_id+"-----"+text_Val);
 
-        var textareaform = "<b>Update Text</b>";
-            textareaform += "<textarea class='input-form' rows='5' component_id='"+component_id+"' style='width:95%;'>"+text_Val+"</textarea>";
-            textareaform += "<button class='update_text_button'>Update</button>";
+        var textareaform = "<div id='text_form_update'>";
+            textareaform += "<b>Update Text</b>";
+            textareaform += "<textarea class='input-form' id='textform_for_update' rows='5' component_id='"+component_id+"' style='width:95%;'>"+text_Val+"</textarea>";
+            textareaform += "<button id='update_text_button' class='update_text_button'>Update</button>";
+            textareaform += "</div>";
 
         $(".pages-section-c-inner").prepend(textareaform);
     });

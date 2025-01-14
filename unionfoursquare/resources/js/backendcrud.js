@@ -73,6 +73,24 @@ $(document).ready(function() {
         updateDatabase(theurl, formData);
     });
 
+    // to update the text body in the page builder update_text_button
+    $('body').on('click', '#update_text_button', function() {
+        var component_id = $("#textform_for_update").attr("component_id");
+        var content = $("#textform_for_update").val();
+
+        let owner = "update_text_content_buildjs";
+
+        var formData = {
+            owner: owner,
+            component_id: component_id,
+            content: content
+        };
+
+        var theurl = $("#union4sqmaps").attr("database_update");
+
+        updateDatabase(theurl, formData);
+    });
+
     function updateDatabase(theurl, formData) {
         $.ajaxSetup({
             headers: {
@@ -108,6 +126,8 @@ $(document).ready(function() {
                 }else if(formData.owner == "jumbotron-get-bg"){
                     $("#jumbotron_background_upload_processing").hide();
                     $("#profile_picture_thumbnail").attr("src", "http://127.0.0.1:8000/storage/uploads/"+response);
+                }else if(formData.owner == "update_text_content_buildjs"){
+                    alert(response);
                 }
             },
             error: function(response) {
