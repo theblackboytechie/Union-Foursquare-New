@@ -91,6 +91,57 @@ $(document).ready(function() {
         updateDatabase(theurl, formData);
     });
 
+    // update_buildjs_style_button
+    $('body').on('click', '#update_buildjs_style_button', function() {
+        let owner = "update_style_tobackend_buildjs";
+
+        let component_id = $(this).attr("component_id");
+
+        let margin_top = $("#margin_top").val();
+        let margin_right = $("#margin_right").val();
+        let margin_bottom = $("#margin_bottom").val();
+        let margin_left = $("#margin_left").val();
+
+        let padding_top = $("#padding_top").val();
+        let padding_right = $("#padding_right").val();
+        let padding_bottom = $("#padding_bottom").val();
+        let padding_left = $("#padding_left").val();
+
+        let font_sizebuildjs = $("#font_sizebuildjs").val();
+
+        let font_boldbuildjs = $("#font_boldbuildjs").attr("value");
+        let font_italicsbuildjs = $("#font_italicsbuildjs").attr("value");
+        let font_underlinebuildjs = $("#font_underlinebuildjs").attr("value");
+
+        let font_left_alignbuildjs = $("#font_left_alignbuildjs").attr("value");
+        let font_center_alignbuildjs = $("#font_center_alignbuildjs").attr("value");
+        let font_right_alignbuildjs = $("#font_right_alignbuildjs").attr("value");
+
+        var formData = {
+            owner: owner,
+            component_id: component_id,
+            margin_top: margin_top,
+            margin_right: margin_right,
+            margin_bottom: margin_bottom,
+            margin_left: margin_left,
+            padding_top: padding_top,
+            padding_right: padding_right,
+            padding_bottom: padding_bottom,
+            padding_left: padding_left,
+            font_sizebuildjs: font_sizebuildjs,
+            font_boldbuildjs: font_boldbuildjs,
+            font_italicsbuildjs: font_italicsbuildjs,
+            font_underlinebuildjs: font_underlinebuildjs,
+            font_left_alignbuildjs: font_left_alignbuildjs,
+            font_center_alignbuildjs: font_center_alignbuildjs,
+            font_right_alignbuildjs: font_right_alignbuildjs
+        };
+
+        var theurl = $("#union4sqmaps").attr("database_update");
+
+        updateDatabase(theurl, formData);
+    });
+
     function updateDatabase(theurl, formData) {
         $.ajaxSetup({
             headers: {
@@ -127,6 +178,8 @@ $(document).ready(function() {
                     $("#jumbotron_background_upload_processing").hide();
                     $("#profile_picture_thumbnail").attr("src", "http://127.0.0.1:8000/storage/uploads/"+response);
                 }else if(formData.owner == "update_text_content_buildjs"){
+                    // alert(response);
+                }else if(formData.owner == "update_style_tobackend_buildjs"){
                     alert(response);
                 }
             },

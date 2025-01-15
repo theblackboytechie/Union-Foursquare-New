@@ -233,4 +233,16 @@
     padding: 0px 10px;
     background: orangered;
     box-shadow: 8px 8px 8px -10px rgba(0,0,0,0.75);
+    margin-top: 10px;
+}
+
+.text_alignment_buildjs{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    width: 50px;
+    border-radius: 5px;
+    background: lightgray;
+    font-size: 20px;
 }

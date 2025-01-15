@@ -329,13 +329,18 @@ class BackendController extends Controller
                                         $text_id1 = $value;
                                     }
                                 }
-                                $wraps .= "<div class='single_text' component_type='text' component_id='$text_id1'>$text_id1! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>";
+
+                                // get actual text
+                                $actualtext = $this->get_content_text($text_id1);
+
+                                $wraps .= "<div class='single_text' component_type='text' component_id='$text_id1'>$actualtext</div>";
                             }elseif($componentdetails->component_type == "single-image"){
                                 foreach($component_content as $key => $value){
                                     if ($key == 'image') {
                                         $image_id1 = $value;
                                     }
                                 }
+                                
                                 $wraps .= "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' component_type='image' component_id='$image_id1' /></div>";
                             }elseif($componentdetails->component_type == "single-image-text"){
                                 foreach($component_content as $key => $value){
@@ -345,9 +350,13 @@ class BackendController extends Controller
                                         $text_id1 = $value;
                                     }
                                 }
+
+                                // get actual text
+                                $actualtext = $this->get_content_text($text_id1);
+
                                 $wraps .= "<div component_id='$componentdetails->component_id'>";
                                     $wraps .= "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' component_type='image' component_id='$image_id1' /></div>";
-                                    $wraps .= "<div class='single_text' component_type='text' component_id='$text_id1'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>";
+                                $wraps .= "<div class='single_text' component_type='text' component_id='$text_id1'>$actualtext</div>";
                                 $wraps .= "</div>";
                             }elseif($componentdetails->component_type == "single-text-image"){
                                 foreach($component_content as $key => $value){
@@ -357,8 +366,12 @@ class BackendController extends Controller
                                         $text_id1 = $value;
                                     }
                                 }
+
+                                // get actual text
+                                $actualtext = $this->get_content_text($text_id1);
+
                                 $wraps .= "<div component_id='$componentdetails->component_id'>";
-                                    $wraps .= "<div class='single_text' component_type='text' component_id='$text_id1'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>";
+                                    $wraps .= "<div class='single_text' component_type='text' component_id='$text_id1'>$actualtext</div>";
                                     $wraps .= "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' component_type='image' component_id='$image_id1' /></div>";
                                 $wraps .= "</div>";
                             }elseif($componentdetails->component_type == "double-text-image"){
@@ -370,8 +383,11 @@ class BackendController extends Controller
                                     }
                                 }
 
+                                // get actual text
+                                $actualtext = $this->get_content_text($text_id1);
+
                                 $wraps .= "<div class='double_grid' component_id='$componentdetails->component_id'>";
-                                    $wraps .= "<div class='single_text' component_type='text' component_id='$text_id1'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>";
+                                    $wraps .= "<div class='single_text' component_type='text' component_id='$text_id1'>$actualtext</div>";
                                     $wraps .= "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' component_type='image' component_id='$image_id1' /></div>";
                                 $wraps .= "</div>";
                             }elseif($componentdetails->component_type == "double-image-text"){
@@ -383,9 +399,12 @@ class BackendController extends Controller
                                     }
                                 }
 
+                                // get actual text
+                                $actualtext = $this->get_content_text($text_id1);
+
                                 $wraps .= "<div class='double_grid' component_id='$componentdetails->component_id'>";
                                     $wraps .= "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' component_type='image' component_id='$image_id1' /></div>";
-                                    $wraps .= "<div class='single_text' component_type='text' component_id='$text_id1'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>";
+                                    $wraps .= "<div class='single_text' component_type='text' component_id='$text_id1'>$actualtext</div>";
                                 $wraps .= "</div>";
                             }elseif($componentdetails->component_type == "double-image_up-text_down"){
                                 foreach($component_content as $key => $value){
@@ -400,14 +419,18 @@ class BackendController extends Controller
                                     }
                                 }
 
+                                // get actual text
+                                $actualtext1 = $this->get_content_text($text_id1);
+                                $actualtext2 = $this->get_content_text($text_id2);
+
                                 $wraps .= "<div class='double_grid' component_id='$componentdetails->component_id'>";
                                     $wraps .= "<div>";
                                         $wraps .= "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' component_type='image' component_id='$image_id1' /></div>";
-                                        $wraps .= "<div class='single_text' component_type='text' component_id='$text_id1'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>";
+                                        $wraps .= "<div class='single_text' component_type='text' component_id='$text_id1'>$actualtext1</div>";
                                     $wraps .= "</div>";
                                     $wraps .= "<div>";
                                         $wraps .= "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' component_type='image' component_id='$image_id2' /></div>";
-                                        $wraps .= "<div class='single_text' component_type='text' component_id='$text_id2'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>";
+                                        $wraps .= "<div class='single_text' component_type='text' component_id='$text_id2'>$actualtext2</div>";
                                     $wraps .= "</div>";
                                 $wraps .= "</div>";
                             }elseif($componentdetails->component_type == "double-text_up-image_down"){
@@ -423,13 +446,17 @@ class BackendController extends Controller
                                     }
                                 }
 
+                                // get actual text
+                                $actualtext1 = $this->get_content_text($text_id1);
+                                $actualtext2 = $this->get_content_text($text_id2);
+
                                 $wraps .= "<div class='double_grid' component_id='$componentdetails->component_id'>";
                                     $wraps .= "<div>";
-                                        $wraps .= "<div class='single_text' component_type='text' component_id='$text_id1'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>";
+                                        $wraps .= "<div class='single_text' component_type='text' component_id='$text_id1'>$actualtext1</div>";
                                         $wraps .= "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' component_type='image' component_id='$image_id1' /></div>";
                                     $wraps .= "</div>";
                                     $wraps .= "<div>";
-                                        $wraps .= "<div class='single_text' component_type='text' component_id='$text_id2'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>";
+                                        $wraps .= "<div class='single_text' component_type='text' component_id='$text_id2'>$actualtext2</div>";
                                         $wraps .= "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' component_type='image' component_id='$image_id2' /></div>";
                                     $wraps .= "</div>";
                                 $wraps .= "</div>";
@@ -444,10 +471,15 @@ class BackendController extends Controller
                                     }
                                 }
 
+                                // get actual text
+                                $actualtext1 = $this->get_content_text($text_id1);
+                                $actualtext2 = $this->get_content_text($text_id2);
+                                $actualtext3 = $this->get_content_text($text_id3);
+
                                 $wraps .= "<div class='tripple_grid' component_id='$componentdetails->component_id'>";
-                                    $wraps .= "<div class='single_text' component_type='text' component_id='$text_id1'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>";
-                                    $wraps .= "<div class='single_text' component_type='text' component_id='$text_id2'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>";
-                                    $wraps .= "<div class='single_text' component_type='text' component_id='$text_id3'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>";
+                                    $wraps .= "<div class='single_text' component_type='text' component_id='$text_id1'>$actualtext1</div>";
+                                    $wraps .= "<div class='single_text' component_type='text' component_id='$text_id2'>$actualtext2</div>";
+                                    $wraps .= "<div class='single_text' component_type='text' component_id='$text_id3'>$actualtext3</div>";
                                 $wraps .= "</div>";
                             }elseif($componentdetails->component_type == "tripple-image"){
                                 foreach($component_content as $key => $value){
@@ -481,18 +513,23 @@ class BackendController extends Controller
                                         $image_id3 = $value;
                                     }
                                 }
+
+                                // get actual text
+                                $actualtext1 = $this->get_content_text($text_id1);
+                                $actualtext2 = $this->get_content_text($text_id2);
+                                $actualtext3 = $this->get_content_text($text_id3);
                                 
                                 $wraps .= "<div class='tripple_grid' component_id='$componentdetails->component_id'>";
                                     $wraps .= "<div>";
-                                        $wraps .= "<div class='single_text' component_type='text' component_id='$text_id1'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>";
+                                        $wraps .= "<div class='single_text' component_type='text' component_id='$text_id1'>$actualtext1</div>";
                                         $wraps .= "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' component_type='image' component_id='$image_id1' /></div>";
                                     $wraps .= "</div>";
                                     $wraps .= "<div>";
-                                        $wraps .= "<div class='single_text' component_type='text' component_id='$text_id2'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>";
+                                        $wraps .= "<div class='single_text' component_type='text' component_id='$text_id2'>$actualtext2</div>";
                                         $wraps .= "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' component_type='image' component_id='$image_id2' /></div>";
                                     $wraps .= "</div>";
                                     $wraps .= "<div>";
-                                        $wraps .= "<div class='single_text' component_type='text' component_id='$text_id3'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>";
+                                        $wraps .= "<div class='single_text' component_type='text' component_id='$text_id3'>$actualtext3</div>";
                                         $wraps .= "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' component_type='image' component_id='$image_id3' /></div>";
                                     $wraps .= "</div>";
                                 $wraps .= "</div>";
@@ -512,19 +549,24 @@ class BackendController extends Controller
                                         $image_id3 = $value;
                                     }
                                 }
+
+                                // get actual text
+                                $actualtext1 = $this->get_content_text($text_id1);
+                                $actualtext2 = $this->get_content_text($text_id2);
+                                $actualtext3 = $this->get_content_text($text_id3);
                                 
                                 $wraps .= "<div class='tripple_grid' component_id='$componentdetails->component_id'>";
                                     $wraps .= "<div>";
                                         $wraps .= "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' component_type='image' component_id='$image_id1' /></div>";
-                                        $wraps .= "<div class='single_text' component_type='text' component_id='$text_id1'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>";
+                                        $wraps .= "<div class='single_text' component_type='text' component_id='$text_id1'>$actualtext1</div>";
                                     $wraps .= "</div>";
                                     $wraps .= "<div>";
                                         $wraps .= "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' component_type='image' component_id='$image_id2' /></div>";
-                                        $wraps .= "<div class='single_text' component_type='text' component_id='$text_id2'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>";
+                                        $wraps .= "<div class='single_text' component_type='text' component_id='$text_id2'>$actualtext1</div>";
                                     $wraps .= "</div>";
                                     $wraps .= "<div>";
                                         $wraps .= "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' component_type='image' component_id='$image_id3' /></div>";
-                                        $wraps .= "<div class='single_text' component_type='text' component_id='$text_id3'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>";
+                                        $wraps .= "<div class='single_text' component_type='text' component_id='$text_id3'>$actualtext1</div>";
                                     $wraps .= "</div>";
                                 $wraps .= "</div>";
                             }else{
@@ -554,6 +596,42 @@ class BackendController extends Controller
             CrudHelper::Update($tabledb, $where_array, $update_array);
 
             return "$request->component_id---$request->content";
+        }elseif($request->owner == "update_style_tobackend_buildjs"){
+            // return "Omomo!";component_id
+            $stylearray = [
+                'margin_top' => $request->margin_top,
+                'margin_right' => $request->margin_right,
+                'margin_bottom' => $request->margin_bottom,
+                'margin_left' => $request->margin_left,
+                'padding_top' => $request->padding_top,
+                'padding_right' => $request->padding_right,
+                'padding_bottom' => $request->padding_bottom,
+                'padding_left' => $request->padding_left,
+                'font_sizebuildjs' => $request->font_sizebuildjs,
+                'font_boldbuildjs' => $request->font_boldbuildjs,
+                'font_italicsbuildjs' => $request->font_italicsbuildjs,
+                'font_underlinebuildjs' => $request->font_underlinebuildjs,
+                'font_left_alignbuildjs' => $request->font_left_alignbuildjs,
+                'font_center_alignbuildjs' => $request->font_center_alignbuildjs,
+                'font_right_alignbuildjs' => $request->font_right_alignbuildjs,
+            ];
+
+            $json_style = json_encode($stylearray);
+
+            $tabledb = "pagesui_component_style";
+
+            $currenttime = Carbon::now();
+
+            $where_array = [
+                'component_id' => $request->component_id,
+            ];
+
+            $update_array = [
+                'style_content' => $json_style,
+                'updated_at' => $currenttime,
+            ];
+    
+            CrudHelper::Update($tabledb, $where_array, $update_array);
         }
     }
 
@@ -623,5 +701,35 @@ class BackendController extends Controller
         ];
 
         return CrudHelper::Get($tabledb, $where_array);
+    }
+
+    // get_pagesui_content
+    private function get_pagesui_content($id)
+    {
+        $tabledb = "pagesui_component_style";
+
+        $where_array = [
+            'component_id' => $id,
+        ];
+
+        return CrudHelper::Get($tabledb, $where_array);
+    }
+
+    // get_content_text
+    private function get_content_text($id)
+    {
+        $content_styles = $this->get_pagesui_content($id);
+
+        foreach($content_styles as $content_styles){
+            $styles = "";
+
+            if(empty($content_styles->content)){
+                $textbody = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
+            }else{
+                $textbody = $content_styles->content;
+            }
+        }
+
+        return $textbody;
     }
 }

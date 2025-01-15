@@ -37,16 +37,65 @@ $(document).ready(function() {
     // 
     $('body').on('dblclick', "[component_type='text']", function() {
         $("#text_form_update").remove();
+        $("#update_buildjs_style_button").remove();
 
         var component_id = $(this).attr("component_id");
         var text_Val = $(this).text();
         // alert("yo text!: "+component_id+"-----"+text_Val);
+        var options = [];
 
-        var textareaform = "<div id='text_form_update'>";
+        // Loop through numbers 1 to 99
+        for (var i = 0; i <= 99; i++) {
+            // Create a new option element and add it to the array
+            options.push("<option value='" + i + "'>" + i + "</option>");
+        }
+
+        var textareaform = "<div id='text_form_update' style='height: 350px;overflow-y: scroll;'>";
             textareaform += "<b>Update Text</b>";
             textareaform += "<textarea class='input-form' id='textform_for_update' rows='5' component_id='"+component_id+"' style='width:95%;'>"+text_Val+"</textarea>";
             textareaform += "<button id='update_text_button' class='update_text_button'>Update</button>";
+
+            textareaform += "<div style='margin-top: 10px;'><b>Text Style</b></div>";
+                textareaform += "<div>Margin</div>";
+                textareaform += "<div style='display: flex;gap: 10px;'>";
+                    textareaform += "<div>Top<br><select class='input-form' id='margin_top' style='width: 100px;'>"+options+"</select></div>";
+                    textareaform += "<div>Right<br><select class='input-form' id='margin_right' style='width: 100px;'>"+options+"</select></div>";
+                textareaform += "</div>";
+                textareaform += "<div style='display: flex;gap: 10px;'>";
+                    textareaform += "<div>Bottom<br><select class='input-form' id='margin_bottom' style='width: 100px;'>"+options+"</select></div>";
+                    textareaform += "<div>Left<br><select class='input-form' id='margin_left' style='width: 100px;'>"+options+"</select></div>";
+                textareaform += "</div>";
+
+                textareaform += "<div style='margin-top: 10px;'>Padding</div>";
+                textareaform += "<div style='display: flex;gap: 10px;'>";
+                    textareaform += "<div>Top<br><select class='input-form' id='padding_top' style='width: 100px;'>"+options+"</select></div>";
+                    textareaform += "<div>Right<br><select class='input-form' id='padding_right' style='width: 100px;'>"+options+"</select></div>";
+                textareaform += "</div>";
+                textareaform += "<div style='display: flex;gap: 10px;'>";
+                    textareaform += "<div>Bottom<br><select class='input-form' id='padding_bottom' style='width: 100px;'>"+options+"</select></div>";
+                    textareaform += "<div>Left<br><select class='input-form' id='padding_left' style='width: 100px;'>"+options+"</select></div>";
+                textareaform += "</div>";
+                
+                textareaform += "<div style='margin-top: 10px;'>Font Size</div>";
+                textareaform += "<div style='display: flex;gap: 10px;'>";
+                    textareaform += "<div><select class='input-form' id='font_sizebuildjs' style='width: 100px;'>"+options+"</select></div>";
+                textareaform += "</div>";
+
+                textareaform += "<div style='margin-top: 10px;'>Font Style</div>";
+                textareaform += "<div style='display: flex;gap: 10px;'>";
+                    textareaform += "<div class='text_alignment_buildjs'><i class='fa-solid fa-bold' id='font_boldbuildjs' value='0'></i></div>";
+                    textareaform += "<div class='text_alignment_buildjs'><i class='fa-solid fa-italic' id='font_italicsbuildjs' value='0'></i></div>";
+                    textareaform += "<div class='text_alignment_buildjs'><i class='fa-solid fa-underline' id='font_underlinebuildjs' value='0'></i></div>";
+                textareaform += "</div>";
+
+                textareaform += "<div style='margin-top: 10px;'>Text Align</div>";
+                textareaform += "<div style='display: flex;gap: 10px;'>";
+                    textareaform += "<div class='text_alignment_buildjs'><i class='fa-solid fa-align-left' id='font_left_alignbuildjs' value='0'></i></div>";
+                    textareaform += "<div class='text_alignment_buildjs'><i class='fa-solid fa-align-center' id='font_center_alignbuildjs' value='0'></i></div>";
+                    textareaform += "<div class='text_alignment_buildjs'><i class='fa-solid fa-align-right' id='font_right_alignbuildjs' value='0'></i></div>";
+                textareaform += "</div>";
             textareaform += "</div>";
+            textareaform += "<button id='update_buildjs_style_button' class='update_text_button' component_id='"+component_id+"'>Update Styles</button>";
 
         $(".pages-section-c-inner").prepend(textareaform);
     });
