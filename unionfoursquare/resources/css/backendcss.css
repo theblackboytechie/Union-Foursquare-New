@@ -236,6 +236,10 @@
     margin-top: 10px;
 }
 
+.buildjs_selected_item{
+    border: 2px solid black;
+}
+
 .text_alignment_buildjs{
     display: flex;
     align-items: center;
@@ -244,5 +248,6 @@
     width: 50px;
     border-radius: 5px;
     background: lightgray;
+    cursor: pointer;
     font-size: 20px;
 }

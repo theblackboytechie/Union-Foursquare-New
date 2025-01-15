@@ -331,9 +331,11 @@ class BackendController extends Controller
                                 }
 
                                 // get actual text
-                                $actualtext = $this->get_content_text($text_id1);
+                                $actualtext = $this->get_content_text($text_id1, "text");
+                                $actualtext = $this->get_content_text($text_id1, "text");
+                                $actualstyle = $this->get_content_text($text_id1, "style");
 
-                                $wraps .= "<div class='single_text' component_type='text' component_id='$text_id1'>$actualtext</div>";
+                                $wraps .= "<div class='single_text' style='$actualstyle' component_type='text' component_id='$text_id1'>$actualtext</div>";
                             }elseif($componentdetails->component_type == "single-image"){
                                 foreach($component_content as $key => $value){
                                     if ($key == 'image') {
@@ -352,7 +354,7 @@ class BackendController extends Controller
                                 }
 
                                 // get actual text
-                                $actualtext = $this->get_content_text($text_id1);
+                                $actualtext = $this->get_content_text($text_id1, "text");
 
                                 $wraps .= "<div component_id='$componentdetails->component_id'>";
                                     $wraps .= "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' component_type='image' component_id='$image_id1' /></div>";
@@ -368,7 +370,7 @@ class BackendController extends Controller
                                 }
 
                                 // get actual text
-                                $actualtext = $this->get_content_text($text_id1);
+                                $actualtext = $this->get_content_text($text_id1, "text");
 
                                 $wraps .= "<div component_id='$componentdetails->component_id'>";
                                     $wraps .= "<div class='single_text' component_type='text' component_id='$text_id1'>$actualtext</div>";
@@ -384,7 +386,7 @@ class BackendController extends Controller
                                 }
 
                                 // get actual text
-                                $actualtext = $this->get_content_text($text_id1);
+                                $actualtext = $this->get_content_text($text_id1, "text");
 
                                 $wraps .= "<div class='double_grid' component_id='$componentdetails->component_id'>";
                                     $wraps .= "<div class='single_text' component_type='text' component_id='$text_id1'>$actualtext</div>";
@@ -400,7 +402,7 @@ class BackendController extends Controller
                                 }
 
                                 // get actual text
-                                $actualtext = $this->get_content_text($text_id1);
+                                $actualtext = $this->get_content_text($text_id1, "text");
 
                                 $wraps .= "<div class='double_grid' component_id='$componentdetails->component_id'>";
                                     $wraps .= "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' component_type='image' component_id='$image_id1' /></div>";
@@ -420,8 +422,8 @@ class BackendController extends Controller
                                 }
 
                                 // get actual text
-                                $actualtext1 = $this->get_content_text($text_id1);
-                                $actualtext2 = $this->get_content_text($text_id2);
+                                $actualtext1 = $this->get_content_text($text_id1, "text");
+                                $actualtext2 = $this->get_content_text($text_id2, "text");
 
                                 $wraps .= "<div class='double_grid' component_id='$componentdetails->component_id'>";
                                     $wraps .= "<div>";
@@ -447,8 +449,8 @@ class BackendController extends Controller
                                 }
 
                                 // get actual text
-                                $actualtext1 = $this->get_content_text($text_id1);
-                                $actualtext2 = $this->get_content_text($text_id2);
+                                $actualtext1 = $this->get_content_text($text_id1, "text");
+                                $actualtext2 = $this->get_content_text($text_id2, "text");
 
                                 $wraps .= "<div class='double_grid' component_id='$componentdetails->component_id'>";
                                     $wraps .= "<div>";
@@ -472,9 +474,9 @@ class BackendController extends Controller
                                 }
 
                                 // get actual text
-                                $actualtext1 = $this->get_content_text($text_id1);
-                                $actualtext2 = $this->get_content_text($text_id2);
-                                $actualtext3 = $this->get_content_text($text_id3);
+                                $actualtext1 = $this->get_content_text($text_id1, "text");
+                                $actualtext2 = $this->get_content_text($text_id2, "text");
+                                $actualtext3 = $this->get_content_text($text_id3, "text");
 
                                 $wraps .= "<div class='tripple_grid' component_id='$componentdetails->component_id'>";
                                     $wraps .= "<div class='single_text' component_type='text' component_id='$text_id1'>$actualtext1</div>";
@@ -515,9 +517,9 @@ class BackendController extends Controller
                                 }
 
                                 // get actual text
-                                $actualtext1 = $this->get_content_text($text_id1);
-                                $actualtext2 = $this->get_content_text($text_id2);
-                                $actualtext3 = $this->get_content_text($text_id3);
+                                $actualtext1 = $this->get_content_text($text_id1, "text");
+                                $actualtext2 = $this->get_content_text($text_id2, "text");
+                                $actualtext3 = $this->get_content_text($text_id3, "text");
                                 
                                 $wraps .= "<div class='tripple_grid' component_id='$componentdetails->component_id'>";
                                     $wraps .= "<div>";
@@ -551,9 +553,9 @@ class BackendController extends Controller
                                 }
 
                                 // get actual text
-                                $actualtext1 = $this->get_content_text($text_id1);
-                                $actualtext2 = $this->get_content_text($text_id2);
-                                $actualtext3 = $this->get_content_text($text_id3);
+                                $actualtext1 = $this->get_content_text($text_id1, "text");
+                                $actualtext2 = $this->get_content_text($text_id2, "text");
+                                $actualtext3 = $this->get_content_text($text_id3, "text");
                                 
                                 $wraps .= "<div class='tripple_grid' component_id='$componentdetails->component_id'>";
                                     $wraps .= "<div>";
@@ -599,21 +601,19 @@ class BackendController extends Controller
         }elseif($request->owner == "update_style_tobackend_buildjs"){
             // return "Omomo!";component_id
             $stylearray = [
-                'margin_top' => $request->margin_top,
-                'margin_right' => $request->margin_right,
-                'margin_bottom' => $request->margin_bottom,
-                'margin_left' => $request->margin_left,
-                'padding_top' => $request->padding_top,
-                'padding_right' => $request->padding_right,
-                'padding_bottom' => $request->padding_bottom,
-                'padding_left' => $request->padding_left,
-                'font_sizebuildjs' => $request->font_sizebuildjs,
-                'font_boldbuildjs' => $request->font_boldbuildjs,
-                'font_italicsbuildjs' => $request->font_italicsbuildjs,
-                'font_underlinebuildjs' => $request->font_underlinebuildjs,
-                'font_left_alignbuildjs' => $request->font_left_alignbuildjs,
-                'font_center_alignbuildjs' => $request->font_center_alignbuildjs,
-                'font_right_alignbuildjs' => $request->font_right_alignbuildjs,
+                'margin-top' => $request->margin_top,
+                'margin-right' => $request->margin_right,
+                'margin-bottom' => $request->margin_bottom,
+                'margin-left' => $request->margin_left,
+                'padding-top' => $request->padding_top,
+                'padding-right' => $request->padding_right,
+                'padding-bottom' => $request->padding_bottom,
+                'padding-left' => $request->padding_left,
+                'font-size' => $request->font_sizebuildjs,
+                'font-weight' => $request->font_boldbuildjs,
+                'font-style' => $request->font_italicsbuildjs,
+                'text-decoration' => $request->font_underlinebuildjs,
+                'text-align' => $request->textalign,
             ];
 
             $json_style = json_encode($stylearray);
@@ -716,20 +716,64 @@ class BackendController extends Controller
     }
 
     // get_content_text
-    private function get_content_text($id)
+    private function get_content_text($id, $content_type)
     {
         $content_styles = $this->get_pagesui_content($id);
 
         foreach($content_styles as $content_styles){
-            $styles = "";
+            if($content_type == "text"){
+                if(empty($content_styles->content)){
+                    return "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
+                }else{
+                    return $content_styles->content;
+                }
+            }elseif($content_type == "style"){
+                // return $content_styles->style_content;
+                $stylearray = json_decode($content_styles->style_content, true);
+                $allstyles = "";
+                if(!empty($stylearray)){
+                    foreach($stylearray as $key => $value){
+                        if($key == "font_size"){
+                            $key = "font-size";
+                        }elseif($key == "font-weight"){
+                            $key = "font-weight";
 
-            if(empty($content_styles->content)){
-                $textbody = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
-            }else{
-                $textbody = $content_styles->content;
+                            if($value == "0"){
+                                $value = "normal";
+                            }elseif($value == "1"){
+                                $value = "bold";
+                            }
+                        }elseif($key == "font-style"){
+                            $key = "font-style";
+
+                            if($value == "0"){
+                                $value = "normal";
+                            }elseif($value == "1"){
+                                $value = "italic";
+                            }
+                        }elseif($key == "text-decoration"){
+                            $key = "text-decoration";
+
+                            if($value == "0"){
+                                $value = "none";
+                            }elseif($value == "1"){
+                                $value = "underline";
+                            }
+                        }elseif($key == "text-align"){
+
+                        }
+
+                        if($key == "font-weight" || $key == "font-style" || $key == "text-decoration" || $key == "text-align"){
+                            $allstyles .= "$key: $value;";
+                        }else{
+                            $allstyles .= "$key: $value"."px;";
+                        }
+                    }
+                }
+                return $allstyles;
             }
-        }
 
-        return $textbody;
+            // return $textbody;
+        }
     }
 }

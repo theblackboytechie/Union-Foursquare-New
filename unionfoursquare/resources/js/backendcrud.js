@@ -117,6 +117,16 @@ $(document).ready(function() {
         let font_center_alignbuildjs = $("#font_center_alignbuildjs").attr("value");
         let font_right_alignbuildjs = $("#font_right_alignbuildjs").attr("value");
 
+        if(font_left_alignbuildjs == 1){
+            var textalign = "left";
+        }else if(font_center_alignbuildjs == 1){
+            var textalign = "center";
+        }else if(font_right_alignbuildjs == 1){
+            var textalign = "right";
+        }else{
+            var textalign = "left";
+        }
+        
         var formData = {
             owner: owner,
             component_id: component_id,
@@ -132,9 +142,7 @@ $(document).ready(function() {
             font_boldbuildjs: font_boldbuildjs,
             font_italicsbuildjs: font_italicsbuildjs,
             font_underlinebuildjs: font_underlinebuildjs,
-            font_left_alignbuildjs: font_left_alignbuildjs,
-            font_center_alignbuildjs: font_center_alignbuildjs,
-            font_right_alignbuildjs: font_right_alignbuildjs
+            textalign: textalign
         };
 
         var theurl = $("#union4sqmaps").attr("database_update");
