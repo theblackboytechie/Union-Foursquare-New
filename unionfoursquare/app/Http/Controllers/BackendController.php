@@ -614,6 +614,7 @@ class BackendController extends Controller
                 'font-style' => $request->font_italicsbuildjs,
                 'text-decoration' => $request->font_underlinebuildjs,
                 'text-align' => $request->textalign,
+                'background' => $request->colorpicker,
             ];
 
             $json_style = json_encode($stylearray);
@@ -763,7 +764,7 @@ class BackendController extends Controller
 
                         }
 
-                        if($key == "font-weight" || $key == "font-style" || $key == "text-decoration" || $key == "text-align"){
+                        if($key == "font-weight" || $key == "font-style" || $key == "text-decoration" || $key == "text-align" || $key == "background"){
                             $allstyles .= "$key: $value;";
                         }else{
                             $allstyles .= "$key: $value"."px;";

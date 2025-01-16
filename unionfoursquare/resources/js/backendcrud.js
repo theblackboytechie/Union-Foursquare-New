@@ -94,6 +94,8 @@ $(document).ready(function() {
     // update_buildjs_style_button
     $('body').on('click', '#update_buildjs_style_button', function() {
         let owner = "update_style_tobackend_buildjs";
+        var colorpicker = $("#color_pickerbuildjs").val();
+        // alert(colorpicker);//return;
 
         let component_id = $(this).attr("component_id");
 
@@ -142,7 +144,8 @@ $(document).ready(function() {
             font_boldbuildjs: font_boldbuildjs,
             font_italicsbuildjs: font_italicsbuildjs,
             font_underlinebuildjs: font_underlinebuildjs,
-            textalign: textalign
+            textalign: textalign,
+            colorpicker: colorpicker
         };
 
         var theurl = $("#union4sqmaps").attr("database_update");

@@ -167,6 +167,9 @@ $(document).ready(function() {
                     textareaform += "<div class='text_alignment_buildjs centeralignbuildjs_wraps' id='trigger_textalign_buildjs' owner='center'><i class='fa-solid fa-align-center' id='font_center_alignbuildjs' value='0'></i></div>";
                     textareaform += "<div class='text_alignment_buildjs rightalignbuildjs_wraps' id='trigger_textalign_buildjs' owner='right'><i class='fa-solid fa-align-right' id='font_right_alignbuildjs' value='0'></i></div>";
                 textareaform += "</div>";
+
+                textareaform += "<div style='margin-top: 10px;'>Background Color</div>";
+                textareaform += "<div><input type='color' class='input-form' id='color_pickerbuildjs' /></div>";
             textareaform += "</div>";
             textareaform += "<button id='update_buildjs_style_button' class='update_text_button' component_id='"+component_id+"'>Update Styles</button>";
 
@@ -237,15 +240,17 @@ $(document).ready(function() {
                     }
                 }else if(key === "text-align"){
                     if(cssArray[key] == "left"){
-                        $("#font_boldbuildjs").attr("value", 1);
+                        $("#font_left_alignbuildjs").attr("value", 1);
                         $(".leftalignbuildjs_wraps").addClass("buildjs_selected_item");
                     }else if(cssArray[key] == "center"){
                         $("#font_center_alignbuildjs").attr("value", 1);
                         $(".centeralignbuildjs_wraps").addClass("buildjs_selected_item");
                     }else if(cssArray[key] == "right"){
-                        $("#font_boldbuildjs").attr("value", 1);
+                        $("#font_right_alignbuildjs").attr("value", 1);
                         $(".rightalignbuildjs_wraps").addClass("buildjs_selected_item");
                     }
+                }else if(key === "background"){
+                    $("#color_pickerbuildjs").val(cssArray[key]).trigger("change");
                 }
             }
         }
