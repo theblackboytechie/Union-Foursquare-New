@@ -75,6 +75,7 @@ $(document).ready(function() {
 
     // to update the text body in the page builder update_text_button
     $('body').on('click', '#update_text_button', function() {
+        $(".toggle_processing_update_text").toggle();
         var component_id = $("#textform_for_update").attr("component_id");
         var content = $("#textform_for_update").val();
 
@@ -190,6 +191,7 @@ $(document).ready(function() {
                     $("#profile_picture_thumbnail").attr("src", "http://127.0.0.1:8000/storage/uploads/"+response);
                 }else if(formData.owner == "update_text_content_buildjs"){
                     // alert(response);
+                    $(".toggle_processing_update_text").toggle();
                 }else if(formData.owner == "update_style_tobackend_buildjs"){
                     alert(response);
                 }

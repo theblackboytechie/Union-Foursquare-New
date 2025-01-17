@@ -335,7 +335,7 @@ class BackendController extends Controller
                                 $actualtext = $this->get_content_text($text_id1, "text");
                                 $actualstyle = $this->get_content_text($text_id1, "style");
 
-                                $wraps .= "<div class='single_text' style='$actualstyle' component_type='text' component_id='$text_id1'>$actualtext</div>";
+                                $wraps .= "<div class='single_text' id='$text_id1' style='$actualstyle' component_type='text' component_id='$text_id1'>$actualtext</div>";
                             }elseif($componentdetails->component_type == "single-image"){
                                 foreach($component_content as $key => $value){
                                     if ($key == 'image') {

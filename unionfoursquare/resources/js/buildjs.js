@@ -103,6 +103,65 @@ $(document).ready(function() {
         alert("yo img!");
     });
 
+    // change textform_for_update to update the DOM
+    $('body').on('keyup', "#textform_for_update", function() {
+        var component_id = $(this).attr("component_id");
+        console.log(component_id+": yo img!");
+        var thevalue = $(this).val();
+        $("#"+component_id).text(thevalue);
+    });
+
+    // margin_top
+    $('body').on('change', ".change_style_attr", function() {
+        // the id attribute to know if this is margin-top or padding-top
+        var idattr = $(this).attr("id");
+
+        if(idattr == "margin_top"){
+            var cssowner = "margin-top";
+        }else if(idattr == "margin_bottom"){
+            var cssowner = "margin-bottom";
+        }else if(idattr == "margin_left"){
+            var cssowner = "margin-left";
+        }else if(idattr == "margin_right"){
+            var cssowner = "margin-right";
+        }else if(idattr == "padding_top"){
+            var cssowner = "padding-top";
+        }else if(idattr == "padding_bottom"){
+            var cssowner = "padding-bottom";
+        }else if(idattr == "padding_left"){
+            var cssowner = "padding-left";
+        }else if(idattr == "padding_right"){
+            var cssowner = "padding-right";
+        }else if(idattr == "font_sizebuildjs"){
+            var cssowner = "font-size";
+        }
+
+        var component_id = $("#textform_for_update").attr("component_id");
+        var margin_top_value = $(this).val();
+
+        var thestylestring = $("#"+component_id).attr("style");
+
+        // this is to get the style array from the component
+        var cssArray = convertstyle_to_array(thestylestring);
+
+        var newstylestring = "";
+        for (var key in cssArray) {            
+            if(key === cssowner){
+                newstylestring += cssowner+": "+margin_top_value+"px; ";
+                // alert(newstylestring+"   Xfont-size!");
+            }else{
+                newstylestring += key+": "+cssArray[key]+"; ";
+            }
+        }
+
+        $("#"+component_id).attr("style", newstylestring);
+    });
+
+    // click to change
+    $('body').on('click', ".change_style_attr", function() {
+        alert("H2dHIZZO!");
+    });
+
     // 
     $('body').on('dblclick', "[component_type='text']", function() {
         $("#text_form_update").remove();
@@ -126,37 +185,38 @@ $(document).ready(function() {
         var textareaform = "<div id='text_form_update' style='height: 350px;overflow-y: scroll;'>";
             textareaform += "<b>Update Text</b>";
             textareaform += "<textarea class='input-form' id='textform_for_update' rows='5' component_id='"+component_id+"' style='width:95%;'>"+text_Val+"</textarea>";
-            textareaform += "<button id='update_text_button' class='update_text_button'>Update</button>";
+            textareaform += "<div class='update_text_button_wraps'><div><button id='update_text_button' class='update_text_button'>Update</button></div>";
+            textareaform += "<div class='hidden toggle_processing_update_text'><i class='fa-solid fa-circle-notch fa-spin'></i></div></div>";
 
             textareaform += "<div style='margin-top: 10px;'><b>Text Style</b></div>";
                 textareaform += "<div>Margin</div>";
                 textareaform += "<div style='display: flex;gap: 10px;'>";
-                    textareaform += "<div>Top<br><select class='input-form' id='margin_top' style='width: 100px;'>"+options+"</select></div>";
-                    textareaform += "<div>Right<br><select class='input-form' id='margin_right' style='width: 100px;'>"+options+"</select></div>";
+                    textareaform += "<div>Top<br><select class='input-form change_style_attr' id='margin_top' style='width: 100px;'>"+options+"</select></div>";
+                    textareaform += "<div>Right<br><select class='input-form change_style_attr' id='margin_right' style='width: 100px;'>"+options+"</select></div>";
                 textareaform += "</div>";
                 textareaform += "<div style='display: flex;gap: 10px;'>";
-                    textareaform += "<div>Bottom<br><select class='input-form' id='margin_bottom' style='width: 100px;'>"+options+"</select></div>";
-                    textareaform += "<div>Left<br><select class='input-form' id='margin_left' style='width: 100px;'>"+options+"</select></div>";
+                    textareaform += "<div>Bottom<br><select class='input-form change_style_attr' id='margin_bottom' style='width: 100px;'>"+options+"</select></div>";
+                    textareaform += "<div>Left<br><select class='input-form change_style_attr' id='margin_left' style='width: 100px;'>"+options+"</select></div>";
                 textareaform += "</div>";
 
                 textareaform += "<div style='margin-top: 10px;'>Padding</div>";
                 textareaform += "<div style='display: flex;gap: 10px;'>";
-                    textareaform += "<div>Top<br><select class='input-form' id='padding_top' style='width: 100px;'>"+options+"</select></div>";
-                    textareaform += "<div>Right<br><select class='input-form' id='padding_right' style='width: 100px;'>"+options+"</select></div>";
+                    textareaform += "<div>Top<br><select class='input-form change_style_attr' id='padding_top' style='width: 100px;'>"+options+"</select></div>";
+                    textareaform += "<div>Right<br><select class='input-form change_style_attr' id='padding_right' style='width: 100px;'>"+options+"</select></div>";
                 textareaform += "</div>";
                 textareaform += "<div style='display: flex;gap: 10px;'>";
-                    textareaform += "<div>Bottom<br><select class='input-form' id='padding_bottom' style='width: 100px;'>"+options+"</select></div>";
-                    textareaform += "<div>Left<br><select class='input-form' id='padding_left' style='width: 100px;'>"+options+"</select></div>";
+                    textareaform += "<div>Bottom<br><select class='input-form change_style_attr' id='padding_bottom' style='width: 100px;'>"+options+"</select></div>";
+                    textareaform += "<div>Left<br><select class='input-form change_style_attr' id='padding_left' style='width: 100px;'>"+options+"</select></div>";
                 textareaform += "</div>";
                 
                 textareaform += "<div style='margin-top: 10px;'>Font Size</div>";
                 textareaform += "<div style='display: flex;gap: 10px;'>";
-                    textareaform += "<div><select class='input-form' id='font_sizebuildjs' style='width: 100px;'>"+options+"</select></div>";
+                    textareaform += "<div><select class='input-form change_style_attr' id='font_sizebuildjs' style='width: 100px;'>"+options+"</select></div>";
                 textareaform += "</div>";
 
                 textareaform += "<div style='margin-top: 10px;'>Font Style</div>";
                 textareaform += "<div style='display: flex;gap: 10px;'>";
-                    textareaform += "<div class='text_alignment_buildjs boldbuildjs_wraps' id='trigger_font_boldbuildjs'><i class='fa-solid fa-bold' id='font_boldbuildjs' value='0'></i></div>";
+                    textareaform += "<div class='text_alignment_buildjs boldbuildjs_wraps change_style_attr' id='trigger_font_boldbuildjs'><i class='fa-solid fa-bold' id='font_boldbuildjs' value='0'></i></div>";
                     textareaform += "<div class='text_alignment_buildjs italicsbuildjs_wraps' id='trigger_font_italicsbuildjs'><i class='fa-solid fa-italic' id='font_italicsbuildjs' value='0'></i></div>";
                     textareaform += "<div class='text_alignment_buildjs underlinebuildjs_wraps' id='trigger_font_underlinebuildjs'><i class='fa-solid fa-underline' id='font_underlinebuildjs' value='0'></i></div>";
                 textareaform += "</div>";
@@ -170,6 +230,9 @@ $(document).ready(function() {
 
                 textareaform += "<div style='margin-top: 10px;'>Background Color</div>";
                 textareaform += "<div><input type='color' class='input-form' id='color_pickerbuildjs' /></div>";
+
+                textareaform += "<div style='margin-top: 10px;'>Text Color</div>";
+                textareaform += "<div><input type='color' class='input-form' id='color_text_pickerbuildjs' /></div>";
             textareaform += "</div>";
             textareaform += "<button id='update_buildjs_style_button' class='update_text_button' component_id='"+component_id+"'>Update Styles</button>";
 
@@ -272,6 +335,19 @@ $(document).ready(function() {
 
         updateDatabase(theurl, formData);
     });
+
+    function convertstyle_to_array(thestylestring) {
+        var cssArray = thestylestring.split(";").reduce(function(acc, curr) {
+            var parts = curr.trim().split(":");
+            if (parts.length === 2) {
+                var [key, value] = parts;
+                acc[key.trim()] = value.trim();
+            }
+            return acc;
+        }, {});
+
+        return cssArray;
+    }
 
     function loadconstruct(owner, pageowner) {
         var formData = {
