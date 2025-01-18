@@ -145,7 +145,7 @@ $(document).ready(function() {
         var cssArray = convertstyle_to_array(thestylestring);
 
         var newstylestring = "";
-        for (var key in cssArray) {            
+        for (var key in cssArray) {
             if(key === cssowner){
                 newstylestring += cssowner+": "+margin_top_value+"px; ";
                 // alert(newstylestring+"   Xfont-size!");
@@ -157,10 +157,193 @@ $(document).ready(function() {
         $("#"+component_id).attr("style", newstylestring);
     });
 
+    // color_pickerbuildjs
+    $('body').on('change', ".color_pickerbuildjs", function() {
+        var theowner = $(this).attr("owner");
+        // console.log(theowner+": color clicked!");
+        // alert($(this).val()+"color clicked!");//return;
+        var component_id = $("#textform_for_update").attr("component_id");
+        
+        var cssowner = theowner;
+        var style_value = $(this).val();
+
+        var thestylestring = $("#"+component_id).attr("style");
+        // console.log(thestylestring+"; broooooooo!");return;
+        // alert(component_id+"; booooom!");
+        // this is to get the style array from the component
+        var cssArray = convertstyle_to_array(thestylestring);
+        console.log(cssArray+"; checker!");
+        // alert(cssowner+": cssowner");return;
+        var newstylestring = "";
+        for (var key in cssArray) {
+            if(key === cssowner){
+                newstylestring += cssowner+": "+style_value+";";
+            }else{
+                newstylestring += key+": "+cssArray[key]+"; ";
+            }
+        }
+
+        $("#"+component_id).attr("style", newstylestring);
+    });
+
     // click to change
     $('body').on('click', ".change_style_attr", function() {
-        alert("H2dHIZZO!");
+        var idattr = $(this).attr("id");//alert(idattr);return;
+        // trigger_font_italicsbuildjs, trigger_font_underlinebuildjs
+        var component_id = $("#textform_for_update").attr("component_id");
+
+        // trigger_font_boldbuildjs
+        if(idattr == "trigger_font_boldbuildjs"){
+            var cssowner = "font-weight";
+            var updated_value = $("#font_boldbuildjs").attr("value");
+        
+            if(updated_value == "0"){
+                var style_value = "normal";
+            }else if(updated_value == "1"){
+                var style_value = "bold";
+            }
+        }else if(idattr == "trigger_font_italicsbuildjs"){
+            var cssowner = "font-style";
+            var updated_value = $("#font_italicsbuildjs").attr("value");
+        
+            if(updated_value == "0"){
+                var style_value = "normal";
+            }else if(updated_value == "1"){
+                var style_value = "italic";
+            }
+        }else if(idattr == "trigger_font_underlinebuildjs"){
+            var cssowner = "text-decoration";
+            var updated_value = $("#font_underlinebuildjs").attr("value");
+        
+            if(updated_value == "0"){
+                var style_value = "normal";
+            }else if(updated_value == "1"){
+                var style_value = "underline";
+            }
+        }else if(idattr == "trigger_textalign_buildjs"){
+            var theowner = $(this).attr("owner");//alert(theowner+": theowner");return;
+            var cssowner = "text-align";
+
+            if(theowner == "left"){
+                var updated_value = $("#font_left_alignbuildjs").attr("value");
+                // alert(updated_value+": updated_value");return;
+                if(updated_value == 1){
+                    var style_value = "left";
+                }
+            }else if(theowner == "center"){
+                var updated_value = $("#font_center_alignbuildjs").attr("value");
+                // alert(updated_value+": updated_value");return;
+                if(updated_value == 1){
+                    var style_value = "center";
+                }
+            }else if(theowner == "right"){
+                var updated_value = $("#font_right_alignbuildjs").attr("value");
+
+                if(updated_value == 1){
+                    var style_value = "right";
+                }
+            }
+            // font_left_alignbuildjs
+        }
+        // trigger_textalign_buildjs, left, center, right
+
+        var thestylestring = $("#"+component_id).attr("style");
+
+        // this is to get the style array from the component
+        var cssArray = convertstyle_to_array(thestylestring);
+
+        var newstylestring = "";
+        for (var key in cssArray) {
+            if(key === cssowner){
+                newstylestring += cssowner+": "+style_value+";";
+            }else{
+                newstylestring += key+": "+cssArray[key]+"; ";
+            }
+        }
+
+        $("#"+component_id).attr("style", newstylestring);
     });
+
+    // background_image_buildjs
+    $('body').on('change', "#background_image_buildjs", function() {
+        readURL(this);
+
+        var idattr = $(this).attr("id");
+        // trigger_font_italicsbuildjs, trigger_font_underlinebuildjs
+        var component_id = $("#textform_for_update").attr("component_id");
+        
+        var file = event.target.files[0];
+
+        var formData = new FormData();
+        formData.append('file', file);
+        formData.append('component_id', component_id);
+        // console.log(formData);return;
+    
+        var url = window.location.href;
+        var ownerid = url.substring(url.lastIndexOf('/') + 1);
+        formData.append('ownerid', ownerid);
+
+        var owner = "text_background_image";
+        formData.append('owner', owner);
+    
+        var theurl = $("#union4sqmaps").attr("database_upload_image");
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        
+        $.ajax({
+            type: 'POST',
+            url: theurl,
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(response) {
+                // $("#jumbotron_background_upload_processing").hide();
+                // alert(response);
+                console.log(response);
+                $("#"+component_id).attr("style", response);
+            },
+            error: function(xhr, status, error) {
+                // alert("major error!: "+xhr.responseText);
+                $("#document-uploading-processing").hide();
+                // console.log(xhr.responseText);
+                $('#' + 'credentials_error_wraps').text(xhr.responseText);
+                var errorResponse = JSON.parse(xhr.responseText);
+                var errorMessage = errorResponse.message;
+                var errors = errorResponse.errors;
+            
+                var errorHtml = '';
+            
+                // Display general error message
+                errorHtml += '<p>' + errorMessage + '</p>';
+            
+                // Display field-specific errors
+                $.each(errors, function(field, error) {
+                    errorHtml += '<p>' + field + ': ' + error[0] + '</p>';
+                });
+            
+                $('.' + 'credentials_error_wraps2').html(errorHtml);
+    
+                $("#profileimage-uploading-processing-loading").hide();
+            }
+        });
+    });
+
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+          var reader = new FileReader();
+      
+          reader.onload = function(e) {
+            $('#background_image_thumbnail').attr('src', e.target.result);
+          };
+      
+          reader.readAsDataURL(input.files[0]);
+        }
+    }
 
     // 
     $('body').on('dblclick', "[component_type='text']", function() {
@@ -217,22 +400,26 @@ $(document).ready(function() {
                 textareaform += "<div style='margin-top: 10px;'>Font Style</div>";
                 textareaform += "<div style='display: flex;gap: 10px;'>";
                     textareaform += "<div class='text_alignment_buildjs boldbuildjs_wraps change_style_attr' id='trigger_font_boldbuildjs'><i class='fa-solid fa-bold' id='font_boldbuildjs' value='0'></i></div>";
-                    textareaform += "<div class='text_alignment_buildjs italicsbuildjs_wraps' id='trigger_font_italicsbuildjs'><i class='fa-solid fa-italic' id='font_italicsbuildjs' value='0'></i></div>";
-                    textareaform += "<div class='text_alignment_buildjs underlinebuildjs_wraps' id='trigger_font_underlinebuildjs'><i class='fa-solid fa-underline' id='font_underlinebuildjs' value='0'></i></div>";
+                    textareaform += "<div class='text_alignment_buildjs italicsbuildjs_wraps change_style_attr' id='trigger_font_italicsbuildjs'><i class='fa-solid fa-italic' id='font_italicsbuildjs' value='0'></i></div>";
+                    textareaform += "<div class='text_alignment_buildjs underlinebuildjs_wraps change_style_attr' id='trigger_font_underlinebuildjs'><i class='fa-solid fa-underline' id='font_underlinebuildjs' value='0'></i></div>";
                 textareaform += "</div>";
 
                 textareaform += "<div style='margin-top: 10px;'>Text Align</div>";
                 textareaform += "<div style='display: flex;gap: 10px;'>";
-                    textareaform += "<div class='text_alignment_buildjs leftalignbuildjs_wraps' id='trigger_textalign_buildjs' owner='left'><i class='fa-solid fa-align-left' id='font_left_alignbuildjs' value='0'></i></div>";
-                    textareaform += "<div class='text_alignment_buildjs centeralignbuildjs_wraps' id='trigger_textalign_buildjs' owner='center'><i class='fa-solid fa-align-center' id='font_center_alignbuildjs' value='0'></i></div>";
-                    textareaform += "<div class='text_alignment_buildjs rightalignbuildjs_wraps' id='trigger_textalign_buildjs' owner='right'><i class='fa-solid fa-align-right' id='font_right_alignbuildjs' value='0'></i></div>";
+                    textareaform += "<div class='text_alignment_buildjs leftalignbuildjs_wraps change_style_attr' id='trigger_textalign_buildjs' owner='left'><i class='fa-solid fa-align-left' id='font_left_alignbuildjs' value='0'></i></div>";
+                    textareaform += "<div class='text_alignment_buildjs centeralignbuildjs_wraps change_style_attr' id='trigger_textalign_buildjs' owner='center'><i class='fa-solid fa-align-center' id='font_center_alignbuildjs' value='0'></i></div>";
+                    textareaform += "<div class='text_alignment_buildjs rightalignbuildjs_wraps change_style_attr' id='trigger_textalign_buildjs' owner='right'><i class='fa-solid fa-align-right' id='font_right_alignbuildjs' value='0'></i></div>";
                 textareaform += "</div>";
 
                 textareaform += "<div style='margin-top: 10px;'>Background Color</div>";
-                textareaform += "<div><input type='color' class='input-form' id='color_pickerbuildjs' /></div>";
+                textareaform += "<div><input type='color' class='input-form color_pickerbuildjs' id='color_pickerbuildjs' owner='background' style='width: 95%;' /></div>";
 
                 textareaform += "<div style='margin-top: 10px;'>Text Color</div>";
-                textareaform += "<div><input type='color' class='input-form' id='color_text_pickerbuildjs' /></div>";
+                textareaform += "<div><input type='color' class='input-form color_pickerbuildjs' id='color_text_pickerbuildjs' owner='color' style='width: 95%;' /></div>";
+
+                textareaform += "<div style='margin-top: 10px;'>Background Image</div>";
+                textareaform += "<div><input type='file' class='input-form' id='background_image_buildjs' style='width: 95%;' accept='.jpg, .jpeg, .png' /></div>";
+                textareaform += "<div style='margin-top: 20px;width: 60%;'><img src='' id='background_image_thumbnail' /></div>";
             textareaform += "</div>";
             textareaform += "<button id='update_buildjs_style_button' class='update_text_button' component_id='"+component_id+"'>Update Styles</button>";
 
@@ -313,7 +500,15 @@ $(document).ready(function() {
                         $(".rightalignbuildjs_wraps").addClass("buildjs_selected_item");
                     }
                 }else if(key === "background"){
-                    $("#color_pickerbuildjs").val(cssArray[key]).trigger("change");
+                    if(cssArray[key].indexOf("/storage/uploads") !== -1){
+                        // alert("background image!");
+                    }else{
+                        // alert("background color!");
+                        $("#color_pickerbuildjs").val(cssArray[key]).trigger("change");
+                    }
+                }else if(key === "color"){
+                    $("#color_text_pickerbuildjs").val(cssArray[key]).trigger("change");
+                    // alert(cssArray[key]+"; yo!!!!!!!!!");
                 }
             }
         }

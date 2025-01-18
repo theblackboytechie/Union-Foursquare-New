@@ -615,6 +615,7 @@ class BackendController extends Controller
                 'text-decoration' => $request->font_underlinebuildjs,
                 'text-align' => $request->textalign,
                 'background' => $request->colorpicker,
+                'color' => $request->color_text_picker,
             ];
 
             $json_style = json_encode($stylearray);
@@ -640,6 +641,9 @@ class BackendController extends Controller
     public function database_upload_image(Request $request)
     {
         // return "shaba!";
+        // return $request->component_id;
+        // return $request->owner;
+        // text_background_image
         // return "bangini!";
         $request->validate([
             'file' => 'required|mimes:jpeg,png,jpg,bmp,gif,pdf|max:4024',
@@ -663,19 +667,109 @@ class BackendController extends Controller
         $filePath = $file->storeAs('uploads', $fileName, 'public');
         $file->move(public_path('storage/uploads/'), $fileName);
 
-        // pagesui
-        $tabledb = "pagesui";
+        if($request->owner == "text_background_image"){
+            // pagesui
+            $tabledb = "pagesui_component_style";
 
-        $where_array = [
-            'page_name' => "jumbotron",
-        ];
+            $where_array = [
+                'component_id' => $request->component_id,
+            ];
 
-        $update_array = [
-            'mediafile1' => $fileName,
-            'updated_at' => $currenttime,
-        ];
+            $update_array = [
+                'background_image' => $fileName,
+                'updated_at' => $currenttime,
+            ];
 
-        CrudHelper::Update($tabledb, $where_array, $update_array);
+            CrudHelper::Update($tabledb, $where_array, $update_array);
+
+            // get the style 
+            $tabledb = "pagesui_component_style";
+
+            $where_array = [
+                'component_id' => $request->component_id,
+            ];
+    
+            $outcome = CrudHelper::Get($tabledb, $where_array);
+
+            foreach($outcome as $outcome){
+                $stylearray = json_decode($outcome->style_content, true);
+                $allstyles = "";
+                $allstyles .= $this->load_all_styles_content($stylearray, $outcome->background_image);
+
+                $allstyles = "$allstyles background-position: center;background-repeat: no-repeat;background-size: cover;";
+
+                return $allstyles;
+            }
+        }else{
+            // pagesui
+            $tabledb = "pagesui";
+
+            $where_array = [
+                'page_name' => "jumbotron",
+            ];
+
+            $update_array = [
+                'mediafile1' => $fileName,
+                'updated_at' => $currenttime,
+            ];
+
+            CrudHelper::Update($tabledb, $where_array, $update_array);
+        }
+    }
+
+    private function load_all_styles_content($stylearray, $background_image)
+    {
+        $allstyles = "";
+        if(!empty($stylearray)){
+            foreach($stylearray as $key => $value){
+                if($key == "font_size"){
+                    $key = "font-size";
+                }elseif($key == "font-weight"){
+                    $key = "font-weight";
+
+                    if($value == "0"){
+                        $value = "normal";
+                    }elseif($value == "1"){
+                        $value = "bold";
+                    }
+                }elseif($key == "font-style"){
+                    $key = "font-style";
+
+                    if($value == "0"){
+                        $value = "normal";
+                    }elseif($value == "1"){
+                        $value = "italic";
+                    }
+                }elseif($key == "text-decoration"){
+                    $key = "text-decoration";
+
+                    if($value == "0"){
+                        $value = "none";
+                    }elseif($value == "1"){
+                        $value = "underline";
+                    }
+                }elseif($key == "text-align"){
+
+                }
+
+                if($key == "font-weight" || $key == "font-style" || $key == "text-decoration" || $key == "text-align" || $key == "background" || $key == "color"){
+                    if($key == "background"){
+                        if(!empty($background_image)){
+                            $allstyles .= "$key: url(\"/storage/uploads/$background_image\");";
+                        }else{
+                            $allstyles .= "$key: $value;";
+                        }
+                    }else{
+                        $allstyles .= "$key: $value;";
+                    }
+                    
+                }else{
+                    $allstyles .= "$key: $value"."px;";
+                }
+            }
+        }
+
+        return $allstyles;
     }
 
     private function create_component_style($id)
@@ -731,46 +825,13 @@ class BackendController extends Controller
             }elseif($content_type == "style"){
                 // return $content_styles->style_content;
                 $stylearray = json_decode($content_styles->style_content, true);
+
                 $allstyles = "";
-                if(!empty($stylearray)){
-                    foreach($stylearray as $key => $value){
-                        if($key == "font_size"){
-                            $key = "font-size";
-                        }elseif($key == "font-weight"){
-                            $key = "font-weight";
 
-                            if($value == "0"){
-                                $value = "normal";
-                            }elseif($value == "1"){
-                                $value = "bold";
-                            }
-                        }elseif($key == "font-style"){
-                            $key = "font-style";
+                $allstyles .= $this->load_all_styles_content($stylearray, $content_styles->background_image);
 
-                            if($value == "0"){
-                                $value = "normal";
-                            }elseif($value == "1"){
-                                $value = "italic";
-                            }
-                        }elseif($key == "text-decoration"){
-                            $key = "text-decoration";
+                $allstyles = "$allstyles background-position: center;background-repeat: no-repeat;background-size: cover;";
 
-                            if($value == "0"){
-                                $value = "none";
-                            }elseif($value == "1"){
-                                $value = "underline";
-                            }
-                        }elseif($key == "text-align"){
-
-                        }
-
-                        if($key == "font-weight" || $key == "font-style" || $key == "text-decoration" || $key == "text-align" || $key == "background"){
-                            $allstyles .= "$key: $value;";
-                        }else{
-                            $allstyles .= "$key: $value"."px;";
-                        }
-                    }
-                }
                 return $allstyles;
             }
 
