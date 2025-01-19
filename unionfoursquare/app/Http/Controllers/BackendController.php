@@ -342,8 +342,18 @@ class BackendController extends Controller
                                         $image_id1 = $value;
                                     }
                                 }
-                                
-                                $wraps .= "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' component_type='image' component_id='$image_id1' /></div>";
+
+                                $actualimage = $this->get_content_text($image_id1, "image");
+                                $actualstyle = $this->get_content_text($image_id1, "style");
+
+                                if(empty($actualimage)){
+                                    $imageurl = "http://127.0.0.1:8000/storage/assets/images/placeholder.jpg";
+                                }else{
+                                    // $actualimage 
+                                    $imageurl = "http://127.0.0.1:8000/storage/uploads/$actualimage";
+                                }
+
+                                $wraps .= "<div class='single_image'><img src='$imageurl' class='actual_image' component_type='image' id='$image_id1' component_id='$image_id1' style='eeeee' /></div>";
                             }elseif($componentdetails->component_type == "single-image-text"){
                                 foreach($component_content as $key => $value){
                                     if ($key == 'image') {
@@ -357,7 +367,7 @@ class BackendController extends Controller
                                 $actualtext = $this->get_content_text($text_id1, "text");
 
                                 $wraps .= "<div component_id='$componentdetails->component_id'>";
-                                    $wraps .= "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' component_type='image' component_id='$image_id1' /></div>";
+                                    $wraps .= "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' component_type='image' component_id='$image_id1' style='eeeee' /></div>";
                                 $wraps .= "<div class='single_text' component_type='text' component_id='$text_id1'>$actualtext</div>";
                                 $wraps .= "</div>";
                             }elseif($componentdetails->component_type == "single-text-image"){
@@ -700,6 +710,22 @@ class BackendController extends Controller
 
                 return $allstyles;
             }
+        }elseif($request->owner == "image_component"){
+            // return "$request->component_id; bride!";
+            $tabledb = "pagesui_component_style";
+
+            $where_array = [
+                'component_id' => $request->component_id,
+            ];
+
+            $update_array = [
+                'content' => $fileName,
+                'updated_at' => $currenttime,
+            ];
+
+            CrudHelper::Update($tabledb, $where_array, $update_array);
+
+            return "done!";
         }else{
             // pagesui
             $tabledb = "pagesui";
@@ -833,6 +859,8 @@ class BackendController extends Controller
                 $allstyles = "$allstyles background-position: center;background-repeat: no-repeat;background-size: cover;";
 
                 return $allstyles;
+            }elseif($content_type == "image"){
+                return $content_styles->content;
             }
 
             // return $textbody;

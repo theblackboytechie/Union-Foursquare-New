@@ -100,7 +100,40 @@ $(document).ready(function() {
 
     // 
     $('body').on('dblclick', "[component_type='image']", function() {
-        alert("yo img!");
+        $("#text_form_update").remove();
+        $("#update_buildjs_style_button").remove();
+
+        // get the style attribute from the tag
+        var thestyle = $(this).attr("style");
+
+        var component_id = $(this).attr("component_id");//alert(thestyle);
+
+        var options = [];
+
+        // Loop through numbers 1 to 99
+        for (var i = 0; i <= 99; i++) {
+            // Create a new option element and add it to the array
+            options.push("<option value='" + i + "'>" + i + "</option>");
+        }
+        
+        var textareaform = "<div id='text_form_update' style='height: 350px;overflow-y: scroll;'>";
+                textareaform += "<b>Update Image</b>";
+                textareaform += "<input type='file' class='input-form' id='imageform_for_update' component_id='"+component_id+"' style='width:95%;' accept='.jpg, .jpeg, .png' />";
+                textareaform += "<div class='hidden toggle_processing_update_text'><i class='fa-solid fa-circle-notch fa-spin'></i></div>";
+
+                textareaform += "<div style='margin-top: 10px;'><b>Padding Style</b></div>";
+                textareaform += "<div>Padding</div>";
+                textareaform += "<div style='display: flex;gap: 10px;'>";
+                    textareaform += "<div>Top<br><select class='input-form change_style_attr' id='padding_top' style='width: 100px;'>"+options+"</select></div>";
+                    textareaform += "<div>Right<br><select class='input-form change_style_attr' id='padding_right' style='width: 100px;'>"+options+"</select></div>";
+                textareaform += "</div>";
+                textareaform += "<div style='display: flex;gap: 10px;'>";
+                    textareaform += "<div>Bottom<br><select class='input-form change_style_attr' id='padding_bottom' style='width: 100px;'>"+options+"</select></div>";
+                    textareaform += "<div>Left<br><select class='input-form change_style_attr' id='padding_left' style='width: 100px;'>"+options+"</select></div>";
+                textareaform += "</div>";
+            textareaform += "</div>";
+
+        $(".pages-section-c-inner").html(textareaform);
     });
 
     // change textform_for_update to update the DOM
@@ -265,26 +298,37 @@ $(document).ready(function() {
     });
 
     // background_image_buildjs
-    $('body').on('change', "#background_image_buildjs", function() {
-        readURL(this);
+    $('body').on('change', "#background_image_buildjs, #imageform_for_update", function() {
+        // alert("do the calms!");
+        
+        // return;
 
         var idattr = $(this).attr("id");
+
+        var formData = new FormData();
+
+        // alert(idattr+"; idattr");
+        // return;
+        if(idattr == "imageform_for_update"){
+            var owner = "image_component";
+            formData.append('owner', owner);
+
+            var component_id = $(this).attr("component_id");
+            // alert(component_id);return;
+            readURL2(this, component_id);
+        }else{
+            readURL(this);
+            var owner = "text_background_image";
+            formData.append('owner', owner);
+
+            var component_id = $("#textform_for_update").attr("component_id");
+        }
         // trigger_font_italicsbuildjs, trigger_font_underlinebuildjs
-        var component_id = $("#textform_for_update").attr("component_id");
         
         var file = event.target.files[0];
 
-        var formData = new FormData();
         formData.append('file', file);
         formData.append('component_id', component_id);
-        // console.log(formData);return;
-    
-        var url = window.location.href;
-        var ownerid = url.substring(url.lastIndexOf('/') + 1);
-        formData.append('ownerid', ownerid);
-
-        var owner = "text_background_image";
-        formData.append('owner', owner);
     
         var theurl = $("#union4sqmaps").attr("database_upload_image");
 
@@ -303,8 +347,13 @@ $(document).ready(function() {
             success: function(response) {
                 // $("#jumbotron_background_upload_processing").hide();
                 // alert(response);
-                console.log(response);
-                $("#"+component_id).attr("style", response);
+                if(owner == "image_component"){
+                    console.log(response+"; ooooomooooooooooooo!");
+                    // $("#"+component_id).attr("style", response);
+                }else{
+                    console.log(response+"; eeeeeeeeeee");
+                    $("#"+component_id).attr("style", response);
+                }
             },
             error: function(xhr, status, error) {
                 // alert("major error!: "+xhr.responseText);
@@ -345,6 +394,19 @@ $(document).ready(function() {
         }
     }
 
+    // readURL(this);
+    function readURL2(input, component_id) {
+        if (input.files && input.files[0]) {
+          var reader = new FileReader();
+      
+          reader.onload = function(e) {
+            $('#'+component_id).attr('src', e.target.result);
+          };
+      
+          reader.readAsDataURL(input.files[0]);
+        }
+    }
+
     // 
     $('body').on('dblclick', "[component_type='text']", function() {
         $("#text_form_update").remove();
@@ -352,7 +414,6 @@ $(document).ready(function() {
 
         // get the style attribute from the tag
         var thestyle = $(this).attr("style");
-
 
         var component_id = $(this).attr("component_id");
         var text_Val = $(this).text();
