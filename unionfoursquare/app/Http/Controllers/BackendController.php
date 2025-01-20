@@ -611,6 +611,7 @@ class BackendController extends Controller
         }elseif($request->owner == "update_style_tobackend_buildjs"){
             // return "Omomo!";component_id
             $stylearray = [
+                'border-top' => $request->border_top,
                 'margin-top' => $request->margin_top,
                 'margin-right' => $request->margin_right,
                 'margin-bottom' => $request->margin_bottom,
@@ -778,7 +779,7 @@ class BackendController extends Controller
 
                 }
 
-                if($key == "font-weight" || $key == "font-style" || $key == "text-decoration" || $key == "text-align" || $key == "background" || $key == "color"){
+                if($key == "font-weight" || $key == "font-style" || $key == "text-decoration" || $key == "text-align" || $key == "background" || $key == "color" || $key == "border-top"){
                     if($key == "background"){
                         if(!empty($background_image)){
                             $allstyles .= "$key: url(\"/storage/uploads/$background_image\");";

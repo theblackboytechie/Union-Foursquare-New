@@ -426,6 +426,13 @@ $(document).ready(function() {
             options.push("<option value='" + i + "'>" + i + "</option>");
         }
 
+        var bordertypes = [
+            "<option value='solid'>solid</option>", 
+            "<option value='dotted'>dotted</option>", 
+            "<option value='dashed'>dashed</option>", 
+            "<option value='double'>double</option>"
+        ];
+
         var textareaform = "<div id='text_form_update' style='height: 350px;overflow-y: scroll;'>";
             textareaform += "<b>Update Text</b>";
             textareaform += "<textarea class='input-form' id='textform_for_update' rows='5' component_id='"+component_id+"' style='width:95%;'>"+text_Val+"</textarea>";
@@ -441,6 +448,42 @@ $(document).ready(function() {
                 textareaform += "<div style='display: flex;gap: 10px;'>";
                     textareaform += "<div>Bottom<br><select class='input-form change_style_attr' id='margin_bottom' style='width: 100px;'>"+options+"</select></div>";
                     textareaform += "<div>Left<br><select class='input-form change_style_attr' id='margin_left' style='width: 100px;'>"+options+"</select></div>";
+                textareaform += "</div>";
+
+                textareaform += "<div style='margin-top: 10px;'><b>Border Top</b></div>";
+                textareaform += "<div style='display: flex;gap: 10px;'>";
+                    textareaform += "<div>Width<br><select class='input-form change_style_attr' id='border_top_width' style='width: 100px;'>"+options+"</select></div>";
+                    textareaform += "<div>Type<br><select class='input-form change_style_attr' id='border_top_type' style='width: 100px;'>"+bordertypes+"</select></div>";
+                textareaform += "</div>";
+                textareaform += "<div style='display: flex;gap: 10px;'>";
+                    textareaform += "<div>Color<br><input type='color' class='input-form border_top_color_pickerbuildjs' id='border_top_color_pickerbuildjs' owner='color' style='width: 105%;background: blue;' /></div>";
+                textareaform += "</div>";
+
+                textareaform += "<div style='margin-top: 10px;'><b>Border Bottom</b></div>";
+                textareaform += "<div style='display: flex;gap: 10px;'>";
+                    textareaform += "<div>Width<br><select class='input-form change_style_attr' id='border_top_width' style='width: 100px;'>"+options+"</select></div>";
+                    textareaform += "<div>Type<br><select class='input-form change_style_attr' id='border_top_type' style='width: 100px;'>"+bordertypes+"</select></div>";
+                textareaform += "</div>";
+                textareaform += "<div style='display: flex;gap: 10px;'>";
+                    textareaform += "<div>Color<br><input type='color' class='input-form border_top_color_pickerbuildjs' id='border_top_color_pickerbuildjs' owner='color' style='width: 105%;background: blue;' /></div>";
+                textareaform += "</div>";
+
+                textareaform += "<div style='margin-top: 10px;'><b>Border Left</b></div>";
+                textareaform += "<div style='display: flex;gap: 10px;'>";
+                    textareaform += "<div>Width<br><select class='input-form change_style_attr' id='border_top_width' style='width: 100px;'>"+options+"</select></div>";
+                    textareaform += "<div>Type<br><select class='input-form change_style_attr' id='border_top_type' style='width: 100px;'>"+bordertypes+"</select></div>";
+                textareaform += "</div>";
+                textareaform += "<div style='display: flex;gap: 10px;'>";
+                    textareaform += "<div>Color<br><input type='color' class='input-form border_top_color_pickerbuildjs' id='border_top_color_pickerbuildjs' owner='color' style='width: 105%;background: blue;' /></div>";
+                textareaform += "</div>";
+
+                textareaform += "<div style='margin-top: 10px;'><b>Border Right</b></div>";
+                textareaform += "<div style='display: flex;gap: 10px;'>";
+                    textareaform += "<div>Width<br><select class='input-form change_style_attr' id='border_top_width' style='width: 100px;'>"+options+"</select></div>";
+                    textareaform += "<div>Type<br><select class='input-form change_style_attr' id='border_top_type' style='width: 100px;'>"+bordertypes+"</select></div>";
+                textareaform += "</div>";
+                textareaform += "<div style='display: flex;gap: 10px;'>";
+                    textareaform += "<div>Color<br><input type='color' class='input-form border_top_color_pickerbuildjs' id='border_top_color_pickerbuildjs' owner='color' style='width: 105%;background: blue;' /></div>";
                 textareaform += "</div>";
 
                 textareaform += "<div style='margin-top: 10px;'>Padding</div>";
@@ -573,6 +616,22 @@ $(document).ready(function() {
                 }
             }
         }
+    });
+
+    // border_top_width, border_top_type, border_top_color_pickerbuildjs
+    $('body').on('change', '#border_top_width, #border_top_type, #border_top_color_pickerbuildjs', function() {
+        var the_brdr_tp_wdth = $("#border_top_width").val();
+        var the_brdr_tp_typ = $("#border_top_type").val();
+        var the_brdr_tp_clr = $("#border_top_color_pickerbuildjs").val();
+        // alert(the_brdr_tp_wdth+"; top_width");
+        // alert(the_brdr_tp_typ+"; top_type");
+        // alert(the_brdr_tp_clr+"; top_color");
+
+        var component_id = $("#textform_for_update").attr("component_id");
+
+        var thestylestring = $("#"+component_id).attr("style");
+
+        // alert(thestylestring);
     });
 
     // construct the components

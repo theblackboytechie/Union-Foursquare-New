@@ -121,6 +121,13 @@ $(document).ready(function() {
         let font_center_alignbuildjs = $("#font_center_alignbuildjs").attr("value");
         let font_right_alignbuildjs = $("#font_right_alignbuildjs").attr("value");
 
+        var the_brdr_tp_wdth = $("#border_top_width").val();
+        var the_brdr_tp_typ = $("#border_top_type").val();
+        var the_brdr_tp_clr = $("#border_top_color_pickerbuildjs").val();
+
+        let border_top = the_brdr_tp_wdth+"px "+the_brdr_tp_typ+" "+the_brdr_tp_clr;
+
+
         if(font_left_alignbuildjs == 1){
             var textalign = "left";
         }else if(font_center_alignbuildjs == 1){
@@ -134,6 +141,7 @@ $(document).ready(function() {
         var formData = {
             owner: owner,
             component_id: component_id,
+            border_top: border_top,
             margin_top: margin_top,
             margin_right: margin_right,
             margin_bottom: margin_bottom,
