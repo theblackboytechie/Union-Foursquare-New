@@ -320,6 +320,7 @@ class BackendController extends Controller
                         foreach($component_all_details as $componentdetails){
                             // to get the ids of the component members we convert from json to array and loop
                             $component_content = json_decode($componentdetails->content, true);
+                            $componentstyle = $this->get_content_text($pagesui, "style");
 
                             // use the id of the text/image to get the content of the text or image
 
@@ -334,8 +335,8 @@ class BackendController extends Controller
                                 $actualtext = $this->get_content_text($text_id1, "text");
                                 $actualtext = $this->get_content_text($text_id1, "text");
                                 $actualstyle = $this->get_content_text($text_id1, "style");
-
-                                $wraps .= "<div class='single_text' id='$text_id1' style='$actualstyle' component_type='text' component_id='$text_id1'>$actualtext</div>";
+                                
+                                $wraps .= "<div class='incontext_component_wraps' id='$pagesui' component_wraps_type='single_type' style='$componentstyle'><div class='single_text' id='$text_id1' style='$actualstyle' component_type='text' component_id='$text_id1'>$pagesui; $actualtext</div></div>";
                             }elseif($componentdetails->component_type == "single-image"){
                                 foreach($component_content as $key => $value){
                                     if ($key == 'image') {
@@ -353,7 +354,7 @@ class BackendController extends Controller
                                     $imageurl = "http://127.0.0.1:8000/storage/uploads/$actualimage";
                                 }
 
-                                $wraps .= "<div class='single_image'><img src='$imageurl' class='actual_image' component_type='image' id='$image_id1' component_id='$image_id1' style='eeeee' /></div>";
+                                $wraps .= "<div class='single_image incontext_component_wraps' component_wraps_type='single_type' id='$pagesui' style='$componentstyle'><img src='$imageurl' class='actual_image' component_type='image' id='$image_id1' component_id='$image_id1' style='$actualstyle' /></div>";
                             }elseif($componentdetails->component_type == "single-image-text"){
                                 foreach($component_content as $key => $value){
                                     if ($key == 'image') {
@@ -363,12 +364,23 @@ class BackendController extends Controller
                                     }
                                 }
 
-                                // get actual text
+                                // get actual text 
                                 $actualtext = $this->get_content_text($text_id1, "text");
+                                $actualtext_style = $this->get_content_text($text_id1, "style");
 
-                                $wraps .= "<div component_id='$componentdetails->component_id'>";
-                                    $wraps .= "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' component_type='image' component_id='$image_id1' style='eeeee' /></div>";
-                                $wraps .= "<div class='single_text' component_type='text' component_id='$text_id1'>$actualtext</div>";
+                                $actualimage = $this->get_content_text($image_id1, "image");
+                                $actualimage_style = $this->get_content_text($image_id1, "style");
+
+                                if(empty($actualimage)){
+                                    $imageurl = "http://127.0.0.1:8000/storage/assets/images/placeholder.jpg";
+                                }else{
+                                    // $actualimage 
+                                    $imageurl = "http://127.0.0.1:8000/storage/uploads/$actualimage";
+                                }
+
+                                $wraps .= "<div class='incontext_component_wraps' id='$pagesui' component_wraps_type='single_type' style='$componentstyle'>";
+                                    $wraps .= "<div class='single_image'><img src='$imageurl' class='actual_image' component_type='image' id='$image_id1' component_id='$image_id1' style=' style='$actualimage_style' /></div>";
+                                    $wraps .= "<div class='single_text' id='$text_id1' component_type='text' component_id='$text_id1' style='$actualtext_style'>$actualtext</div>";
                                 $wraps .= "</div>";
                             }elseif($componentdetails->component_type == "single-text-image"){
                                 foreach($component_content as $key => $value){
@@ -381,10 +393,21 @@ class BackendController extends Controller
 
                                 // get actual text
                                 $actualtext = $this->get_content_text($text_id1, "text");
+                                $actualtext_style = $this->get_content_text($text_id1, "style");
 
-                                $wraps .= "<div component_id='$componentdetails->component_id'>";
-                                    $wraps .= "<div class='single_text' component_type='text' component_id='$text_id1'>$actualtext</div>";
-                                    $wraps .= "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' component_type='image' component_id='$image_id1' /></div>";
+                                $actualimage = $this->get_content_text($image_id1, "image");
+                                $actualimage_style = $this->get_content_text($image_id1, "style");
+
+                                if(empty($actualimage)){
+                                    $imageurl = "http://127.0.0.1:8000/storage/assets/images/placeholder.jpg";
+                                }else{
+                                    // $actualimage 
+                                    $imageurl = "http://127.0.0.1:8000/storage/uploads/$actualimage";
+                                }
+
+                                $wraps .= "<div class='incontext_component_wraps' id='$pagesui' component_wraps_type='single_type' style='$componentstyle'>";
+                                    $wraps .= "<div class='single_text' id='$text_id1' component_type='text' component_id='$text_id1' style='$actualtext_style'>$actualtext</div>";
+                                    $wraps .= "<div class='single_image'><img src='$imageurl' class='actual_image' id='$image_id1' component_type='image' component_id='$image_id1' style='$actualimage_style' /></div>";
                                 $wraps .= "</div>";
                             }elseif($componentdetails->component_type == "double-text-image"){
                                 foreach($component_content as $key => $value){
@@ -397,10 +420,21 @@ class BackendController extends Controller
 
                                 // get actual text
                                 $actualtext = $this->get_content_text($text_id1, "text");
+                                $actualtext_style = $this->get_content_text($text_id1, "style");
 
-                                $wraps .= "<div class='double_grid' component_id='$componentdetails->component_id'>";
-                                    $wraps .= "<div class='single_text' component_type='text' component_id='$text_id1'>$actualtext</div>";
-                                    $wraps .= "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' component_type='image' component_id='$image_id1' /></div>";
+                                $actualimage = $this->get_content_text($image_id1, "image");
+                                $actualimage_style = $this->get_content_text($image_id1, "style");
+
+                                if(empty($actualimage)){
+                                    $imageurl = "http://127.0.0.1:8000/storage/assets/images/placeholder.jpg";
+                                }else{
+                                    // $actualimage 
+                                    $imageurl = "http://127.0.0.1:8000/storage/uploads/$actualimage";
+                                }
+
+                                $wraps .= "<div class='double_grid incontext_component_wraps' id='$pagesui' component_wraps_type='double_type' style='$componentstyle'>";
+                                    $wraps .= "<div class='single_text' component_type='text' id='$text_id1' component_id='$text_id1' style='$actualtext_style'>$actualtext</div>";
+                                    $wraps .= "<div class='single_image'><img src='$imageurl' class='actual_image' component_type='image' id='$image_id1' component_id='$image_id1' style='$actualimage_style' /></div>";
                                 $wraps .= "</div>";
                             }elseif($componentdetails->component_type == "double-image-text"){
                                 foreach($component_content as $key => $value){
@@ -413,10 +447,21 @@ class BackendController extends Controller
 
                                 // get actual text
                                 $actualtext = $this->get_content_text($text_id1, "text");
+                                $actualtext_style = $this->get_content_text($text_id1, "style");
 
-                                $wraps .= "<div class='double_grid' component_id='$componentdetails->component_id'>";
-                                    $wraps .= "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' component_type='image' component_id='$image_id1' /></div>";
-                                    $wraps .= "<div class='single_text' component_type='text' component_id='$text_id1'>$actualtext</div>";
+                                $actualimage = $this->get_content_text($image_id1, "image");
+                                $actualimage_style = $this->get_content_text($image_id1, "style");
+
+                                if(empty($actualimage)){
+                                    $imageurl = "http://127.0.0.1:8000/storage/assets/images/placeholder.jpg";
+                                }else{
+                                    // $actualimage 
+                                    $imageurl = "http://127.0.0.1:8000/storage/uploads/$actualimage";
+                                }
+
+                                $wraps .= "<div class='double_grid incontext_component_wraps' id='$pagesui' component_wraps_type='double_type' style='$componentstyle'>";
+                                    $wraps .= "<div class='single_text' component_type='text' id='$text_id1' component_id='$text_id1' style='$actualtext_style'>$actualtext</div>";
+                                    $wraps .= "<div class='single_image'><img src='$imageurl' class='actual_image' component_type='image' id='$image_id1' component_id='$image_id1' style='$actualimage_style' /></div>";
                                 $wraps .= "</div>";
                             }elseif($componentdetails->component_type == "double-image_up-text_down"){
                                 foreach($component_content as $key => $value){
@@ -434,15 +479,36 @@ class BackendController extends Controller
                                 // get actual text
                                 $actualtext1 = $this->get_content_text($text_id1, "text");
                                 $actualtext2 = $this->get_content_text($text_id2, "text");
+                                $actualtext1_style = $this->get_content_text($text_id1, "style");
+                                $actualtext2_style = $this->get_content_text($text_id2, "style");
 
-                                $wraps .= "<div class='double_grid' component_id='$componentdetails->component_id'>";
+                                $actualimage1 = $this->get_content_text($image_id1, "image");
+                                $actualimage2 = $this->get_content_text($image_id2, "image");
+                                $actualimage1_style = $this->get_content_text($image_id1, "style");
+                                $actualimage2_style = $this->get_content_text($image_id2, "style");
+
+                                if(empty($actualimage1)){
+                                    $imageurl1 = "http://127.0.0.1:8000/storage/assets/images/placeholder.jpg";
+                                }else{
+                                    // $actualimage 
+                                    $imageurl1 = "http://127.0.0.1:8000/storage/uploads/$actualimage1";
+                                }
+
+                                if(empty($actualimage2)){
+                                    $imageurl2 = "http://127.0.0.1:8000/storage/assets/images/placeholder.jpg";
+                                }else{
+                                    // $actualimage 
+                                    $imageurl2 = "http://127.0.0.1:8000/storage/uploads/$actualimage2";
+                                }
+
+                                $wraps .= "<div class='double_grid incontext_component_wraps' id='$pagesui' component_wraps_type='double_type' style='$componentstyle'>";
                                     $wraps .= "<div>";
-                                        $wraps .= "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' component_type='image' component_id='$image_id1' /></div>";
-                                        $wraps .= "<div class='single_text' component_type='text' component_id='$text_id1'>$actualtext1</div>";
+                                        $wraps .= "<div class='single_image'><img src='$imageurl1' class='actual_image' component_type='image' id='$image_id1' component_id='$image_id1' style='$actualimage1_style' /></div>";
+                                        $wraps .= "<div class='single_text' component_type='text' id='$text_id1' component_id='$text_id1' style='$actualtext1_style'>$actualtext1</div>";
                                     $wraps .= "</div>";
                                     $wraps .= "<div>";
-                                        $wraps .= "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' component_type='image' component_id='$image_id2' /></div>";
-                                        $wraps .= "<div class='single_text' component_type='text' component_id='$text_id2'>$actualtext2</div>";
+                                        $wraps .= "<div class='single_image'><img src='$imageurl2' class='actual_image' component_type='image' id='$image_id2' component_id='$image_id2' style='$actualimage2_style' /></div>";
+                                        $wraps .= "<div class='single_text' component_type='text' id='$text_id2' component_id='$text_id2' style='$actualtext2_style'>$actualtext2</div>";
                                     $wraps .= "</div>";
                                 $wraps .= "</div>";
                             }elseif($componentdetails->component_type == "double-text_up-image_down"){
@@ -461,15 +527,36 @@ class BackendController extends Controller
                                 // get actual text
                                 $actualtext1 = $this->get_content_text($text_id1, "text");
                                 $actualtext2 = $this->get_content_text($text_id2, "text");
+                                $actualtext1_style = $this->get_content_text($text_id1, "style");
+                                $actualtext2_style = $this->get_content_text($text_id2, "style");
 
-                                $wraps .= "<div class='double_grid' component_id='$componentdetails->component_id'>";
+                                $actualimage1 = $this->get_content_text($image_id1, "image");
+                                $actualimage2 = $this->get_content_text($image_id2, "image");
+                                $actualimage1_style = $this->get_content_text($image_id1, "style");
+                                $actualimage2_style = $this->get_content_text($image_id2, "style");
+
+                                if(empty($actualimage1)){
+                                    $imageurl1 = "http://127.0.0.1:8000/storage/assets/images/placeholder.jpg";
+                                }else{
+                                    // $actualimage 
+                                    $imageurl1 = "http://127.0.0.1:8000/storage/uploads/$actualimage1";
+                                }
+
+                                if(empty($actualimage2)){
+                                    $imageurl2 = "http://127.0.0.1:8000/storage/assets/images/placeholder.jpg";
+                                }else{
+                                    // $actualimage 
+                                    $imageurl2 = "http://127.0.0.1:8000/storage/uploads/$actualimage2";
+                                }
+
+                                $wraps .= "<div class='double_grid incontext_component_wraps' id='$pagesui' component_wraps_type='double_type' style='$componentstyle'>";
                                     $wraps .= "<div>";
-                                        $wraps .= "<div class='single_text' component_type='text' component_id='$text_id1'>$actualtext1</div>";
-                                        $wraps .= "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' component_type='image' component_id='$image_id1' /></div>";
+                                        $wraps .= "<div class='single_text' component_type='text' id='$text_id1' component_id='$text_id1' style='$actualtext1_style'>$actualtext1</div>";
+                                        $wraps .= "<div class='single_image'><img src='$imageurl1' class='actual_image' component_type='image' id='$image_id1' component_id='$image_id1' style='$actualimage1_style' /></div>";
                                     $wraps .= "</div>";
                                     $wraps .= "<div>";
-                                        $wraps .= "<div class='single_text' component_type='text' component_id='$text_id2'>$actualtext2</div>";
-                                        $wraps .= "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' component_type='image' component_id='$image_id2' /></div>";
+                                        $wraps .= "<div class='single_text' component_type='text' id='$text_id2' component_id='$text_id2' style='$actualtext2_style'>$actualtext2</div>";
+                                        $wraps .= "<div class='single_image'><img src='$imageurl2' class='actual_image' component_type='image' id='$image_id2' component_id='$image_id2' style='$actualimage2_style' /></div>";
                                     $wraps .= "</div>";
                                 $wraps .= "</div>";
                             }elseif($componentdetails->component_type == "tripple-text"){
@@ -488,10 +575,14 @@ class BackendController extends Controller
                                 $actualtext2 = $this->get_content_text($text_id2, "text");
                                 $actualtext3 = $this->get_content_text($text_id3, "text");
 
-                                $wraps .= "<div class='tripple_grid' component_id='$componentdetails->component_id'>";
-                                    $wraps .= "<div class='single_text' component_type='text' component_id='$text_id1'>$actualtext1</div>";
-                                    $wraps .= "<div class='single_text' component_type='text' component_id='$text_id2'>$actualtext2</div>";
-                                    $wraps .= "<div class='single_text' component_type='text' component_id='$text_id3'>$actualtext3</div>";
+                                $actualtext1_style = $this->get_content_text($text_id1, "style");
+                                $actualtext2_style = $this->get_content_text($text_id2, "style");
+                                $actualtext3_style = $this->get_content_text($text_id3, "style");
+
+                                $wraps .= "<div class='tripple_grid incontext_component_wraps' id='$pagesui' component_wraps_type='tripple_type' style='$componentstyle'>";
+                                    $wraps .= "<div class='single_text' component_type='text' id='$text_id1' component_id='$text_id1' style='$actualtext1_style'>$actualtext1</div>";
+                                    $wraps .= "<div class='single_text' component_type='text' id='$text_id2' component_id='$text_id2' style='$actualtext2_style'>$actualtext2</div>";
+                                    $wraps .= "<div class='single_text' component_type='text' id='$text_id3' component_id='$text_id3' style='$actualtext3_style'>$actualtext3</div>";
                                 $wraps .= "</div>";
                             }elseif($componentdetails->component_type == "tripple-image"){
                                 foreach($component_content as $key => $value){
@@ -504,10 +595,38 @@ class BackendController extends Controller
                                     }
                                 }
 
-                                $wraps .= "<div class='tripple_grid' component_id='$componentdetails->component_id'>";
-                                    $wraps .= "<div class='single_image' component_id='$image_id1'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' component_type='image' /></div>";
-                                    $wraps .= "<div class='single_image' component_id='$image_id2'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' component_type='image' /></div>";
-                                    $wraps .= "<div class='single_image' component_id='$image_id3'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' component_type='image' /></div>";
+                                $actualimage1 = $this->get_content_text($image_id1, "image");
+                                $actualimage2 = $this->get_content_text($image_id2, "image");
+                                $actualimage3 = $this->get_content_text($image_id3, "image");
+                                $actualimage1_style = $this->get_content_text($image_id1, "style");
+                                $actualimage2_style = $this->get_content_text($image_id2, "style");
+                                $actualimage3_style = $this->get_content_text($image_id3, "style");
+
+                                if(empty($actualimage1)){
+                                    $imageurl1 = "http://127.0.0.1:8000/storage/assets/images/placeholder.jpg";
+                                }else{
+                                    // $actualimage 
+                                    $imageurl1 = "http://127.0.0.1:8000/storage/uploads/$actualimage1";
+                                }
+
+                                if(empty($actualimage2)){
+                                    $imageurl2 = "http://127.0.0.1:8000/storage/assets/images/placeholder.jpg";
+                                }else{
+                                    // $actualimage 
+                                    $imageurl2 = "http://127.0.0.1:8000/storage/uploads/$actualimage2";
+                                }
+
+                                if(empty($actualimage3)){
+                                    $imageurl3 = "http://127.0.0.1:8000/storage/assets/images/placeholder.jpg";
+                                }else{
+                                    // $actualimage 
+                                    $imageurl3 = "http://127.0.0.1:8000/storage/uploads/$actualimage3";
+                                }
+
+                                $wraps .= "<div class='tripple_grid incontext_component_wraps' id='$pagesui' component_wraps_type='tripple_type' style='$componentstyle'>";
+                                    $wraps .= "<div class='single_image'><img src='$imageurl1' class='actual_image' component_type='image' id='$image_id1' component_id='$image_id1' style='$actualimage1_style' /></div>";
+                                    $wraps .= "<div class='single_image'><img src='$imageurl2' class='actual_image' component_type='image' id='$image_id2' component_id='$image_id2' style='$actualimage2_style' /></div>";
+                                    $wraps .= "<div class='single_image'><img src='$imageurl3' class='actual_image' component_type='image' id='$image_id3' component_id='$image_id3' style='$actualimage3_style' /></div>";
                                 $wraps .= "</div>";
                             }elseif($componentdetails->component_type == "tripple-text_up-image_down"){
                                 foreach($component_content as $key => $value){
@@ -530,19 +649,52 @@ class BackendController extends Controller
                                 $actualtext1 = $this->get_content_text($text_id1, "text");
                                 $actualtext2 = $this->get_content_text($text_id2, "text");
                                 $actualtext3 = $this->get_content_text($text_id3, "text");
+
+                                $actualtext1_style = $this->get_content_text($text_id1, "style");
+                                $actualtext2_style = $this->get_content_text($text_id2, "style");
+                                $actualtext3_style = $this->get_content_text($text_id3, "style");
+
+                                $actualimage1 = $this->get_content_text($image_id1, "image");
+                                $actualimage2 = $this->get_content_text($image_id2, "image");
+                                $actualimage3 = $this->get_content_text($image_id3, "image");
+
+                                $actualimage1_style = $this->get_content_text($image_id1, "style");
+                                $actualimage2_style = $this->get_content_text($image_id2, "style");
+                                $actualimage3_style = $this->get_content_text($image_id3, "style");
+
+                                if(empty($actualimage1)){
+                                    $imageurl1 = "http://127.0.0.1:8000/storage/assets/images/placeholder.jpg";
+                                }else{
+                                    // $actualimage 
+                                    $imageurl1 = "http://127.0.0.1:8000/storage/uploads/$actualimage1";
+                                }
+
+                                if(empty($actualimage2)){
+                                    $imageurl2 = "http://127.0.0.1:8000/storage/assets/images/placeholder.jpg";
+                                }else{
+                                    // $actualimage 
+                                    $imageurl2 = "http://127.0.0.1:8000/storage/uploads/$actualimage2";
+                                }
+
+                                if(empty($actualimage3)){
+                                    $imageurl3 = "http://127.0.0.1:8000/storage/assets/images/placeholder.jpg";
+                                }else{
+                                    // $actualimage 
+                                    $imageurl3 = "http://127.0.0.1:8000/storage/uploads/$actualimage3";
+                                }
                                 
-                                $wraps .= "<div class='tripple_grid' component_id='$componentdetails->component_id'>";
+                                $wraps .= "<div class='tripple_grid incontext_component_wraps' id='$pagesui' component_wraps_type='tripple_type' style='$componentstyle'>";
                                     $wraps .= "<div>";
-                                        $wraps .= "<div class='single_text' component_type='text' component_id='$text_id1'>$actualtext1</div>";
-                                        $wraps .= "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' component_type='image' component_id='$image_id1' /></div>";
+                                        $wraps .= "<div class='single_text' component_type='text' id='$text_id1' component_id='$text_id1' style='$actualtext1_style'>$actualtext1</div>";
+                                        $wraps .= "<div class='single_image'><img src='$imageurl1' class='actual_image' component_type='image' id='$image_id1' component_id='$image_id1' style='$actualimage1_style' /></div>";
                                     $wraps .= "</div>";
                                     $wraps .= "<div>";
-                                        $wraps .= "<div class='single_text' component_type='text' component_id='$text_id2'>$actualtext2</div>";
-                                        $wraps .= "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' component_type='image' component_id='$image_id2' /></div>";
+                                        $wraps .= "<div class='single_text' component_type='text' id='$text_id2' component_id='$text_id2' style='$actualtext2_style'>$actualtext2</div>";
+                                        $wraps .= "<div class='single_image'><img src='$imageurl2' class='actual_image' component_type='image' id='$image_id2' component_id='$image_id2' style='$actualimage2_style' /></div>";
                                     $wraps .= "</div>";
                                     $wraps .= "<div>";
-                                        $wraps .= "<div class='single_text' component_type='text' component_id='$text_id3'>$actualtext3</div>";
-                                        $wraps .= "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' component_type='image' component_id='$image_id3' /></div>";
+                                        $wraps .= "<div class='single_text' component_type='text' id='$text_id3' component_id='$text_id3' style='$actualtext3_style'>$actualtext3</div>";
+                                        $wraps .= "<div class='single_image'><img src='$imageurl3' class='actual_image' component_type='image' id='$image_id3' component_id='$image_id3' style='$actualimage3_style' /></div>";
                                     $wraps .= "</div>";
                                 $wraps .= "</div>";
                             }elseif($componentdetails->component_type == "tripple-image_up-text_down"){
@@ -566,19 +718,52 @@ class BackendController extends Controller
                                 $actualtext1 = $this->get_content_text($text_id1, "text");
                                 $actualtext2 = $this->get_content_text($text_id2, "text");
                                 $actualtext3 = $this->get_content_text($text_id3, "text");
+
+                                $actualtext1_style = $this->get_content_text($text_id1, "style");
+                                $actualtext2_style = $this->get_content_text($text_id2, "style");
+                                $actualtext3_style = $this->get_content_text($text_id3, "style");
+
+                                $actualimage1 = $this->get_content_text($image_id1, "image");
+                                $actualimage2 = $this->get_content_text($image_id2, "image");
+                                $actualimage3 = $this->get_content_text($image_id3, "image");
+
+                                $actualimage1_style = $this->get_content_text($image_id1, "style");
+                                $actualimage2_style = $this->get_content_text($image_id2, "style");
+                                $actualimage3_style = $this->get_content_text($image_id3, "style");
+
+                                if(empty($actualimage1)){
+                                    $imageurl1 = "http://127.0.0.1:8000/storage/assets/images/placeholder.jpg";
+                                }else{
+                                    // $actualimage 
+                                    $imageurl1 = "http://127.0.0.1:8000/storage/uploads/$actualimage1";
+                                }
+
+                                if(empty($actualimage2)){
+                                    $imageurl2 = "http://127.0.0.1:8000/storage/assets/images/placeholder.jpg";
+                                }else{
+                                    // $actualimage 
+                                    $imageurl2 = "http://127.0.0.1:8000/storage/uploads/$actualimage2";
+                                }
+
+                                if(empty($actualimage3)){
+                                    $imageurl3 = "http://127.0.0.1:8000/storage/assets/images/placeholder.jpg";
+                                }else{
+                                    // $actualimage 
+                                    $imageurl3 = "http://127.0.0.1:8000/storage/uploads/$actualimage3";
+                                }
                                 
-                                $wraps .= "<div class='tripple_grid' component_id='$componentdetails->component_id'>";
+                                $wraps .= "<div class='tripple_grid incontext_component_wraps' id='$pagesui' component_wraps_type='tripple_type' style='$componentstyle'>";
                                     $wraps .= "<div>";
-                                        $wraps .= "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' component_type='image' component_id='$image_id1' /></div>";
-                                        $wraps .= "<div class='single_text' component_type='text' component_id='$text_id1'>$actualtext1</div>";
+                                        $wraps .= "<div class='single_image'><img src='$imageurl1' class='actual_image' component_type='image' id='$image_id1' component_id='$image_id1' style='$actualimage1_style' /></div>";
+                                        $wraps .= "<div class='single_text' component_type='text' id='$text_id1' component_id='$text_id1' style='$actualtext1_style'>$actualtext1</div>";
                                     $wraps .= "</div>";
                                     $wraps .= "<div>";
-                                        $wraps .= "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' component_type='image' component_id='$image_id2' /></div>";
-                                        $wraps .= "<div class='single_text' component_type='text' component_id='$text_id2'>$actualtext1</div>";
+                                        $wraps .= "<div class='single_image'><img src='$imageurl2' class='actual_image' component_type='image' id='$image_id2' component_id='$image_id2' style='$actualimage2_style' /></div>";
+                                        $wraps .= "<div class='single_text' component_type='text' id='$text_id2' component_id='$text_id2' style='$actualtext2_style'>$actualtext2</div>";
                                     $wraps .= "</div>";
                                     $wraps .= "<div>";
-                                        $wraps .= "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' component_type='image' component_id='$image_id3' /></div>";
-                                        $wraps .= "<div class='single_text' component_type='text' component_id='$text_id3'>$actualtext1</div>";
+                                        $wraps .= "<div class='single_image'><img src='$imageurl3' class='actual_image' component_type='image' id='$image_id3' component_id='$image_id3' style='$actualimage3_style' /></div>";
+                                        $wraps .= "<div class='single_text' component_type='text' id='$text_id3' component_id='$text_id3' style='$actualtext3_style'>$actualtext3</div>";
                                     $wraps .= "</div>";
                                 $wraps .= "</div>";
                             }else{
@@ -589,6 +774,28 @@ class BackendController extends Controller
 
                     return $wraps;
                 }
+            }
+        }elseif($request->owner == "load_all_page_components"){
+            // pagesui
+            // return "$request->pageowner; bumaiye!";
+            $tabledb = "pagesui";
+
+            $where_array = [
+                'page_name' => $request->pageowner,
+            ];
+    
+            $outcome = CrudHelper::Get($tabledb, $where_array);
+
+            foreach($outcome as $outcome){
+                $content_array = json_decode($outcome->content, true);
+
+                $page_content = "";
+
+                foreach($content_array as $content_array){
+                    $page_content .= "<div class='faux_link component_wraps_each' owner='$content_array' component_id='$content_array' dblclick_type='component_wraps'>$content_array</div>";
+                }
+
+                return $page_content;
             }
         }elseif($request->owner == "update_text_content_buildjs"){
             // return "Babagana!";
@@ -612,6 +819,13 @@ class BackendController extends Controller
             // return "Omomo!";component_id
             $stylearray = [
                 'border-top' => $request->border_top,
+                'border-bottom' => $request->border_btm,
+                'border-left' => $request->border_lft,
+                'border-right' => $request->border_ryt,
+                'border-top-left-radius' => $request->brd_rdius_tp_lft,
+                'border-top-right-radius' => $request->brd_rdius_tp_ryt,
+                'border-bottom-left-radius' => $request->brd_rdius_btm_lft,
+                'border-bottom-right-radius' => $request->brd_rdius_btm_ryt,
                 'margin-top' => $request->margin_top,
                 'margin-right' => $request->margin_right,
                 'margin-bottom' => $request->margin_bottom,
@@ -779,7 +993,7 @@ class BackendController extends Controller
 
                 }
 
-                if($key == "font-weight" || $key == "font-style" || $key == "text-decoration" || $key == "text-align" || $key == "background" || $key == "color" || $key == "border-top"){
+                if($key == "font-weight" || $key == "font-style" || $key == "text-decoration" || $key == "text-align" || $key == "background" || $key == "color" || $key == "border-top" || $key == "border-bottom" || $key == "border-left" || $key == "border-right"){
                     if($key == "background"){
                         if(!empty($background_image)){
                             $allstyles .= "$key: url(\"/storage/uploads/$background_image\");";
@@ -856,6 +1070,14 @@ class BackendController extends Controller
                 $allstyles = "";
 
                 $allstyles .= $this->load_all_styles_content($stylearray, $content_styles->background_image);
+
+                if(empty($allstyles)){
+                    $allstyles = "border-top: ;border-bottom: ;border-left: ;border-right: ;border-top-left-radius: 0px;border-top-right-radius: 0px;";
+                    $allstyles .= "border-bottom-left-radius: 0px;border-bottom-right-radius: 0px;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;";
+                    $allstyles .= "margin-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;font-size: 10px;font-weight: normal;";
+                    $allstyles .= "font-style: normal;text-decoration: none;text-align: left;background: #000000;color: #ffffff;";
+                    // "background-position: center;background-repeat: no-repeat;background-size: cover;";
+                }
 
                 $allstyles = "$allstyles background-position: center;background-repeat: no-repeat;background-size: cover;";
 

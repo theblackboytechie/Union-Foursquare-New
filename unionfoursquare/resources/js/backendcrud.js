@@ -94,70 +94,121 @@ $(document).ready(function() {
 
     // update_buildjs_style_button
     $('body').on('click', '#update_buildjs_style_button', function() {
+        $(".toggle_processing_update_style").toggle();
+        
+        let actionowner = $(this).attr("owner");
+
         let owner = "update_style_tobackend_buildjs";
         var colorpicker = $("#color_pickerbuildjs").val();
         var color_text_picker = $("#color_text_pickerbuildjs").val();
-        // alert(colorpicker);//return;
 
         let component_id = $(this).attr("component_id");
-
-        let margin_top = $("#margin_top").val();
-        let margin_right = $("#margin_right").val();
-        let margin_bottom = $("#margin_bottom").val();
-        let margin_left = $("#margin_left").val();
 
         let padding_top = $("#padding_top").val();
         let padding_right = $("#padding_right").val();
         let padding_bottom = $("#padding_bottom").val();
         let padding_left = $("#padding_left").val();
 
-        let font_sizebuildjs = $("#font_sizebuildjs").val();
+        // border radius: border_radius_top_left, border_radius_top_right, border_radius_bottom_left, border_radius_bottom_right
+        let brd_rdius_tp_lft = $("#border_radius_top_left").val();
+        let brd_rdius_tp_ryt = $("#border_radius_top_right").val();
+        let brd_rdius_btm_lft = $("#border_radius_bottom_left").val();
+        let brd_rdius_btm_ryt = $("#border_radius_bottom_right").val();
 
-        let font_boldbuildjs = $("#font_boldbuildjs").attr("value");
-        let font_italicsbuildjs = $("#font_italicsbuildjs").attr("value");
-        let font_underlinebuildjs = $("#font_underlinebuildjs").attr("value");
+        if(actionowner === "text"){
+            let margin_top = $("#margin_top").val();
+            let margin_right = $("#margin_right").val();
+            let margin_bottom = $("#margin_bottom").val();
+            let margin_left = $("#margin_left").val();
+    
+            let font_sizebuildjs = $("#font_sizebuildjs").val();
+    
+            let font_boldbuildjs = $("#font_boldbuildjs").attr("value");
+            let font_italicsbuildjs = $("#font_italicsbuildjs").attr("value");
+            let font_underlinebuildjs = $("#font_underlinebuildjs").attr("value");
+    
+            let font_left_alignbuildjs = $("#font_left_alignbuildjs").attr("value");
+            let font_center_alignbuildjs = $("#font_center_alignbuildjs").attr("value");
+            let font_right_alignbuildjs = $("#font_right_alignbuildjs").attr("value");
+    
+            var the_brdr_tp_wdth = $("#border_top_width").val();
+            var the_brdr_tp_typ = $("#border_top_type").val();
+            var the_brdr_tp_clr = $("#border_top_color_pickerbuildjs").val();
+    
+            let border_top = the_brdr_tp_wdth+"px "+the_brdr_tp_typ+" "+the_brdr_tp_clr;
+    
+            var the_brdr_btm_wdth = $("#border_bottom_width").val();
+            var the_brdr_btm_typ = $("#border_bottom_type").val();
+            var the_brdr_btm_clr = $("#border_bottom_color_pickerbuildjs").val();
+    
+            let border_btm = the_brdr_btm_wdth+"px "+the_brdr_btm_typ+" "+the_brdr_btm_clr;
+    
+            var the_brdr_lft_wdth = $("#border_left_width").val();
+            var the_brdr_lft_typ = $("#border_left_type").val();
+            var the_brdr_lft_clr = $("#border_left_color_pickerbuildjs").val();
+    
+            let border_lft = the_brdr_lft_wdth+"px "+the_brdr_lft_typ+" "+the_brdr_lft_clr;//alert(border_lft+"; left");
+    
+            var the_brdr_ryt_wdth = $("#border_right_width").val();
+            var the_brdr_ryt_typ = $("#border_right_type").val();
+            var the_brdr_ryt_clr = $("#border_right_color_pickerbuildjs").val();
+    
+            let border_ryt = the_brdr_ryt_wdth+"px "+the_brdr_ryt_typ+" "+the_brdr_ryt_clr;//alert(border_ryt+"; right");
 
-        let font_left_alignbuildjs = $("#font_left_alignbuildjs").attr("value");
-        let font_center_alignbuildjs = $("#font_center_alignbuildjs").attr("value");
-        let font_right_alignbuildjs = $("#font_right_alignbuildjs").attr("value");
-
-        var the_brdr_tp_wdth = $("#border_top_width").val();
-        var the_brdr_tp_typ = $("#border_top_type").val();
-        var the_brdr_tp_clr = $("#border_top_color_pickerbuildjs").val();
-
-        let border_top = the_brdr_tp_wdth+"px "+the_brdr_tp_typ+" "+the_brdr_tp_clr;
-
-
-        if(font_left_alignbuildjs == 1){
-            var textalign = "left";
-        }else if(font_center_alignbuildjs == 1){
-            var textalign = "center";
-        }else if(font_right_alignbuildjs == 1){
-            var textalign = "right";
-        }else{
-            var textalign = "left";
+            // return;
+            if(font_left_alignbuildjs == 1){
+                var textalign = "left";
+            }else if(font_center_alignbuildjs == 1){
+                var textalign = "center";
+            }else if(font_right_alignbuildjs == 1){
+                var textalign = "right";
+            }else{
+                var textalign = "left";
+            }
+            
+            var formData = {
+                owner: owner,
+                component_id: component_id,
+                border_top: border_top,
+                border_btm: border_btm,
+                border_lft: border_lft,
+                border_ryt: border_ryt,
+                brd_rdius_tp_lft: brd_rdius_tp_lft,
+                brd_rdius_tp_ryt: brd_rdius_tp_ryt,
+                brd_rdius_btm_lft: brd_rdius_btm_lft,
+                brd_rdius_btm_ryt: brd_rdius_btm_ryt,
+                margin_top: margin_top,
+                margin_right: margin_right,
+                margin_bottom: margin_bottom,
+                margin_left: margin_left,
+                padding_top: padding_top,
+                padding_right: padding_right,
+                padding_bottom: padding_bottom,
+                padding_left: padding_left,
+                font_sizebuildjs: font_sizebuildjs,
+                font_boldbuildjs: font_boldbuildjs,
+                font_italicsbuildjs: font_italicsbuildjs,
+                font_underlinebuildjs: font_underlinebuildjs,
+                textalign: textalign,
+                colorpicker: colorpicker,
+                color_text_picker: color_text_picker
+            };
+        }else if(actionowner === "image"){
+            // alert("this is image ish");
+            var formData = {
+                owner: owner,
+                component_id: component_id,
+                brd_rdius_tp_lft: brd_rdius_tp_lft,
+                brd_rdius_tp_ryt: brd_rdius_tp_ryt,
+                brd_rdius_btm_lft: brd_rdius_btm_lft,
+                brd_rdius_btm_ryt: brd_rdius_btm_ryt,
+                padding_top: padding_top,
+                padding_right: padding_right,
+                padding_bottom: padding_bottom,
+                padding_left: padding_left
+            };
+            // return;
         }
-        
-        var formData = {
-            owner: owner,
-            component_id: component_id,
-            border_top: border_top,
-            margin_top: margin_top,
-            margin_right: margin_right,
-            margin_bottom: margin_bottom,
-            margin_left: margin_left,
-            padding_top: padding_top,
-            padding_right: padding_right,
-            padding_bottom: padding_bottom,
-            padding_left: padding_left,
-            font_sizebuildjs: font_sizebuildjs,
-            font_boldbuildjs: font_boldbuildjs,
-            font_italicsbuildjs: font_italicsbuildjs,
-            font_underlinebuildjs: font_underlinebuildjs,
-            textalign: textalign,
-            colorpicker: colorpicker,
-            color_text_picker: color_text_picker
-        };
 
         var theurl = $("#union4sqmaps").attr("database_update");
 
@@ -202,8 +253,10 @@ $(document).ready(function() {
                 }else if(formData.owner == "update_text_content_buildjs"){
                     // alert(response);
                     $(".toggle_processing_update_text").toggle();
+                    // $("#processing_update_styles").toggle();
                 }else if(formData.owner == "update_style_tobackend_buildjs"){
-                    alert(response);
+                    // alert(response);
+                    $(".toggle_processing_update_style").toggle();
                 }
             },
             error: function(response) {

@@ -1,22 +1,4 @@
 <div class="pages-section">
-    <div class="pages-section-a">
-        <div class="dashboard-menu-each">
-            <div class="dashboard-menu-iconwraps"><i class="fa-solid fa-house-chimney"></i></div>
-            <div>Home Page</div>
-        </div>
-        <div class="dashboard-menu-each">
-            <div class="dashboard-menu-iconwraps"><i class="fa-brands fa-blogger-b"></i></div>
-            <div>Blog Page</div>
-        </div>
-        <div class="dashboard-menu-each">
-            <div class="dashboard-menu-iconwraps"><i class="fa-solid fa-user"></i></div>
-            <div>Who We Are</div>
-        </div>
-        <div class="dashboard-menu-each">
-            <div class="dashboard-menu-iconwraps"><i class="fa-solid fa-file"></i></div>
-            <div>Resources</div>
-        </div>
-    </div>
     <div class="pages-section-b">
         @if($owner == "view_pagesroute_dashboard")
             <div class="pages-section-b-content">
@@ -241,13 +223,6 @@
                     gyfu tg uftyu ftgy udrtfyd utfyu tfyuh ftvyuh ifvyuh 
                     ifvyuh jfgyh udrtycgu rjcgy jdcrfu drtfbh uygvu tfgyuj
                 </div>
-                <div class="pages-section-formwraps">
-                    <span class="pages-add-component" id="toggle-page-componet-wraps">+ Add Component</span>
-                    <span class="components_create_processing hidden"><i class="fa-solid fa-circle-notch fa-spin"></i></span>
-                </div>
-                <div class="hidden" id="pages-components-wraps">
-                    <x-backend-create-component />
-                </div>
                 <div id="uploaded-pages-component-wraps" owner="whyfoursquare">
                     <i class="fa-solid fa-circle-notch fa-spin"></i>
                 </div>
@@ -255,7 +230,7 @@
         @endif
 
     </div>
-    <div class="pages-section-c">
+    <!-- <div class="pages-section-c">
         <div class="pages-section-c-inner" style="position: fixed;padding: 10px 0px;padding-left: 10px;background: white;"></div>
-    </div>
+    </div> -->
 </div>

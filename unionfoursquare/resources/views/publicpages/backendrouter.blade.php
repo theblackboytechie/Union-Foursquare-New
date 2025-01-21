@@ -49,7 +49,44 @@
             </div>
         </div>
         <div class="dashboard-content">
-            <div class="dashboard-header dashboard-header-bottom">header</div>
+            <div class="dashboard-header dashboard-header-bottom">
+                <div class="dashboard-header-inner">
+                    <div>
+                        <div class="faux_link" id="toggle_pages_list">Pages</div>
+                        <div class="hidden dashboard_dropdown" id="dashboard_pageslist_dropdown">
+                            <div class="dashboard-menu-each">
+                                <div class="dashboard-menu-iconwraps"><i class="fa-solid fa-house-chimney"></i></div>
+                                <div>Home Page</div>
+                            </div>
+                            <div class="dashboard-menu-each">
+                                <div class="dashboard-menu-iconwraps"><i class="fa-brands fa-blogger-b"></i></div>
+                                <div>Blog Page</div>
+                            </div>
+                            <div class="dashboard-menu-each">
+                                <div class="dashboard-menu-iconwraps"><i class="fa-solid fa-user"></i></div>
+                                <div>Who We Are</div>
+                            </div>
+                            <div class="dashboard-menu-each">
+                                <div class="dashboard-menu-iconwraps"><i class="fa-solid fa-file"></i></div>
+                                <div>Resources</div>
+                            </div>
+                            <div style="border-top: 1px solid lightgray;margin-top: 10px;padding-top: 10px;">Create Page</div>
+                        </div>
+                    </div>
+                    <div>|</div>
+                    <div>
+                        <div class="faux_link" id="toggle_all_pages_components">Components</div>
+                        <div class="hidden dashboard_dropdown" id="dashboard_all_pages_components"><i class="fa-solid fa-circle-notch fa-spin"></i></div>
+                    </div>
+                    <div>|</div>
+                    <div>
+                        <div class="faux_link" id="toggle-page-componet-wraps">+ Component</div>
+                        <div class="hidden" id="pages-components-wraps">
+                            <x-backend-create-component />
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="dashboard-content-body">
                 @if($owner == "view_pagesroute_dashboard" || $owner == "view_homepage_subsection_jumbotron" || $owner == "view_homepage_subsection_themetext" || $owner == "view_construct_whyfoursquare")
                     <x-backend-pages-dashboard :owner="$owner" />
