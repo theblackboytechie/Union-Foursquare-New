@@ -320,10 +320,11 @@ class BackendController extends Controller
                         foreach($component_all_details as $componentdetails){
                             // to get the ids of the component members we convert from json to array and loop
                             $component_content = json_decode($componentdetails->content, true);
-                            $componentstyle = $this->get_content_text($pagesui, "style");
+                            $componentstyle = $this->get_content_text($pagesui, "style", $componentdetails->component_type);
 
                             // use the id of the text/image to get the content of the text or image
 
+                            // $wraps .= "$componentdetails->component_type 000000;";
                             if($componentdetails->component_type == "single-text"){
                                 foreach($component_content as $key => $value){
                                     if ($key == 'text') {
@@ -332,11 +333,11 @@ class BackendController extends Controller
                                 }
 
                                 // get actual text
-                                $actualtext = $this->get_content_text($text_id1, "text");
-                                $actualtext = $this->get_content_text($text_id1, "text");
-                                $actualstyle = $this->get_content_text($text_id1, "style");
+                                $actualtext = $this->get_content_text($text_id1, "text", null);
+                                $actualtext = $this->get_content_text($text_id1, "text", null);
+                                $actualstyle = $this->get_content_text($text_id1, "style", null);
                                 
-                                $wraps .= "<div class='incontext_component_wraps' id='$pagesui' component_wraps_type='single_type' style='$componentstyle'><div class='single_text' id='$text_id1' style='$actualstyle' component_type='text' component_id='$text_id1'>$pagesui; $actualtext</div></div>";
+                                $wraps .= "<div class='incontext_component_wraps' id='$pagesui' component_wraps_type='single_type' style='$componentstyle'><div class='single_text' id='$text_id1' style='$actualstyle' component_type='text' component_id='$text_id1'>$actualtext</div></div>";
                             }elseif($componentdetails->component_type == "single-image"){
                                 foreach($component_content as $key => $value){
                                     if ($key == 'image') {
@@ -344,8 +345,8 @@ class BackendController extends Controller
                                     }
                                 }
 
-                                $actualimage = $this->get_content_text($image_id1, "image");
-                                $actualstyle = $this->get_content_text($image_id1, "style");
+                                $actualimage = $this->get_content_text($image_id1, "image", null);
+                                $actualstyle = $this->get_content_text($image_id1, "style", null);
 
                                 if(empty($actualimage)){
                                     $imageurl = "http://127.0.0.1:8000/storage/assets/images/placeholder.jpg";
@@ -365,11 +366,11 @@ class BackendController extends Controller
                                 }
 
                                 // get actual text 
-                                $actualtext = $this->get_content_text($text_id1, "text");
-                                $actualtext_style = $this->get_content_text($text_id1, "style");
+                                $actualtext = $this->get_content_text($text_id1, "text", null);
+                                $actualtext_style = $this->get_content_text($text_id1, "style", null);
 
-                                $actualimage = $this->get_content_text($image_id1, "image");
-                                $actualimage_style = $this->get_content_text($image_id1, "style");
+                                $actualimage = $this->get_content_text($image_id1, "image", null);
+                                $actualimage_style = $this->get_content_text($image_id1, "style", null);
 
                                 if(empty($actualimage)){
                                     $imageurl = "http://127.0.0.1:8000/storage/assets/images/placeholder.jpg";
@@ -392,11 +393,11 @@ class BackendController extends Controller
                                 }
 
                                 // get actual text
-                                $actualtext = $this->get_content_text($text_id1, "text");
-                                $actualtext_style = $this->get_content_text($text_id1, "style");
+                                $actualtext = $this->get_content_text($text_id1, "text", null);
+                                $actualtext_style = $this->get_content_text($text_id1, "style", null);
 
-                                $actualimage = $this->get_content_text($image_id1, "image");
-                                $actualimage_style = $this->get_content_text($image_id1, "style");
+                                $actualimage = $this->get_content_text($image_id1, "image", null);
+                                $actualimage_style = $this->get_content_text($image_id1, "style", null);
 
                                 if(empty($actualimage)){
                                     $imageurl = "http://127.0.0.1:8000/storage/assets/images/placeholder.jpg";
@@ -419,11 +420,11 @@ class BackendController extends Controller
                                 }
 
                                 // get actual text
-                                $actualtext = $this->get_content_text($text_id1, "text");
-                                $actualtext_style = $this->get_content_text($text_id1, "style");
+                                $actualtext = $this->get_content_text($text_id1, "text", null);
+                                $actualtext_style = $this->get_content_text($text_id1, "style", null);
 
-                                $actualimage = $this->get_content_text($image_id1, "image");
-                                $actualimage_style = $this->get_content_text($image_id1, "style");
+                                $actualimage = $this->get_content_text($image_id1, "image", null);
+                                $actualimage_style = $this->get_content_text($image_id1, "style", null);
 
                                 if(empty($actualimage)){
                                     $imageurl = "http://127.0.0.1:8000/storage/assets/images/placeholder.jpg";
@@ -446,11 +447,11 @@ class BackendController extends Controller
                                 }
 
                                 // get actual text
-                                $actualtext = $this->get_content_text($text_id1, "text");
-                                $actualtext_style = $this->get_content_text($text_id1, "style");
+                                $actualtext = $this->get_content_text($text_id1, "text", null);
+                                $actualtext_style = $this->get_content_text($text_id1, "style", null);
 
-                                $actualimage = $this->get_content_text($image_id1, "image");
-                                $actualimage_style = $this->get_content_text($image_id1, "style");
+                                $actualimage = $this->get_content_text($image_id1, "image", null);
+                                $actualimage_style = $this->get_content_text($image_id1, "style", null);
 
                                 if(empty($actualimage)){
                                     $imageurl = "http://127.0.0.1:8000/storage/assets/images/placeholder.jpg";
@@ -477,15 +478,15 @@ class BackendController extends Controller
                                 }
 
                                 // get actual text
-                                $actualtext1 = $this->get_content_text($text_id1, "text");
-                                $actualtext2 = $this->get_content_text($text_id2, "text");
-                                $actualtext1_style = $this->get_content_text($text_id1, "style");
-                                $actualtext2_style = $this->get_content_text($text_id2, "style");
+                                $actualtext1 = $this->get_content_text($text_id1, "text", null);
+                                $actualtext2 = $this->get_content_text($text_id2, "text", null);
+                                $actualtext1_style = $this->get_content_text($text_id1, "style", null);
+                                $actualtext2_style = $this->get_content_text($text_id2, "style", null);
 
-                                $actualimage1 = $this->get_content_text($image_id1, "image");
-                                $actualimage2 = $this->get_content_text($image_id2, "image");
-                                $actualimage1_style = $this->get_content_text($image_id1, "style");
-                                $actualimage2_style = $this->get_content_text($image_id2, "style");
+                                $actualimage1 = $this->get_content_text($image_id1, "image", null);
+                                $actualimage2 = $this->get_content_text($image_id2, "image", null);
+                                $actualimage1_style = $this->get_content_text($image_id1, "style", null);
+                                $actualimage2_style = $this->get_content_text($image_id2, "style", null);
 
                                 if(empty($actualimage1)){
                                     $imageurl1 = "http://127.0.0.1:8000/storage/assets/images/placeholder.jpg";
@@ -525,15 +526,15 @@ class BackendController extends Controller
                                 }
 
                                 // get actual text
-                                $actualtext1 = $this->get_content_text($text_id1, "text");
-                                $actualtext2 = $this->get_content_text($text_id2, "text");
-                                $actualtext1_style = $this->get_content_text($text_id1, "style");
-                                $actualtext2_style = $this->get_content_text($text_id2, "style");
+                                $actualtext1 = $this->get_content_text($text_id1, "text", null);
+                                $actualtext2 = $this->get_content_text($text_id2, "text", null);
+                                $actualtext1_style = $this->get_content_text($text_id1, "style", null);
+                                $actualtext2_style = $this->get_content_text($text_id2, "style", null);
 
-                                $actualimage1 = $this->get_content_text($image_id1, "image");
-                                $actualimage2 = $this->get_content_text($image_id2, "image");
-                                $actualimage1_style = $this->get_content_text($image_id1, "style");
-                                $actualimage2_style = $this->get_content_text($image_id2, "style");
+                                $actualimage1 = $this->get_content_text($image_id1, "image", null);
+                                $actualimage2 = $this->get_content_text($image_id2, "image", null);
+                                $actualimage1_style = $this->get_content_text($image_id1, "style", null);
+                                $actualimage2_style = $this->get_content_text($image_id2, "style", null);
 
                                 if(empty($actualimage1)){
                                     $imageurl1 = "http://127.0.0.1:8000/storage/assets/images/placeholder.jpg";
@@ -571,13 +572,13 @@ class BackendController extends Controller
                                 }
 
                                 // get actual text
-                                $actualtext1 = $this->get_content_text($text_id1, "text");
-                                $actualtext2 = $this->get_content_text($text_id2, "text");
-                                $actualtext3 = $this->get_content_text($text_id3, "text");
+                                $actualtext1 = $this->get_content_text($text_id1, "text", null);
+                                $actualtext2 = $this->get_content_text($text_id2, "text", null);
+                                $actualtext3 = $this->get_content_text($text_id3, "text", null);
 
-                                $actualtext1_style = $this->get_content_text($text_id1, "style");
-                                $actualtext2_style = $this->get_content_text($text_id2, "style");
-                                $actualtext3_style = $this->get_content_text($text_id3, "style");
+                                $actualtext1_style = $this->get_content_text($text_id1, "style", null);
+                                $actualtext2_style = $this->get_content_text($text_id2, "style", null);
+                                $actualtext3_style = $this->get_content_text($text_id3, "style", null);
 
                                 $wraps .= "<div class='tripple_grid incontext_component_wraps' id='$pagesui' component_wraps_type='tripple_type' style='$componentstyle'>";
                                     $wraps .= "<div class='single_text' component_type='text' id='$text_id1' component_id='$text_id1' style='$actualtext1_style'>$actualtext1</div>";
@@ -595,12 +596,12 @@ class BackendController extends Controller
                                     }
                                 }
 
-                                $actualimage1 = $this->get_content_text($image_id1, "image");
-                                $actualimage2 = $this->get_content_text($image_id2, "image");
-                                $actualimage3 = $this->get_content_text($image_id3, "image");
-                                $actualimage1_style = $this->get_content_text($image_id1, "style");
-                                $actualimage2_style = $this->get_content_text($image_id2, "style");
-                                $actualimage3_style = $this->get_content_text($image_id3, "style");
+                                $actualimage1 = $this->get_content_text($image_id1, "image", null);
+                                $actualimage2 = $this->get_content_text($image_id2, "image", null);
+                                $actualimage3 = $this->get_content_text($image_id3, "image", null);
+                                $actualimage1_style = $this->get_content_text($image_id1, "style", null);
+                                $actualimage2_style = $this->get_content_text($image_id2, "style", null);
+                                $actualimage3_style = $this->get_content_text($image_id3, "style", null);
 
                                 if(empty($actualimage1)){
                                     $imageurl1 = "http://127.0.0.1:8000/storage/assets/images/placeholder.jpg";
@@ -646,21 +647,21 @@ class BackendController extends Controller
                                 }
 
                                 // get actual text
-                                $actualtext1 = $this->get_content_text($text_id1, "text");
-                                $actualtext2 = $this->get_content_text($text_id2, "text");
-                                $actualtext3 = $this->get_content_text($text_id3, "text");
+                                $actualtext1 = $this->get_content_text($text_id1, "text", null);
+                                $actualtext2 = $this->get_content_text($text_id2, "text", null);
+                                $actualtext3 = $this->get_content_text($text_id3, "text", null);
 
-                                $actualtext1_style = $this->get_content_text($text_id1, "style");
-                                $actualtext2_style = $this->get_content_text($text_id2, "style");
-                                $actualtext3_style = $this->get_content_text($text_id3, "style");
+                                $actualtext1_style = $this->get_content_text($text_id1, "style", null);
+                                $actualtext2_style = $this->get_content_text($text_id2, "style", null);
+                                $actualtext3_style = $this->get_content_text($text_id3, "style", null);
 
-                                $actualimage1 = $this->get_content_text($image_id1, "image");
-                                $actualimage2 = $this->get_content_text($image_id2, "image");
-                                $actualimage3 = $this->get_content_text($image_id3, "image");
+                                $actualimage1 = $this->get_content_text($image_id1, "image", null);
+                                $actualimage2 = $this->get_content_text($image_id2, "image", null);
+                                $actualimage3 = $this->get_content_text($image_id3, "image", null);
 
-                                $actualimage1_style = $this->get_content_text($image_id1, "style");
-                                $actualimage2_style = $this->get_content_text($image_id2, "style");
-                                $actualimage3_style = $this->get_content_text($image_id3, "style");
+                                $actualimage1_style = $this->get_content_text($image_id1, "style", null);
+                                $actualimage2_style = $this->get_content_text($image_id2, "style", null);
+                                $actualimage3_style = $this->get_content_text($image_id3, "style", null);
 
                                 if(empty($actualimage1)){
                                     $imageurl1 = "http://127.0.0.1:8000/storage/assets/images/placeholder.jpg";
@@ -715,21 +716,21 @@ class BackendController extends Controller
                                 }
 
                                 // get actual text
-                                $actualtext1 = $this->get_content_text($text_id1, "text");
-                                $actualtext2 = $this->get_content_text($text_id2, "text");
-                                $actualtext3 = $this->get_content_text($text_id3, "text");
+                                $actualtext1 = $this->get_content_text($text_id1, "text", null);
+                                $actualtext2 = $this->get_content_text($text_id2, "text", null);
+                                $actualtext3 = $this->get_content_text($text_id3, "text", null);
 
-                                $actualtext1_style = $this->get_content_text($text_id1, "style");
-                                $actualtext2_style = $this->get_content_text($text_id2, "style");
-                                $actualtext3_style = $this->get_content_text($text_id3, "style");
+                                $actualtext1_style = $this->get_content_text($text_id1, "style", null);
+                                $actualtext2_style = $this->get_content_text($text_id2, "style", null);
+                                $actualtext3_style = $this->get_content_text($text_id3, "style", null);
 
-                                $actualimage1 = $this->get_content_text($image_id1, "image");
-                                $actualimage2 = $this->get_content_text($image_id2, "image");
-                                $actualimage3 = $this->get_content_text($image_id3, "image");
+                                $actualimage1 = $this->get_content_text($image_id1, "image", null);
+                                $actualimage2 = $this->get_content_text($image_id2, "image", null);
+                                $actualimage3 = $this->get_content_text($image_id3, "image", null);
 
-                                $actualimage1_style = $this->get_content_text($image_id1, "style");
-                                $actualimage2_style = $this->get_content_text($image_id2, "style");
-                                $actualimage3_style = $this->get_content_text($image_id3, "style");
+                                $actualimage1_style = $this->get_content_text($image_id1, "style", null);
+                                $actualimage2_style = $this->get_content_text($image_id2, "style", null);
+                                $actualimage3_style = $this->get_content_text($image_id3, "style", null);
 
                                 if(empty($actualimage1)){
                                     $imageurl1 = "http://127.0.0.1:8000/storage/assets/images/placeholder.jpg";
@@ -1052,14 +1053,14 @@ class BackendController extends Controller
     }
 
     // get_content_text
-    private function get_content_text($id, $content_type)
+    private function get_content_text($id, $content_type, $ownertype)
     {
         $content_styles = $this->get_pagesui_content($id);
 
         foreach($content_styles as $content_styles){
             if($content_type == "text"){
                 if(empty($content_styles->content)){
-                    return "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
+                    return "$ownertype; Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
                 }else{
                     return $content_styles->content;
                 }
@@ -1072,10 +1073,20 @@ class BackendController extends Controller
                 $allstyles .= $this->load_all_styles_content($stylearray, $content_styles->background_image);
 
                 if(empty($allstyles)){
-                    $allstyles = "border-top: ;border-bottom: ;border-left: ;border-right: ;border-top-left-radius: 0px;border-top-right-radius: 0px;";
+                    $allstyles = "";
+                    if($ownertype == "single-text" || $ownertype == "single-image" || $ownertype == "single-image-text" || $ownertype == "single-text-image"){
+                        $allstyles .= "display: grid;grid-template-columns: 100%;align-items: center;justify-content: center;";
+                    }elseif($ownertype == "double-text-image" || $ownertype == "double-image-text" || $ownertype == "double-image_up-text_down" || $ownertype == "double-text_up-image_down"){
+                        $allstyles .= "display: grid;grid-template-columns: 50% 50%;gap: 0%;align-items: center;justify-content: center;";
+                    }elseif($ownertype == "tripple-text" || $ownertype == "tripple-image" || $ownertype == "tripple-text_up-image_down" || $ownertype == "tripple-image_up-text_down"){
+                        $allstyles .= "display: grid;grid-template-columns: 32% 32% 32%;gap: 2%;align-items: center;justify-content: center;";
+                    }
+
+                    $allstyles .= "border-top: ;border-bottom: ;border-left: ;border-right: ;border-top-left-radius: 0px;border-top-right-radius: 0px;";
                     $allstyles .= "border-bottom-left-radius: 0px;border-bottom-right-radius: 0px;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;";
                     $allstyles .= "margin-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;font-size: 10px;font-weight: normal;";
                     $allstyles .= "font-style: normal;text-decoration: none;text-align: left;background: #000000;color: #ffffff;";
+
                     // "background-position: center;background-repeat: no-repeat;background-size: cover;";
                 }
 

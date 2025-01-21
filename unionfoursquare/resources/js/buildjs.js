@@ -680,16 +680,39 @@ $(document).ready(function() {
                 var typeof_wraps = $("#"+component_id).attr("component_wraps_type");
 
                 textareaform += "<b>Grid Style</b>";
-                textareaform += "";
+                // textareaform += "";
                 if(typeof_wraps == "single_type"){
-                    textareaform += "";
+                    textareaform += "<div>Single Type</div>";
+                    textareaform += "<div></div>";
                 }else if(typeof_wraps == "double_type"){
-
+                    textareaform += "<div style='display: flex;gap: 10px;'>";
+                        textareaform += "<div>Grid Width<br><select class='input-form change_style_attr' id='first_grid_width' style='width: 100px;'>"+options+"</select></div>";
+                        textareaform += "<div>Grid Width<br><select class='input-form change_style_attr' id='second_grid_width' style='width: 100px;'>"+options+"</select></div>";
+                    textareaform += "</div>";
+                    textareaform += "<div style='display: flex;gap: 10px;'>";
+                        textareaform += "<div>Gap<br><select class='input-form change_style_attr' id='first_grid_width' style='width: 100px;'>"+options+"</select></div>";
+                    textareaform += "</div>";
                 }else if(typeof_wraps == "tripple_type"){
-
+                    // 
+                    textareaform += "<div style='display: flex;gap: 10px;'>";
+                        textareaform += "<div>Grid Width<br><select class='input-form change_style_attr' id='first_grid_width' style='width: 100px;'>"+options+"</select></div>";
+                        textareaform += "<div>Grid Width<br><select class='input-form change_style_attr' id='second_grid_width' style='width: 100px;'>"+options+"</select></div>";
+                    textareaform += "</div>";
+                    textareaform += "<div style='display: flex;gap: 10px;'>";
+                        textareaform += "<div>Grid Width<br><select class='input-form change_style_attr' id='third_grid_width' style='width: 100px;'>"+options+"</select></div>";
+                    textareaform += "</div>";
+                    textareaform += "<div style='display: flex;gap: 10px;'>";
+                        textareaform += "<div>Gap<br><select class='input-form change_style_attr' id='first_grid_width' style='width: 100px;'>"+options+"</select></div>";
+                    textareaform += "</div>";
                 }
 
-                textareaform += "<b>Grid Style "+typeof_wraps+"</b>";
+                textareaform += "<div style='display: flex;gap: 10px;'>";
+                    textareaform += "<div style='width: 95%;'>Align Items<br><select class='input-form change_style_attr' id='first_grid_width' style='width: 100%;'>"+options+"</select></div>";
+                textareaform += "</div>";
+                textareaform += "<div style='display: flex;gap: 10px;'>";
+                    textareaform += "<div style='width: 95%;'>Justify Content<br><select class='input-form change_style_attr' id='second_grid_width' style='width: 100%;'>"+options+"</select></div>";
+                textareaform += "</div>";
+                textareaform += "<div class='update_text_button_wraps'><div><button id='update_text_button' class='update_text_button'>Update Grid Style</button></div></div>";
             }
 
             textareaform += "<div style='margin-top: 10px;'><b>Text Style</b></div>";
@@ -802,12 +825,16 @@ $(document).ready(function() {
                 }
                 return acc;
             }, {});
-              
-            // console.log(cssArray);
+            console.log(thestyle);
+            alert(thestyle);
 
             // alert(cssArray);
             // return;
             for (var key in cssArray) {
+                console.log(key+": ooo");
+                if(key === "background"){
+                    alert("color detected!");
+                }
                 if (
                     key === "border-top-left-radius" ||
                     key === "border-top-right-radius" ||
@@ -945,7 +972,15 @@ $(document).ready(function() {
                             $("#border_right_color_pickerbuildjs").val(value);
                         }
                     });
+                }else if(key === "display"){
+                    alert("grid detected!");
+                    console.log("grid detected!");
                 }
+
+                // if(dblclick_type == "component_wraps"){
+                //     // alert("load the stuffs for the grid!");
+
+                // }
             }
         }
     });
