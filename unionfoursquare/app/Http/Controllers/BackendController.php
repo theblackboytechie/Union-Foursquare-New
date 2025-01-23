@@ -818,32 +818,99 @@ class BackendController extends Controller
             return "$request->component_id---$request->content";
         }elseif($request->owner == "update_style_tobackend_buildjs"){
             // return "Omomo!";component_id
-            $stylearray = [
-                'border-top' => $request->border_top,
-                'border-bottom' => $request->border_btm,
-                'border-left' => $request->border_lft,
-                'border-right' => $request->border_ryt,
-                'border-top-left-radius' => $request->brd_rdius_tp_lft,
-                'border-top-right-radius' => $request->brd_rdius_tp_ryt,
-                'border-bottom-left-radius' => $request->brd_rdius_btm_lft,
-                'border-bottom-right-radius' => $request->brd_rdius_btm_ryt,
-                'margin-top' => $request->margin_top,
-                'margin-right' => $request->margin_right,
-                'margin-bottom' => $request->margin_bottom,
-                'margin-left' => $request->margin_left,
-                'padding-top' => $request->padding_top,
-                'padding-right' => $request->padding_right,
-                'padding-bottom' => $request->padding_bottom,
-                'padding-left' => $request->padding_left,
-                'font-size' => $request->font_sizebuildjs,
-                'font-weight' => $request->font_boldbuildjs,
-                'font-style' => $request->font_italicsbuildjs,
-                'text-decoration' => $request->font_underlinebuildjs,
-                'text-align' => $request->textalign,
-                'background' => $request->colorpicker,
-                'color' => $request->color_text_picker,
-            ];
+            $stylearray = [];
 
+            if(!empty($request->thedisplay)){
+                // array_push($stylearray, $request->gridgap);
+                $stylearray['display'] = "grid";
+            }
+            
+            if(!empty($request->gridgap) || $request->gridgap == 0){
+                // array_push($stylearray, $request->gridgap);
+                $stylearray['gap'] = $request->gridgap;
+                // return "$request->gridgap; the gridgap!!!inner!";
+            }
+
+            if(!empty($request->template_columns)){
+                // array_push($stylearray, $request->gridgap);
+                $stylearray['grid-template-columns'] = $request->template_columns;
+            }
+
+            if(!empty($request->alignitems)){
+                $stylearray['align-items'] = $request->alignitems;
+            }
+
+            if(!empty($request->justifycontent)){
+                $stylearray['justify-content'] = $request->justifycontent;
+            }
+
+            // // border-top
+            // $stylearray['border-top'] = $request->border_top;
+            // // border-bottom
+            // $stylearray['border-top'] = $request->border_btm;
+            // // border-left
+            // $stylearray['border-left'] = $request->border_btm;
+            // // border-right
+            // $stylearray['border-right'] = $request->border_ryt;
+            // border-top-left-radius
+                        //     'border-top' => $request->border_top,
+            $stylearray['border-bottom'] = $request->border_btm;
+            $stylearray['border-left'] = $request->border_lft;
+            $stylearray['border-right'] = $request->border_ryt;
+            $stylearray['border-top-left-radius'] = $request->brd_rdius_tp_lft;
+            $stylearray['border-top-right-radius'] = $request->brd_rdius_tp_ryt;
+            $stylearray['border-bottom-left-radius'] = $request->brd_rdius_btm_lft;
+            $stylearray['border-bottom-right-radius'] = $request->brd_rdius_btm_ryt;
+            $stylearray['margin-top'] = $request->margin_top;
+            $stylearray['margin-right'] = $request->margin_right;
+            $stylearray['margin-bottom'] = $request->margin_bottom;
+            $stylearray['margin-left'] = $request->margin_left;
+            $stylearray['padding-top'] = $request->padding_top;
+            $stylearray['padding-right'] = $request->padding_right;
+            $stylearray['padding-bottom'] = $request->padding_bottom;
+            $stylearray['padding-left'] = $request->padding_left;
+            $stylearray['font-size'] = $request->font_sizebuildjs;
+            $stylearray['font-weight'] = $request->font_boldbuildjs;
+            $stylearray['font-style'] = $request->font_italicsbuildjs;
+            $stylearray['text-decoration'] = $request->font_underlinebuildjs;
+            $stylearray['text-align'] = $request->textalign;
+            $stylearray['background'] = $request->colorpicker;
+            $stylearray['color'] = $request->color_text_picker;
+
+            // $stylearray = [
+            //     'border-top' => $request->border_top,
+            //     'border-bottom' => $request->border_btm,
+            //     'border-left' => $request->border_lft,
+            //     'border-right' => $request->border_ryt,
+            //     'border-top-left-radius' => $request->brd_rdius_tp_lft,
+            //     'border-top-right-radius' => $request->brd_rdius_tp_ryt,
+            //     'border-bottom-left-radius' => $request->brd_rdius_btm_lft,
+            //     'border-bottom-right-radius' => $request->brd_rdius_btm_ryt,
+            //     'margin-top' => $request->margin_top,
+            //     'margin-right' => $request->margin_right,
+            //     'margin-bottom' => $request->margin_bottom,
+            //     'margin-left' => $request->margin_left,
+            //     'padding-top' => $request->padding_top,
+            //     'padding-right' => $request->padding_right,
+            //     'padding-bottom' => $request->padding_bottom,
+            //     'padding-left' => $request->padding_left,
+            //     'font-size' => $request->font_sizebuildjs,
+            //     'font-weight' => $request->font_boldbuildjs,
+            //     'font-style' => $request->font_italicsbuildjs,
+            //     'text-decoration' => $request->font_underlinebuildjs,
+            //     'text-align' => $request->textalign,
+            //     'background' => $request->colorpicker,
+            //     'color' => $request->color_text_picker,
+            // ];
+
+            // return $request->thedisplay;
+
+            // gridgap: gridgap,
+            // template_columns: template_columns,
+            // alignitems: alignitems,
+            // justifycontent: justifycontent,
+
+            // return $stylearray;
             $json_style = json_encode($stylearray);
 
             $tabledb = "pagesui_component_style";
@@ -994,7 +1061,7 @@ class BackendController extends Controller
 
                 }
 
-                if($key == "font-weight" || $key == "font-style" || $key == "text-decoration" || $key == "text-align" || $key == "background" || $key == "color" || $key == "border-top" || $key == "border-bottom" || $key == "border-left" || $key == "border-right"){
+                if($key == "font-weight" || $key == "font-style" || $key == "text-decoration" || $key == "text-align" || $key == "background" || $key == "color" || $key == "border-top" || $key == "border-bottom" || $key == "border-left" || $key == "border-right" || $key == "display" || $key == "align-items" || $key == "justify-content"){
                     if($key == "background"){
                         if(!empty($background_image)){
                             $allstyles .= "$key: url(\"/storage/uploads/$background_image\");";
@@ -1004,7 +1071,19 @@ class BackendController extends Controller
                     }else{
                         $allstyles .= "$key: $value;";
                     }
-                    
+                }elseif($key == "padding-left" || $key == "padding-right" || $key == "gap"){
+                    $allstyles .= "$key: $value"."%;";
+                }elseif($key == "grid-template-columns"){
+                    // grid-template-columns: 50 50px;
+                    $template_array = explode(" ", $value);
+
+                    $nwstring = "";
+                    foreach($template_array as $template){
+                        $nwstring .= "$template% ";
+                    }
+
+                    $nwstring = trim($nwstring);
+                    $allstyles .= "$key: $nwstring".";";
                 }else{
                     $allstyles .= "$key: $value"."px;";
                 }
@@ -1060,7 +1139,7 @@ class BackendController extends Controller
         foreach($content_styles as $content_styles){
             if($content_type == "text"){
                 if(empty($content_styles->content)){
-                    return "$ownertype; Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
+                    return "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
                 }else{
                     return $content_styles->content;
                 }

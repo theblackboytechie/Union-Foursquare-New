@@ -95,7 +95,46 @@ $(document).ready(function() {
     // update_buildjs_style_button
     $('body').on('click', '#update_buildjs_style_button', function() {
         $(".toggle_processing_update_style").toggle();
-        
+        if ($("#gridgap").length > 0) {
+            console.log("Element with id 'gridgap' exists in the DOM.");
+            var gridtype = $("#gridtype").attr("gridtype");
+            alert(gridtype+"; test for grid!");
+            // double_type, tripple_type
+            if(gridtype == "double_type"){
+                var thedisplay = "grid";
+                var gridgap = $("#gridgap").val();
+                var firstwidth = $("#first_grid_width").val();
+                var secondwidth = $("#second_grid_width").val();
+
+                // let gridgap = gridgap;
+                var template_columns = firstwidth+" "+secondwidth;
+                // alert("na double!");
+            }else if(gridtype == "tripple_type"){
+                var thedisplay = "grid";
+                var gridgap = $("#gridgap").val();
+                var firstwidth = $("#first_grid_width").val();
+                var secondwidth = $("#second_grid_width").val();
+                var thirdwidth = $("#third_grid_width").val();
+
+                // let gridgap = gridgap;
+                var template_columns = firstwidth+" "+secondwidth+" "+thirdwidth;
+                // alert("na double!");
+            }
+
+            var alignitems = $("#alignitems").val();
+            var justifycontent = $("#justifycontent").val();
+        }else{
+            var thedisplay = "";
+            var gridgap = gridgap;
+            var template_columns = "";
+
+            var alignitems = "";
+            var justifycontent = "";
+        }
+
+        // tripple_type
+        // double_type
+        // return;
         let actionowner = $(this).attr("owner");
 
         let owner = "update_style_tobackend_buildjs";
@@ -107,7 +146,7 @@ $(document).ready(function() {
         let padding_top = $("#padding_top").val();
         let padding_right = $("#padding_right").val();
         let padding_bottom = $("#padding_bottom").val();
-        let padding_left = $("#padding_left").val();
+        let padding_left = $("#padding_left").val();//alert(padding_left+"; padding_left");
 
         // border radius: border_radius_top_left, border_radius_top_right, border_radius_bottom_left, border_radius_bottom_right
         let brd_rdius_tp_lft = $("#border_radius_top_left").val();
@@ -169,6 +208,11 @@ $(document).ready(function() {
             var formData = {
                 owner: owner,
                 component_id: component_id,
+                thedisplay: thedisplay,
+                gridgap: gridgap,
+                template_columns: template_columns,
+                alignitems: alignitems,
+                justifycontent: justifycontent,
                 border_top: border_top,
                 border_btm: border_btm,
                 border_lft: border_lft,
@@ -193,6 +237,7 @@ $(document).ready(function() {
                 colorpicker: colorpicker,
                 color_text_picker: color_text_picker
             };
+
         }else if(actionowner === "image"){
             // alert("this is image ish");
             var formData = {
@@ -255,7 +300,8 @@ $(document).ready(function() {
                     $(".toggle_processing_update_text").toggle();
                     // $("#processing_update_styles").toggle();
                 }else if(formData.owner == "update_style_tobackend_buildjs"){
-                    // alert(response);
+                    alert(response);
+                    console.log(response);
                     $(".toggle_processing_update_style").toggle();
                 }
             },

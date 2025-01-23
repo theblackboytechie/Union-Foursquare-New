@@ -308,30 +308,81 @@ $(document).ready(function() {
 
     // margin_top
     $('body').on('change', ".change_style_attr", function() {
-        var gridgap = $(this).val();
         var gridid = $(this).attr("id");
 
-        if(gridid == "gridgap"){
-            alert(gridgap+"; calms!; "+gridid);
+        // the id attribute to know if this is margin-top or padding-top
+        var idattr = $(this).attr("id");//alert(idattr+"; oooooooo");
+
+        if(gridid == "gridgap" || gridid == "first_grid_width" || gridid == "second_grid_width"){
+            // alert(gridgap+"; calms!; "+gridid);
             //  id='gridtype' gridtype='tripple_type'
             var gridtype = $("#gridtype").attr("gridtype");
 
-            if(gridtype == "double_type"){
-                // first_grid_width
-                // second_grid_width
-                var firstwidth = $("#first_grid_width").val();
-                var secondwidth = $("#second_grid_width").val();
+            var gridgap = $("#gridgap").val();
+            var firstwidth = $("#first_grid_width").val();
+            var secondwidth = $("#second_grid_width").val();
 
-                var newstuffs = firstwidth * secondwidth;
-                
-                // alert(newstuffs);
-                // when gap changes always reduce the last gridwidth
+            if(gridid == "gridgap"){
+                if(gridtype == "double_type"){
+                    // when gap changes always reduce the last gridwidth
+                    var newtotal = 100 - gridgap;
+
+                    var newsecondwidth = newtotal - firstwidth;
+
+                    // new second width
+                    $("#second_grid_width").val(newsecondwidth);
+
+                    var gridgap = gridgap+"%";
+                    var template_columns = firstwidth+"% "+newsecondwidth+"%";
+                }else if(gridtype == "tripple_type"){
+                    var gridgap_mult = gridgap*2;
+
+                    var newtotal = 100 - gridgap_mult;
+
+                    var newtotal2 = newtotal - firstwidth;
+
+                    var newtotal3 = newtotal2/2;
+
+                    // new second width
+                    $("#second_grid_width").val(newtotal3);
+                    $("#third_grid_width").val(newtotal3);
+
+                    var gridgap = gridgap+"%";
+                    var template_columns = firstwidth+"% "+newtotal3+"% "+newtotal3+"%";
+                }
+            }else if(gridid == "first_grid_width"){
+                if(gridtype == "double_type"){
+                    var newtotal1 = 100 - firstwidth;//alert(newtotal1+"; newtotal1");
+                    var newtotal2 = newtotal1 - gridgap;//alert(newtotal2+"; newtotal2");
+
+                    // new second width
+                    $("#second_grid_width").val(newtotal2);
+                    var gridgap = gridgap;
+
+                    var template_columns = firstwidth+"% "+newtotal2+"%";
+                }else if(gridtype == "tripple_type"){
+
+                }
+            }else if(gridid == "second_grid_width"){
+                if(gridtype == "double_type"){
+                    var newtotal1 = 100 - secondwidth;
+                    var newtotal2 = newtotal1 - gridgap;
+
+                    $("#first_grid_width").val(newtotal2);
+                    var gridgap = gridgap;
+
+                    var template_columns = newtotal2+"% "+secondwidth+"%";
+                }else if(gridtype == "tripple_type"){
+
+                }
             }
+        }else{
+            var gridgap = $("#gridgap").val();
+            var firstwidth = $("#first_grid_width").val();
+            var secondwidth = $("#second_grid_width").val();
 
+            var template_columns = firstwidth+"% "+secondwidth+"%";
         }
-        return;
-        // the id attribute to know if this is margin-top or padding-top
-        var idattr = $(this).attr("id");//alert(idattr+"; oooooooo");gridid
         // return;
 
         var tpwdth = $("#border_top_width").val();
@@ -386,9 +437,16 @@ $(document).ready(function() {
             var cssowner = "font-size";
         }else if(gridid == "gridgap"){
             var cssowner = "gap";
+        }else if(idattr == "alignitems"){
+            var cssowner = "align-items";
+            // alert("align items");
+        }else if(idattr == "justifycontent"){
+            var cssowner = "justify-content";
+            // alert("justify content");
         }
+        // return;
         
-        // alert(idattr+"---"+cssowner+"; cssowner!");
+        // alert(idattr+"---"+cssowner+"; cssowner!");alignitems, justifycontent
 
         var component_id = $("#textform_for_update").attr("component_id");
         
@@ -412,8 +470,19 @@ $(document).ready(function() {
         for (var key in cssArray) {
             if(key === cssowner){
                 // alert(key+"___"+cssowner);
-                newstylestring += cssowner+": "+margin_top_value+"px; ";
+                if(key == "gap"){
+                    newstylestring += key+": "+gridgap+"; ";
+                }else if(key == "align-items" || key == "justify-content"){
+                    // alert("this is the align items!");
+                    // newstylestring += key+": "+gridgap+"; ";
+                    newstylestring += cssowner+": "+margin_top_value+"; ";//alert(margin_top_value+": align items");
+                }else if(key == "padding-left" || key == "padding-right"){
+                    newstylestring += cssowner+": "+margin_top_value+"%; ";
+                }else{
+                    newstylestring += cssowner+": "+margin_top_value+"px; ";
+                }
                 // newstylestring += "border-top: "+cssArray[key]+"; ";
+                // alert(key);
             }else if(key === "border-top"){
                 newstylestring += key+": "+brdtp+"; ";
             }else if(key === "border-bottom"){
@@ -422,8 +491,14 @@ $(document).ready(function() {
                 newstylestring += key+": "+brdblft+"; ";
             }else if(key === "border-right"){
                 newstylestring += key+": "+brdright+"; ";
+            }else if(key === "grid-template-columns"){
+                newstylestring += "grid-template-columns: "+template_columns+"; ";
+                // newstylestring += "gap: "+gridgap+"; ";
+                // alert("this is template-columns!");
             }else{
                 newstylestring += key+": "+cssArray[key]+"; ";
+                // alert(key+"---"+cssArray[key]);
+                // alert(key);
             }
         }
         // alert(component_id+"; final destination!; "+newstylestring);
@@ -670,6 +745,9 @@ $(document).ready(function() {
         if(thestyle == undefined){
             var thestyle = $("#"+component_id).attr("style");
         }
+        // alert(thestyle+"; thestyle");
+        // console.log(thestyle+"; thestyle");
+        // return;
         // alert(thestyle+"; thestyle");return;
 
         var text_Val = $(this).text();
@@ -680,6 +758,14 @@ $(document).ready(function() {
         for (var i = 0; i <= 99; i++) {
             // Create a new option element and add it to the array
             options.push("<option value='" + i + "'>" + i + "</option>");
+        }
+
+        // gapoptions
+        var gapoptions = [];
+        // Loop through numbers 1 to 99
+        for (var i = 0; i <= 20; i++) {
+            // Create a new option element and add it to the array
+            gapoptions.push("<option value='" + i + "'>" + i + "</option>");
         }
 
         // alert(component_id+"; jambite!");
@@ -718,7 +804,7 @@ $(document).ready(function() {
                         textareaform += "<div>Grid Width<br><select class='input-form change_style_attr' id='second_grid_width' style='width: 100px;'>"+options+"</select></div>";
                     textareaform += "</div>";
                     textareaform += "<div style='display: flex;gap: 10px;'>";
-                        textareaform += "<div>Gap<br><select class='input-form change_style_attr' id='gridgap' style='width: 100px;'>"+options+"</select></div>";
+                        textareaform += "<div>Gap<br><select class='input-form change_style_attr' id='gridgap' style='width: 100px;'>"+gapoptions+"</select></div>";
                     textareaform += "</div>";
                 }else if(typeof_wraps == "tripple_type"){
                     // 
@@ -730,17 +816,17 @@ $(document).ready(function() {
                         textareaform += "<div>Grid Width<br><select class='input-form change_style_attr' id='third_grid_width' style='width: 100px;'>"+options+"</select></div>";
                     textareaform += "</div>";
                     textareaform += "<div style='display: flex;gap: 10px;'>";
-                        textareaform += "<div>Gap<br><select class='input-form change_style_attr' id='gridgap' style='width: 100px;'>!!!"+options+"</select></div>";
+                        textareaform += "<div>Gap<br><select class='input-form change_style_attr' id='gridgap' style='width: 100px;'>"+gapoptions+"</select></div>";
                     textareaform += "</div>";
                 }
 
                 textareaform += "<div style='display: flex;gap: 10px;'>";
-                    textareaform += "<div style='width: 95%;'>Align Items<br><select class='input-form change_style_attr' id='first_grid_width' style='width: 100%;'>"+alignoptions+"</select></div>";
+                    textareaform += "<div style='width: 95%;'>Align Items<br><select class='input-form change_style_attr' id='alignitems' style='width: 100%;'>"+alignoptions+"</select></div>";
                 textareaform += "</div>";
                 textareaform += "<div style='display: flex;gap: 10px;'>";
-                    textareaform += "<div style='width: 95%;'>Justify Content<br><select class='input-form change_style_attr' id='second_grid_width' style='width: 100%;'>"+alignoptions+"</select></div>";
+                    textareaform += "<div style='width: 95%;'>Justify Content<br><select class='input-form change_style_attr' id='justifycontent' style='width: 100%;'>"+alignoptions+"</select></div>";
                 textareaform += "</div>";
-                textareaform += "<div class='update_text_button_wraps'><div><button id='update_text_button' class='update_text_button'>Update Grid Style</button></div></div>";
+                textareaform += "<div class='update_text_button_wraps hidden'><div><button id='update_text_button' class='update_text_button'>Update Grid Style</button></div></div>";
             }
 
             textareaform += "<div style='margin-top: 10px;'><b>Text Style</b></div>";
@@ -876,6 +962,7 @@ $(document).ready(function() {
                 ) {
                     var thevalue = parseInt(cssArray[key].replace("px", ""));
                     // alert(thevalue+": na margin-top be this!");
+                    console.log(key);
                     if(key === "border-top-left-radius"){
                         // alert(thevalue+" border-top-left-radius");, , border_radius_bottom_right
                         $("#border_radius_top_left").val(thevalue);
@@ -1008,11 +1095,15 @@ $(document).ready(function() {
                             $("#first_grid_width").val(thevalue);
                         }else if(index === 1){
                             $("#second_grid_width").val(thevalue);
+                        }else if(index === 2){
+                            $("#third_grid_width").val(thevalue);
                         }
                     });
                     // if(key === "grid-template-columns"){
                     //     alert("grid template columns!");
                     // }
+                }else if(key === "gap"){
+                    $("#gridgap").val(thevalue);
                 }
 
                 // if(dblclick_type == "component_wraps"){
