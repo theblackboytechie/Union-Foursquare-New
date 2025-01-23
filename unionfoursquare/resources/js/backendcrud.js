@@ -92,6 +92,54 @@ $(document).ready(function() {
         updateDatabase(theurl, formData);
     });
 
+    // trigger_edit_pagename
+    $('body').on('click', '.trigger_edit_pagename', function(event) {
+        event.preventDefault();
+
+        // check action status
+        var action_status = $(this).html();
+        
+        var owner = $(this).attr("owner");
+
+        var display_owner = $(this).attr("display_owner");
+
+        // remove the link action from the element
+        // toggle_link_$outcome->page_name
+        $("#toggle_link_"+owner).removeAttr("href");
+
+        if(action_status == '<i class="fa-regular fa-pen-to-square"></i>'){    
+            // determine the display name for the page to show!
+            if(display_owner === ""){
+                var displayname_to_use = owner;
+            }else{
+                var displayname_to_use = display_owner;
+            }
+    
+            var edittag = "<input type='text' value='"+displayname_to_use+"' class='input-form' id='edited_displayname_"+owner+"' style='width: 100%;' />";
+            $("#"+owner).html(edittag);
+            // alert(owner);<i class="fa-solid fa-check"></i>
+            $(this).html("<i class='fa-solid fa-check'></i>");
+        }else if(action_status == '<i class="fa-solid fa-check"></i>'){
+            $(this).html("<i class='fa-solid fa-circle-notch fa-spin'></i>");
+            var new_displayname = $("#edited_displayname_"+owner).val();
+            // alert(new_displayname+"; new display name!");
+
+            var ownerid = owner;
+            
+            var owner = "update_page_display_name";
+
+            var formData = {
+                owner: owner,
+                ownerid: ownerid,
+                new_displayname: new_displayname
+            };
+    
+            var theurl = $("#union4sqmaps").attr("database_update");
+    
+            updateDatabase(theurl, formData);
+        }
+    });
+
     // update_buildjs_style_button
     $('body').on('click', '#update_buildjs_style_button', function() {
         $(".toggle_processing_update_style").toggle();
@@ -283,6 +331,25 @@ $(document).ready(function() {
             success: function (response) {
                 if(formData.owner == "jumbotron-update"){
                     $(".spin-processing").hide();
+                }else if(formData.owner == "update_page_display_name"){
+                    //  == formData.ownerid; swap_icons_$outcome->page_name
+                    $(".swap_icons_"+formData.ownerid).html("<i class='fa-regular fa-pen-to-square'></i>");
+                    // alert($("[owner='"+formData.owner+"']").attr("owner"));
+                    // alert(response); swap_$outcome->page_name'
+                    $(".swap_"+formData.ownerid).text(response.newdisplayname);
+
+                    // change class swap_icons_$outcome->page_name; 
+                    // change the owner
+                    $(".swap_icons_"+formData.ownerid).attr("owner", response.newpage_id);
+                    $(".swap_icons_"+formData.ownerid).attr("display_owner", response.newpage_id);
+                    $("#"+formData.ownerid).attr("class", "swap_"+response.newpage_id);//swap_theirishfoursquare
+                    $(".swap_icons_"+formData.ownerid).removeClass("swap_icons_"+formData.ownerid).addClass("swap_icons_"+response.newpage_id);
+                    // swap_whyfoursquare
+                    $(".swap_"+response.newpage_id).attr("id", response.newpage_id);
+
+                    $("#toggle_link_"+formData.ownerid).attr("id", "toggle_link_"+response.newpage_id);
+
+                    $("#toggle_link_"+response.newpage_id).attr("href", "/pages/construct/"+response.newpage_id);
                 }else if(formData.owner == "jumbotron-get"){
                     for (var key in response) {
                         if (response.hasOwnProperty(key)) {

@@ -6,11 +6,14 @@ $(document).ready(function() {
     var secondToLast = path[path.length - 2];
     var thirdToLast = path[path.length - 3];
     var lastPara = path[path.length - 1];
+    // alert(lastPara);
+    // return;
 
-    if(lastPara == "whyfoursquare"){
+    // if(lastPara == "whyfoursquare"){
         var owner = "load_page_construct";
 
-        var pageowner = "whyfoursquare";
+        // var pageowner = "whyfoursquare";
+        var pageowner = lastPara;
 
         loadconstruct(owner, pageowner);
 
@@ -18,7 +21,12 @@ $(document).ready(function() {
         var owner = "load_all_page_components";
 
         loadconstruct(owner, pageowner);
-    }
+
+        // load_all_pages_for_current_website
+        var owner = "load_all_pages_for_current_website";
+
+        loadconstruct(owner, pageowner);
+    // }
 
     // font_boldbuildjs
     $('body').on('click', '#trigger_font_boldbuildjs', function() {
@@ -1211,8 +1219,10 @@ $(document).ready(function() {
     $('body').on('click', '.select-component', function() {
         $(".components_create_processing").show();
 
+        // alert(lastPara);return;
         var owner = $(this).attr("owner");
-        var pageowner = "whyfoursquare";
+        // var pageowner = "whyfoursquare";
+        var pageowner = lastPara;
 
         var formData = {
             owner: owner,
@@ -1265,6 +1275,9 @@ $(document).ready(function() {
                 }else if(formData.owner == "load_all_page_components"){
                     // alert(response);
                     $("#dashboard_all_pages_components").html(response);
+                }else if(formData.owner == "load_all_pages_for_current_website"){
+                    // alert(response);
+                    $("#website_pageslist_wraper").html(response);
                 }else{
                     // var owner = "load_page_construct";
 
@@ -1285,13 +1298,25 @@ $(document).ready(function() {
 
                     var owner = "load_page_construct";
 
-                    var pageowner = "whyfoursquare";
+                    // var pageowner = "whyfoursquare";//lastPara
+                    var pageowner = lastPara;
             
+                    loadconstruct(owner, pageowner);
+
+                    // load_all_page_components
+                    var owner = "load_all_page_components";
+
+                    loadconstruct(owner, pageowner);
+
+                    // load_all_pages_for_current_website
+                    var owner = "load_all_pages_for_current_website";
+
                     loadconstruct(owner, pageowner);
                     
                     $("#pages-components-wraps").hide();
             
                     $(".components_create_processing").hide();
+                    
                 }
             },
             error: function(response) {

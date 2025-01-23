@@ -207,10 +207,10 @@
                     <input type="text" class="input-form">
                 </div>
             </div>
-        @elseif($owner == "view_construct_whyfoursquare")
+        @elseif($owner == "view_construct_whyfoursquare" || $owner == "view_construct_pages")
             <!-- <div>Eleruniyin!</div> -->
             <div class="pages-section-b-content">
-                <div class="pages-section-b-header">
+                <!-- <div class="pages-section-b-header">
                     <div class="pages-section-b-header-left">
                         <div class="pages-section-name-abrv">WF</div>
                         <div>Why Foursquare</div>
@@ -222,7 +222,7 @@
                 <div class="pages-section-b-desc">
                     gyfu tg uftyu ftgy udrtfyd utfyu tfyuh ftvyuh ifvyuh 
                     ifvyuh jfgyh udrtycgu rjcgy jdcrfu drtfbh uygvu tfgyuj
-                </div>
+                </div> -->
                 <div id="uploaded-pages-component-wraps" owner="whyfoursquare">
                     <i class="fa-solid fa-circle-notch fa-spin"></i>
                 </div>

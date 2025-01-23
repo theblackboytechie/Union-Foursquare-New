@@ -54,10 +54,12 @@
                     <div>
                         <div class="faux_link" id="toggle_pages_list">Pages</div>
                         <div class="hidden dashboard_dropdown" id="dashboard_pageslist_dropdown">
-                            <div class="dashboard-menu-each">
+                            <a href='/pages/construct/homepage'>
+                                <div class="dashboard-menu-each">
                                 <div class="dashboard-menu-iconwraps"><i class="fa-solid fa-house-chimney"></i></div>
                                 <div>Home Page</div>
-                            </div>
+                                </div>
+                            </a>
                             <!-- <div class="dashboard-menu-each">
                                 <div class="dashboard-menu-iconwraps"><i class="fa-brands fa-blogger-b"></i></div>
                                 <div>Blog Page</div>
@@ -70,7 +72,8 @@
                                 <div class="dashboard-menu-iconwraps"><i class="fa-solid fa-file"></i></div>
                                 <div>Resources</div>
                             </div> -->
-                            <div style="border-top: 1px solid lightgray;margin-top: 10px;padding-top: 10px;">Create Page</div>
+                            <div id='trigger_create_new_page' style="border-top: 1px solid lightgray;margin-top: 10px;padding-top: 10px;">Create Page</div>
+                            <div id="website_pageslist_wraper"></div>
                         </div>
                     </div>
                     <div>|</div>
@@ -88,7 +91,7 @@
                 </div>
             </div>
             <div class="dashboard-content-body">
-                @if($owner == "view_pagesroute_dashboard" || $owner == "view_homepage_subsection_jumbotron" || $owner == "view_homepage_subsection_themetext" || $owner == "view_construct_whyfoursquare")
+                @if($owner == "view_pagesroute_dashboard" || $owner == "view_homepage_subsection_jumbotron" || $owner == "view_homepage_subsection_themetext" || $owner == "view_construct_whyfoursquare" || $owner == "view_construct_pages")
                     <x-backend-pages-dashboard :owner="$owner" />
                 @endif
             </div>

@@ -30,6 +30,7 @@ class BackendController extends Controller
     // pages_subsection_edit
     public function pages_subsection(Request $request)
     {
+        // return "shabar!";
         $url = $request->url();
         $path = parse_url($url, PHP_URL_PATH);
         $segments = explode('/', $path);
@@ -41,6 +42,8 @@ class BackendController extends Controller
             $owner = "view_homepage_subsection_themetext";
         }elseif($lastParameter == "whyfoursquare"){
             $owner = "view_construct_whyfoursquare";
+        }else{
+            $owner = "view_construct_pages";
         }
 
         $params = [];
@@ -116,8 +119,9 @@ class BackendController extends Controller
             $tabledb = "pagesui";
 
             $where_array = [
-                'page_name' => "whyfoursquare",
+                'page_name' => $request->pageowner,
             ];
+            // 'page_name' => "whyfoursquare",
     
             $output = CrudHelper::Get($tabledb, $where_array);
 
@@ -284,7 +288,7 @@ class BackendController extends Controller
                 $tabledb = "pagesui_component";
 
                 $create_array = [
-                    'pagesui_id' => "whyfoursquare",
+                    'pagesui_id' => $request->pageowner,
                     'component_id' => $randomString,
                     'component_type' => $request->owner,
                     'content' => $component_content_json,
@@ -297,12 +301,35 @@ class BackendController extends Controller
         }elseif($request->owner == "load_page_construct"){
             // return "$request->pageowner!";
             $tabledb = "pagesui";
+            // return $request->pageowner;
 
             $where_array = [
                 'page_name' => $request->pageowner,
             ];
     
             $output = CrudHelper::Get($tabledb, $where_array);
+            // return count($output);
+            // if the output is zero we create a page with this detail and get again
+            if(count($output) == 0 && $request->pageowner == "homepage"){
+                $authorid = Auth::id();
+                $currenttime = Carbon::now();
+        
+                $create_array = [
+                    'author_id' => $authorid,
+                    'page_name' => $request->pageowner,
+                    'created_at' => $currenttime,
+                    'updated_at' => $currenttime,
+                ];
+        
+                CrudHelper::Create($tabledb, $create_array);
+
+                return "newpagecreated!";
+            }
+            
+            if(count($output) == 0){
+                // whythefoursquare
+                return "page not found";
+            }
 
             // return count($output);
             if(count($output) > 0){
@@ -798,7 +825,78 @@ class BackendController extends Controller
 
                 return $page_content;
             }
-        }elseif($request->owner == "update_text_content_buildjs"){
+        }elseif($request->owner == "load_all_pages_for_current_website"){
+            $tabledb = "pagesui";
+    
+            $outcome = CrudHelper::Geteverything($tabledb);
+
+            $liststring = "";
+            foreach($outcome as $outcome){
+                if($outcome->page_name == "jumbotron" || $outcome->page_name == "homepage"){}else{
+                    if(empty($outcome->display_page_name)){
+                        $displayname_foruse = "";
+                    }else{
+                        $displayname_foruse = $outcome->display_page_name;
+                    }
+                    $liststring .= "<a id='toggle_link_$outcome->page_name' href='/pages/construct/$outcome->page_name'>";
+                        $liststring .= "<div class='dashboard-menu-each'>";
+                            $liststring .= "<div class='dashboard-menu-iconwraps trigger_edit_pagename faux_link swap_icons_$outcome->page_name' owner='$outcome->page_name' display_owner='$outcome->display_page_name'><i class='fa-regular fa-pen-to-square'></i></div>";
+                            $liststring .= "<div id='$outcome->page_name' class='swap_$outcome->page_name'>$displayname_foruse</div>";
+                        $liststring .= "</div>";
+                    $liststring .= "</a>";
+                }
+            }
+
+            return $liststring;
+        }elseif($request->owner == "update_page_display_name"){
+            $ownerid = $request->ownerid;
+            $displayname = ucwords($request->new_displayname);
+
+            $newdisplayname = trim($displayname); // removes whitespace from beginning and end
+            $newpage_id = str_replace(" ", "", $displayname);
+
+            $newpage_id = strtolower($newpage_id);
+
+            $tabledb = "pagesui";
+
+            $currenttime = Carbon::now();
+
+            $where_array = [
+                'page_name' => $ownerid,
+            ];
+
+            $update_array = [
+                'page_name' => $newpage_id,
+                'display_page_name' => $newdisplayname,
+                'updated_at' => $currenttime,
+            ];
+    
+            CrudHelper::Update($tabledb, $where_array, $update_array);
+
+            // update all the ids in the ppagesui_component page
+            $tabledb = "pagesui_component";
+
+            // pagesui_id
+            $where_array = [
+                'pagesui_id' => $ownerid,
+            ];
+
+            $update_array = [
+                'pagesui_id' => $newpage_id,
+                'updated_at' => $currenttime,
+            ];
+
+            CrudHelper::Update($tabledb, $where_array, $update_array);
+
+            // return "$ownerid; $displayname!";
+            // whyfoursquare
+            // 
+            // return $newdisplayname;
+            return response()->json([
+                'newdisplayname' => $newdisplayname,
+                'newpage_id' => $newpage_id,
+            ]);
+        }elseif($request->owner ==  "update_text_content_buildjs"){
             // return "Babagana!";
             $tabledb = "pagesui_component_style";
 
