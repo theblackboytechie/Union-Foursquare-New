@@ -58,7 +58,7 @@
                                 <div class="dashboard-menu-iconwraps"><i class="fa-solid fa-house-chimney"></i></div>
                                 <div>Home Page</div>
                             </div>
-                            <div class="dashboard-menu-each">
+                            <!-- <div class="dashboard-menu-each">
                                 <div class="dashboard-menu-iconwraps"><i class="fa-brands fa-blogger-b"></i></div>
                                 <div>Blog Page</div>
                             </div>
@@ -69,7 +69,7 @@
                             <div class="dashboard-menu-each">
                                 <div class="dashboard-menu-iconwraps"><i class="fa-solid fa-file"></i></div>
                                 <div>Resources</div>
-                            </div>
+                            </div> -->
                             <div style="border-top: 1px solid lightgray;margin-top: 10px;padding-top: 10px;">Create Page</div>
                         </div>
                     </div>

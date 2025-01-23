@@ -98,9 +98,19 @@ $(document).ready(function() {
         if ($("#gridgap").length > 0) {
             console.log("Element with id 'gridgap' exists in the DOM.");
             var gridtype = $("#gridtype").attr("gridtype");
-            alert(gridtype+"; test for grid!");
+            // alert(gridtype+"; test for grid!");
+            // return;
             // double_type, tripple_type
-            if(gridtype == "double_type"){
+            if(gridtype == "single_type"){
+                // alert("the single portion!");
+                var thedisplay = "grid";
+                var gridgap = "";
+                var firstwidth = $("#first_grid_width").val();
+
+                // let gridgap = gridgap;
+                var template_columns = firstwidth;
+                // alert("na double!");
+            }else if(gridtype == "double_type"){
                 var thedisplay = "grid";
                 var gridgap = $("#gridgap").val();
                 var firstwidth = $("#first_grid_width").val();
@@ -300,8 +310,8 @@ $(document).ready(function() {
                     $(".toggle_processing_update_text").toggle();
                     // $("#processing_update_styles").toggle();
                 }else if(formData.owner == "update_style_tobackend_buildjs"){
-                    alert(response);
-                    console.log(response);
+                    // alert(response);
+                    // console.log(response);
                     $(".toggle_processing_update_style").toggle();
                 }
             },

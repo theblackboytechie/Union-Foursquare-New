@@ -309,25 +309,30 @@ $(document).ready(function() {
     // margin_top
     $('body').on('change', ".change_style_attr", function() {
         var gridid = $(this).attr("id");
+        // alert(gridid+"; gridid");
+        // return;
 
         // the id attribute to know if this is margin-top or padding-top
         var idattr = $(this).attr("id");//alert(idattr+"; oooooooo");
+        var gridtype = $("#gridtype").attr("gridtype");
 
-        if(gridid == "gridgap" || gridid == "first_grid_width" || gridid == "second_grid_width"){
+        if(gridid == "gridgap" || gridid == "first_grid_width" || gridid == "second_grid_width" || gridid == "third_grid_width"){
             // alert(gridgap+"; calms!; "+gridid);
             //  id='gridtype' gridtype='tripple_type'
-            var gridtype = $("#gridtype").attr("gridtype");
 
             var gridgap = $("#gridgap").val();
             var firstwidth = $("#first_grid_width").val();
             var secondwidth = $("#second_grid_width").val();
 
             if(gridid == "gridgap"){
-                if(gridtype == "double_type"){
+                if(gridtype == "single_type"){
+
+                }else if(gridtype == "double_type"){
                     // when gap changes always reduce the last gridwidth
                     var newtotal = 100 - gridgap;
 
                     var newsecondwidth = newtotal - firstwidth;
+                        newsecondwidth = Math.floor(newsecondwidth);
 
                     // new second width
                     $("#second_grid_width").val(newsecondwidth);
@@ -342,6 +347,7 @@ $(document).ready(function() {
                     var newtotal2 = newtotal - firstwidth;
 
                     var newtotal3 = newtotal2/2;
+                        newtotal3 = Math.floor(newtotal3);
 
                     // new second width
                     $("#second_grid_width").val(newtotal3);
@@ -351,9 +357,14 @@ $(document).ready(function() {
                     var template_columns = firstwidth+"% "+newtotal3+"% "+newtotal3+"%";
                 }
             }else if(gridid == "first_grid_width"){
-                if(gridtype == "double_type"){
+                if(gridtype == "single_type"){
+                    // alert("the single type attempt!");
+                    var gridgap = "";
+                    var template_columns = firstwidth+"%";
+                }else if(gridtype == "double_type"){
                     var newtotal1 = 100 - firstwidth;//alert(newtotal1+"; newtotal1");
                     var newtotal2 = newtotal1 - gridgap;//alert(newtotal2+"; newtotal2");
+                        newtotal2 = Math.floor(newtotal2);
 
                     // new second width
                     $("#second_grid_width").val(newtotal2);
@@ -361,27 +372,81 @@ $(document).ready(function() {
 
                     var template_columns = firstwidth+"% "+newtotal2+"%";
                 }else if(gridtype == "tripple_type"){
+                    var nwgridgap = gridgap*2;
+                    var newtotal1 = 100 - firstwidth;//alert(newtotal1+"; newtotal1");
+                    var newtotal2 = newtotal1 - nwgridgap;//alert(newtotal2+"; newtotal2");
+                    var newtotal3 = newtotal2/2;
+                        newtotal3 = Math.floor(newtotal3);
 
+                    // new second width
+                    $("#first_grid_width").val(firstwidth);
+                    $("#second_grid_width").val(newtotal3);
+                    $("#third_grid_width").val(newtotal3);
+                    var gridgap = gridgap;
+
+                    var template_columns = firstwidth+"% "+newtotal3+"% "+newtotal3+"%";
+                    // alert(template_columns+"; template_columns");
                 }
             }else if(gridid == "second_grid_width"){
                 if(gridtype == "double_type"){
                     var newtotal1 = 100 - secondwidth;
                     var newtotal2 = newtotal1 - gridgap;
+                        newtotal2 = Math.floor(newtotal2);
 
                     $("#first_grid_width").val(newtotal2);
                     var gridgap = gridgap;
 
                     var template_columns = newtotal2+"% "+secondwidth+"%";
                 }else if(gridtype == "tripple_type"){
+                    var nwgridgap = gridgap*2;
+                    var newtotal1 = 100 - secondwidth;//alert(newtotal1+"; newtotal1");secondwidth
+                    var newtotal2 = newtotal1 - nwgridgap;//alert(newtotal2+"; newtotal2");
+                    var newtotal3 = newtotal2/2;
+                        newtotal3 = Math.floor(newtotal3);
 
+                    // new second width
+                    $("#first_grid_width").val(newtotal3);
+                    $("#second_grid_width").val(secondwidth);
+                    $("#third_grid_width").val(newtotal3);
+                    var gridgap = gridgap;
+
+                    var template_columns = newtotal3+"% "+secondwidth+"% "+newtotal3+"%";
                 }
+            }else if(gridid == "third_grid_width"){
+                var thirdwidth = $("#third_grid_width").val();
+                // alert("the third grid width!");
+                var nwgridgap = gridgap*2;//alert(nwgridgap+"; nwgridgap!");
+                var newtotal1 = 100 - thirdwidth;//alert(thirdwidth+"; thirdwidth");//secondwidth
+                var newtotal2 = newtotal1 - nwgridgap;//alert(newtotal2+"; newtotal2");
+                var newtotal3 = newtotal2/2;
+                    newtotal3 = Math.floor(newtotal3);
+                    // alert(newtotal3+"; newtotal3");
+
+                // new second width
+                $("#first_grid_width").val(newtotal3);
+                $("#second_grid_width").val(secondwidth);
+                $("#third_grid_width").val(newtotal3);
+                var gridgap = gridgap;
+
+                var template_columns = newtotal3+"% "+newtotal3+"% "+thirdwidth+"%";
+                // alert(template_columns);return;
             }
+            // alert(gridid+"; gridid");
         }else{
             var gridgap = $("#gridgap").val();
             var firstwidth = $("#first_grid_width").val();
             var secondwidth = $("#second_grid_width").val();
+            var thirdwidth = $("#third_grid_width").val();
 
-            var template_columns = firstwidth+"% "+secondwidth+"%";
+            if(gridtype == "single_type"){
+                var template_columns = firstwidth+"%";                
+            }else if(gridtype == "double_type"){
+                var template_columns = firstwidth+"% "+secondwidth+"%";
+            }else if(gridtype == "tripple_type"){
+                var template_columns = firstwidth+"% "+secondwidth+"% "+thirdwidth+"%";
+                // alert(template_columns+"; template_columns for non-grid changes!");
+            }
+            // alert(gridtype+"; the grid type!");
         }
         // return;
 
@@ -502,6 +567,7 @@ $(document).ready(function() {
             }
         }
         // alert(component_id+"; final destination!; "+newstylestring);
+        // console.log(component_id+"; final destination!; "+newstylestring);
         $("#"+component_id).attr("style", newstylestring);
     });
 
@@ -755,7 +821,7 @@ $(document).ready(function() {
         var options = [];
 
         // Loop through numbers 1 to 99
-        for (var i = 0; i <= 99; i++) {
+        for (var i = 0; i <= 100; i++) {
             // Create a new option element and add it to the array
             options.push("<option value='" + i + "'>" + i + "</option>");
         }
@@ -796,7 +862,10 @@ $(document).ready(function() {
                 textareaform += "<b>Grid Style</b>";
                 // textareaform += "";
                 if(typeof_wraps == "single_type"){
-                    textareaform += "<div>Single Type</div>";
+                    textareaform += "<div id='gridtype' gridtype='single_type' style='display: flex;gap: 10px;'>";
+                        textareaform += "<div>Grid Width<br><select class='input-form change_style_attr' id='first_grid_width' style='width: 100px;'>"+options+"</select></div>";
+                        textareaform += "<div class='hidden' id='gridgap'></div>";
+                    textareaform += "</div>";
                     textareaform += "<div></div>";
                 }else if(typeof_wraps == "double_type"){
                     textareaform += "<div id='gridtype' gridtype='double_type' style='display: flex;gap: 10px;'>";
@@ -826,7 +895,7 @@ $(document).ready(function() {
                 textareaform += "<div style='display: flex;gap: 10px;'>";
                     textareaform += "<div style='width: 95%;'>Justify Content<br><select class='input-form change_style_attr' id='justifycontent' style='width: 100%;'>"+alignoptions+"</select></div>";
                 textareaform += "</div>";
-                textareaform += "<div class='update_text_button_wraps hidden'><div><button id='update_text_button' class='update_text_button'>Update Grid Style</button></div></div>";
+                // textareaform += "<div class='update_text_button_wraps hidden'><div><button id='update_text_button' class='update_text_button'>Update Grid Style</button></div></div>";
             }
 
             textareaform += "<div style='margin-top: 10px;'><b>Text Style</b></div>";
@@ -1090,9 +1159,11 @@ $(document).ready(function() {
 
                     $.each(columns_options, function(index, value){
                         var thevalue = parseInt(value.replace("%", ""));
-                        // alert(thevalue);
+                        // alert(index+"___"+thevalue);
                         if(index === 0){
                             $("#first_grid_width").val(thevalue);
+                            // $("#first_grid_width").remove();
+                            // alert("here we go!");
                         }else if(index === 1){
                             $("#second_grid_width").val(thevalue);
                         }else if(index === 2){
@@ -1103,7 +1174,13 @@ $(document).ready(function() {
                     //     alert("grid template columns!");
                     // }
                 }else if(key === "gap"){
+                    var thevalue = parseInt(cssArray[key].replace("%", ""));
                     $("#gridgap").val(thevalue);
+                    // alert(cssArray[key]+"; bro code!");
+                }else if(key === "align-items"){
+                    $("#alignitems").val(cssArray[key]);
+                }else if(key === "justify-content"){
+                    $("#justifycontent").val(cssArray[key]);
                 }
 
                 // if(dblclick_type == "component_wraps"){
