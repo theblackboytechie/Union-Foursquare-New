@@ -1271,7 +1271,8 @@ $(document).ready(function() {
             success: function (response) {
                 if(formData.owner == "load_page_construct"){
                     // alert(response);
-                    $("#uploaded-pages-component-wraps").html(response);
+                    $("#uploaded-pages-component-wraps").html(response.wraps);
+                    $("#currentpage_name").text(response.displayname);
                 }else if(formData.owner == "load_all_page_components"){
                     // alert(response);
                     $("#dashboard_all_pages_components").html(response);

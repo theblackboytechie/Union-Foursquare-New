@@ -335,10 +335,15 @@ class BackendController extends Controller
             if(count($output) > 0){
                 // return "page dey!".count($output);
                 foreach($output as $output){
+                    $lonewolf_displayname = $output->display_page_name;
                     // return $output->content;
                     if(empty($output->content)){
                         // return "no content!";
-                        return "";
+                        // return "";
+                        return response()->json([
+                            'displayname' => $lonewolf_displayname,
+                            'wraps' => "",
+                        ]);
                     }
 
                     $pagesuilist = json_decode($output->content, true);
@@ -806,7 +811,11 @@ class BackendController extends Controller
                         }
                     }
 
-                    return $wraps;
+                    // return $wraps;
+                    return response()->json([
+                        'displayname' => $lonewolf_displayname,
+                        'wraps' => $wraps,
+                    ]);
                 }
             }
         }elseif($request->owner == "load_all_page_components"){
@@ -848,12 +857,19 @@ class BackendController extends Controller
                     }else{
                         $displayname_foruse = $outcome->display_page_name;
                     }
-                    $liststring .= "<a id='toggle_link_$outcome->page_name' href='/pages/construct/$outcome->page_name'>";
-                        $liststring .= "<div class='dashboard-menu-each'>";
-                            $liststring .= "<div class='dashboard-menu-iconwraps trigger_edit_pagename faux_link swap_icons_$outcome->page_name' owner='$outcome->page_name' display_owner='$outcome->display_page_name'><i class='fa-regular fa-pen-to-square'></i></div>";
-                            $liststring .= "<div id='$outcome->page_name' class='swap_$outcome->page_name'>$displayname_foruse</div>";
+                    // $liststring .= "<a id='toggle_link_$outcome->page_name' href='/pages/construct/$outcome->page_name'>";
+                    //     $liststring .= "<div class='dashboard-menu-each'>";
+                    //         $liststring .= "<div class='dashboard-menu-iconwraps trigger_edit_pagename faux_link swap_icons_$outcome->page_name' owner='$outcome->page_name' display_owner='$outcome->display_page_name'><i class='fa-regular fa-pen-to-square'></i></div>";
+                    //         $liststring .= "<div id='$outcome->page_name' class='swap_$outcome->page_name'>$displayname_foruse</div>";
+                    //     $liststring .= "</div>";
+                    // $liststring .= "</a>";
+                    $liststring .= "<div class='page_list_each'>";
+                        $liststring .= "<div id='$outcome->page_name' class='swap_$outcome->page_name'>$displayname_foruse</div>";
+                        $liststring .= "<div class='page_list_each_action_wrap'>";
+                            $liststring .= "<div><a id='toggle_link_$outcome->page_name' href='/pages/construct/$outcome->page_name'><i class='fa-solid fa-link'></i></a></div>";
+                            $liststring .= "<div class='trigger_edit_pagename faux_link swap_icons_$outcome->page_name' owner='$outcome->page_name' display_owner='$outcome->display_page_name' style='text-align: right;'><i class='fa-regular fa-pen-to-square'></i></div>";
                         $liststring .= "</div>";
-                    $liststring .= "</a>";
+                    $liststring .= "</div>";
                 }
             }
 
@@ -925,12 +941,20 @@ class BackendController extends Controller
             CrudHelper::Create($tabledb, $create_array);
 
             // return "package me!";
-            $liststring = "<a id='toggle_link_$page_faux_username' href='/pages/construct/$page_faux_username'>";
-                $liststring .= "<div class='dashboard-menu-each'>";
-                    $liststring .= "<div class='dashboard-menu-iconwraps trigger_edit_pagename faux_link swap_icons_$page_faux_username' owner='$page_faux_username' display_owner='$page_faux_username'><i class='fa-regular fa-pen-to-square'></i></div>";
-                    $liststring .= "<div id='$page_faux_username' class='swap_$page_faux_username'>$page_faux_username</div>";
+            // $liststring = "<a id='toggle_link_$page_faux_username' href='/pages/construct/$page_faux_username'>";
+            //     $liststring .= "<div class='dashboard-menu-each'>";
+            //         $liststring .= "<div class='dashboard-menu-iconwraps trigger_edit_pagename faux_link swap_icons_$page_faux_username' owner='$page_faux_username' display_owner='$page_faux_username'><i class='fa-regular fa-pen-to-square'></i></div>";
+            //         $liststring .= "<div id='$page_faux_username' class='swap_$page_faux_username'>$page_faux_username</div>";
+            //     $liststring .= "</div>";
+            // $liststring .= "</a>";
+
+            $liststring = "<div class='page_list_each'>";
+                $liststring .= "<div id='$page_faux_username' class='swap_$page_faux_username'>$page_faux_username</div>";
+                $liststring .= "<div class='page_list_each_action_wrap'>";
+                    $liststring .= "<div><a id='toggle_link_$page_faux_username' href='/pages/construct/$page_faux_username'><i class='fa-solid fa-link'></i></a></div>";
+                    $liststring .= "<div class='trigger_edit_pagename faux_link swap_icons_$page_faux_username' owner='$page_faux_username' display_owner='$page_faux_username' style='text-align: right;'><i class='fa-regular fa-pen-to-square'></i></div>";
                 $liststring .= "</div>";
-            $liststring .= "</a>";
+            $liststring .= "</div>";
 
             return $liststring;
         }elseif($request->owner ==  "update_text_content_buildjs"){

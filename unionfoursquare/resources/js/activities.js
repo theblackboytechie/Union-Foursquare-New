@@ -12,7 +12,8 @@ $(document).ready(function() {
         $("#pages-components-wraps").toggle();
     });
 
-    $('body').on('click', '#toggle_pages_list', function() {
+    // to toggle pages list and to also close pages list
+    $('body').on('click', '#toggle_pages_list, #close_pages_list', function() {
         $("#pages-components-wraps").hide();
         $("#dashboard_all_pages_components").hide();
         $("#dashboard_pageslist_dropdown").toggle();

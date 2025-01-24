@@ -115,7 +115,7 @@ $(document).ready(function() {
                 var displayname_to_use = display_owner;
             }
     
-            var edittag = "<input type='text' value='"+displayname_to_use+"' class='input-form' id='edited_displayname_"+owner+"' style='width: 100%;' />";
+            var edittag = "<input type='text' value='"+displayname_to_use+"' class='input-form input_edit_pagename' id='edited_displayname_"+owner+"' style='width: 100%;' />";
             $("#"+owner).html(edittag);
             // alert(owner);<i class="fa-solid fa-check"></i>
             $(this).html("<i class='fa-solid fa-check'></i>");
@@ -371,11 +371,13 @@ $(document).ready(function() {
                     if(formData.ownerid == lastPara){
                         // alert("the same");
                         window.location.href = "/pages/construct/"+response.newpage_id;
+                        // update the current page name with id currentpage_name
+                        $("#currentpage_name").text(response.newdisplayname);
                     }
                 }else if(formData.owner == "create_new_page_for_website"){
                     // alert(response);
                     // console.log(response);
-                    $("#trigger_create_new_page").after(response);
+                    $("#website_pageslist_wraper").prepend(response);
                 }else if(formData.owner == "jumbotron-get"){
                     for (var key in response) {
                         if (response.hasOwnProperty(key)) {
