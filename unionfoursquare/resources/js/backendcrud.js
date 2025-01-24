@@ -318,6 +318,22 @@ $(document).ready(function() {
         updateDatabase(theurl, formData);
     });
 
+    // trigger_create_new_page
+    $('body').on('click', '#trigger_create_new_page', function() {
+        var owner = "create_new_page_for_website";
+
+        // alert("na to create page!");
+        var formData = {
+            owner: owner
+        };
+
+        var theurl = $("#union4sqmaps").attr("database_update");
+
+        updateDatabase(theurl, formData);
+
+        // alert("broooooo code!");
+    });
+
     function updateDatabase(theurl, formData) {
         $.ajaxSetup({
             headers: {
@@ -350,6 +366,16 @@ $(document).ready(function() {
                     $("#toggle_link_"+formData.ownerid).attr("id", "toggle_link_"+response.newpage_id);
 
                     $("#toggle_link_"+response.newpage_id).attr("href", "/pages/construct/"+response.newpage_id);
+
+                    // check if to redirect
+                    if(formData.ownerid == lastPara){
+                        // alert("the same");
+                        window.location.href = "/pages/construct/"+response.newpage_id;
+                    }
+                }else if(formData.owner == "create_new_page_for_website"){
+                    // alert(response);
+                    // console.log(response);
+                    $("#trigger_create_new_page").after(response);
                 }else if(formData.owner == "jumbotron-get"){
                     for (var key in response) {
                         if (response.hasOwnProperty(key)) {

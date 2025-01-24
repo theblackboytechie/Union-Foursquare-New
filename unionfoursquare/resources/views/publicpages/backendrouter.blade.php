@@ -72,7 +72,7 @@
                                 <div class="dashboard-menu-iconwraps"><i class="fa-solid fa-file"></i></div>
                                 <div>Resources</div>
                             </div> -->
-                            <div id='trigger_create_new_page' style="border-top: 1px solid lightgray;margin-top: 10px;padding-top: 10px;">Create Page</div>
+                            <div id='trigger_create_new_page' class='faux_link'>Create Page</div>
                             <div id="website_pageslist_wraper"></div>
                         </div>
                     </div>

@@ -299,7 +299,7 @@ class BackendController extends Controller
                 CrudHelper::Create($tabledb, $create_array);
             }
         }elseif($request->owner == "load_page_construct"){
-            // return "$request->pageowner!";
+            // return "$request->pageowner!yaba smith!!!";
             $tabledb = "pagesui";
             // return $request->pageowner;
 
@@ -333,8 +333,14 @@ class BackendController extends Controller
 
             // return count($output);
             if(count($output) > 0){
+                // return "page dey!".count($output);
                 foreach($output as $output){
                     // return $output->content;
+                    if(empty($output->content)){
+                        // return "no content!";
+                        return "";
+                    }
+
                     $pagesuilist = json_decode($output->content, true);
                     $wraps = "";
                     // $wraps .= "$pagesuilist, ";
@@ -815,6 +821,10 @@ class BackendController extends Controller
             $outcome = CrudHelper::Get($tabledb, $where_array);
 
             foreach($outcome as $outcome){
+                if(empty($outcome->content)){
+                    return "";
+                }
+
                 $content_array = json_decode($outcome->content, true);
 
                 $page_content = "";
@@ -834,7 +844,7 @@ class BackendController extends Controller
             foreach($outcome as $outcome){
                 if($outcome->page_name == "jumbotron" || $outcome->page_name == "homepage"){}else{
                     if(empty($outcome->display_page_name)){
-                        $displayname_foruse = "";
+                        $displayname_foruse = "$outcome->page_name";
                     }else{
                         $displayname_foruse = $outcome->display_page_name;
                     }
@@ -896,6 +906,33 @@ class BackendController extends Controller
                 'newdisplayname' => $newdisplayname,
                 'newpage_id' => $newpage_id,
             ]);
+        }elseif($request->owner ==  "create_new_page_for_website"){
+            $tabledb = "pagesui";
+
+            $currenttime = Carbon::now();
+
+            $page_faux_username = Str::random(10);
+
+            $authorid = Auth::id();
+    
+            $create_array = [
+                'author_id' => $authorid,
+                'page_name' => $page_faux_username,
+                'created_at' => $currenttime,
+                'updated_at' => $currenttime,
+            ];
+    
+            CrudHelper::Create($tabledb, $create_array);
+
+            // return "package me!";
+            $liststring = "<a id='toggle_link_$page_faux_username' href='/pages/construct/$page_faux_username'>";
+                $liststring .= "<div class='dashboard-menu-each'>";
+                    $liststring .= "<div class='dashboard-menu-iconwraps trigger_edit_pagename faux_link swap_icons_$page_faux_username' owner='$page_faux_username' display_owner='$page_faux_username'><i class='fa-regular fa-pen-to-square'></i></div>";
+                    $liststring .= "<div id='$page_faux_username' class='swap_$page_faux_username'>$page_faux_username</div>";
+                $liststring .= "</div>";
+            $liststring .= "</a>";
+
+            return $liststring;
         }elseif($request->owner ==  "update_text_content_buildjs"){
             // return "Babagana!";
             $tabledb = "pagesui_component_style";

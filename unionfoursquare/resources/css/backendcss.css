@@ -273,6 +273,12 @@
     /* background: green; */
 }
 
+#trigger_create_new_page{
+    border-top: 1px solid lightgray;
+    margin-top: 10px;
+    padding-top: 10px;
+}
+
 .faux_link{
     cursor: pointer;
 }
