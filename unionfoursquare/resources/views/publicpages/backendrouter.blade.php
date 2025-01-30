@@ -47,14 +47,6 @@
                                     <div id="close_pages_list" class="dashboard_dropdown_header_qst_cls_ech faux_link"><i class="fa-solid fa-xmark"></i></div>
                                 </div>
                             </div>
-                            <!-- <a href='/pages/construct/homepage'>
-                                <div class="dashboard-menu-each">
-                                    <div class="dashboard-menu-iconwraps"><i class="fa-solid fa-house-chimney"></i></div>
-                                    <div>Home Page</div>
-                                </div>
-                            </a>
-                            <div id='trigger_create_new_page' class='faux_link'>Create Page</div>
-                            <div id="website_pageslist_wraper"></div> -->
                             <div class="customscroll" style="overflow-y: scroll;height: 80vh;padding: 10px;background: rxed;">
                                 <!--  -->
                                 <div class="dashboard_dropdown_grid" style="padding: 5px 0px;">
@@ -68,13 +60,20 @@
                                 <div id="website_pageslist_wraper">
                                     <i class="fa-solid fa-circle-notch fa-spin"></i>
                                 </div>
-                                <!-- <div class="page_list_each">ccc</div> -->
-                                <!-- <div class="page_list_each">ccc</div> -->
                             </div>
                         </div>
                     </div>
                     <div id="currentpage_name"><i class="fa-solid fa-circle-notch fa-spin"></i></div>
                     <div id="trigger-add-components"><i class="fa-solid fa-plus"></i></div>
+                    <div class="xhidden dashboard_dropdown" id="dashboard_pageslist_dropdown" style="background: red;">
+                        <div class="dashboard_dropdown_grid">
+                            <div class="dashboard_dropdown_header">Site Pages and Menu</div>
+                            <div class="dashboard_dropdown_header_qst_cls">
+                                <div class="dashboard_dropdown_header_qst_cls_ech faux_link"><i class="fa-solid fa-question"></i></div>
+                                <div id="close_pages_list" class="dashboard_dropdown_header_qst_cls_ech faux_link"><i class="fa-solid fa-xmark"></i></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div>
