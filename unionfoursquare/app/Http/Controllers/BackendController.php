@@ -278,6 +278,12 @@ class BackendController extends Controller
                     $this->create_component_style($randomString5);
                     $this->create_component_style($randomString6);
                     $this->create_component_style($randomString7);
+                }elseif($request->owner == "single-empty"){
+
+                }elseif($request->owner == "double-empty"){
+                    return "double empty!";
+                }elseif($request->owner == "tripple-empty"){
+                    return $request->owner;
                 }else{
 
                 }

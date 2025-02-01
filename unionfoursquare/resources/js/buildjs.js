@@ -1228,6 +1228,8 @@ $(document).ready(function() {
             owner: owner,
             pageowner: pageowner
         };
+        alert(owner+"; owner!");
+        return;
 
         var theurl = $("#union4sqmaps").attr("database_update");
 
@@ -1280,6 +1282,7 @@ $(document).ready(function() {
                     // alert(response);
                     $("#website_pageslist_wraper").html(response);
                 }else{
+                    alert(response+"; yooooooooo!");//return;
                     // var owner = "load_page_construct";
 
                     // var pageowner = "whyfoursquare";
@@ -1326,107 +1329,5 @@ $(document).ready(function() {
                 // owner applet_id
             }
         });
-    }
-
-    function make_component(owner) {
-        if(owner == "single-text"){
-            return "<div class='single_text'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>";
-        }else if(owner == "single-image"){
-            return "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' /></div>";
-        }else if(owner == "single-image-text"){
-            var wraps = "<div>";
-                    wraps += "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' /></div>";
-                    wraps += "<div class='single_text'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>";
-                wraps += "</div>";
-            return wraps;
-        }else if(owner == "single-text-image"){
-            var wraps = "<div>";
-                    wraps += "<div class='single_text'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>";
-                    wraps += "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' /></div>";
-                wraps += "</div>";
-            return wraps;
-        }else if(owner == "double-text-image"){
-            var wraps = "<div class='double_grid'>";
-                    wraps += "<div class='single_text'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>";
-                    wraps += "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' /></div>";
-                wraps += "</div>";
-            return wraps;
-        }else if(owner == "double-image-text"){
-            var wraps = "<div class='double_grid'>";
-                    wraps += "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' /></div>";
-                    wraps += "<div class='single_text'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>";
-                wraps += "</div>";
-            return wraps;
-        }else if(owner == "double-image_up-text_down"){
-            var wraps = "<div class='double_grid'>";
-                wraps += "<div>";
-                    wraps += "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' /></div>";
-                    wraps += "<div class='single_text'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>";
-                wraps += "</div>";
-                wraps += "<div>";
-                    wraps += "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' /></div>";
-                    wraps += "<div class='single_text'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>";
-                wraps += "</div>";
-            return wraps;
-        }else if(owner == "double-text_up-image_down"){
-            var wraps = "<div class='double_grid'>";
-                wraps += "<div>";
-                    wraps += "<div class='single_text'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>";
-                    wraps += "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' /></div>";
-                wraps += "</div>";
-                wraps += "<div>";
-                    wraps += "<div class='single_text'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>";
-                    wraps += "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' /></div>";
-                wraps += "</div>";
-            return wraps;
-        }else if(owner == "tripple-text"){
-            var wraps = "<div class='tripple_grid'>";
-                    wraps += "<div class='single_text'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>";
-                    wraps += "<div class='single_text'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>";
-                    wraps += "<div class='single_text'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>";
-                wraps += "</div>";
-            return wraps;
-        }else if(owner == "tripple-image"){
-            var wraps = "<div class='tripple_grid'>";
-                    wraps += "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' /></div>";
-                    wraps += "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' /></div>";
-                    wraps += "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' /></div>";
-                wraps += "</div>";
-            return wraps;
-        }else if(owner == "tripple-text_up-image_down"){
-            var wraps = "<div class='tripple_grid'>";
-                    wraps += "<div>";
-                        wraps += "<div class='single_text'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>";
-                        wraps += "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' /></div>";
-                    wraps += "</div>";
-                    wraps += "<div>";
-                        wraps += "<div class='single_text'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>";
-                        wraps += "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' /></div>";
-                    wraps += "</div>";
-                    wraps += "<div>";
-                        wraps += "<div class='single_text'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>";
-                        wraps += "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' /></div>";
-                    wraps += "</div>";
-                wraps += "</div>";
-            return wraps;
-        }else if(owner == "tripple-image_up-text_down"){
-            var wraps = "<div class='tripple_grid'>";
-                    wraps += "<div>";
-                        wraps += "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' /></div>";
-                        wraps += "<div class='single_text'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>";
-                    wraps += "</div>";
-                    wraps += "<div>";
-                        wraps += "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' /></div>";
-                        wraps += "<div class='single_text'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>";
-                    wraps += "</div>";
-                    wraps += "<div>";
-                        wraps += "<div class='single_image'><img src='http://127.0.0.1:8000/storage/assets/images/placeholder.jpg' class='actual_image' /></div>";
-                        wraps += "<div class='single_text'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>";
-                    wraps += "</div>";
-                wraps += "</div>";
-            return wraps;
-        }else{
-            return "";
-        }
     }
 });

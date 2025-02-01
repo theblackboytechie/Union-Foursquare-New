@@ -157,12 +157,12 @@
                                     </div>
 
                                     <!-- empty strings -->
-                                    <div class="pages-component-single component-each-wraps" style="height: 50px;">Empty</div>
-                                    <div class="component-each-wraps" style="height: 50px;">
+                                    <div class="pages-component-single component-each-wraps cursor-pointer select-component" owner="single-empty" style="height: 50px;">Empty</div>
+                                    <div class="component-each-wraps cursor-pointer select-component" owner="double-empty" style="height: 50px;">
                                         <div class="pages-component-single" style="border-bottom: 1px solid white;">Empty</div>
                                         <div class="pages-component-single">Empty</div>
                                     </div>
-                                    <div class="pages-component-tripple component-each-wraps" style="height: 50px;">
+                                    <div class="pages-component-tripple component-each-wraps cursor-pointer select-component" owner="tripple-empty" style="height: 50px;">
                                         <div class="pages-component-single" style="border-right: 1px solid white;">Empty</div>
                                         <div class="pages-component-single" style="border-right: 1px solid white;">Empty</div>
                                         <div class="pages-component-single">Empty</div>
@@ -180,6 +180,7 @@
                 </div>
             </div>
             <div>
+                <!-- <div style="position: absolute;height: 98vh;width: 500px;margin-top: 5.5vh;background: white;">br br ororo!</div> -->
                 @if($owner == "view_pagesroute_dashboard" || $owner == "view_homepage_subsection_jumbotron" || $owner == "view_homepage_subsection_themetext" || $owner == "view_construct_whyfoursquare" || $owner == "view_construct_pages")
                     <x-backend-pages-dashboard :owner="$owner" />
                 @endif
