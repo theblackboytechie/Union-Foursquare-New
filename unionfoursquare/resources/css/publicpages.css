@@ -1,6 +1,16 @@
+@font-face {
+    font-family: Sauce;
+    src: url('/fonts/Sauce.otf') format('opentype');
+}
+
+
+.remove-for-mobile{
+    /* font-family: Sauce; */
+}
+
 body{
     /* font-family: "Kumbh Sans", sans-serif; */
-    font-family: "Poppins", serif;
+    font-family: Sauce;
     /* font-weight: 100; */
     font-style: normal;
     font-variant-caps: normal;

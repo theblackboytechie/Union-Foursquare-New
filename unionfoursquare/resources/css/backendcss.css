@@ -256,6 +256,13 @@
     text-align: center;
 }
 
+.component-each-wraps{
+    height: 30px;
+    width: 100%;
+    border-radius: 5px;
+    background: rgba(0,0,0,0.1);
+}
+
 .pages-component-single-first{
     border-bottom: 1px solid lightgray;
 }

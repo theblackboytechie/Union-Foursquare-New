@@ -20,8 +20,8 @@
             <div class="header-homepage-banner-content-bottom">Terbanacle of His Presence</div>
             <div class="header-homepage-banner-content-description" style="font-family: 'Poppins', serif;font-weight: 100;font-size: 25px;">Welcome to a community of God's people, guided by scriptures and the pure love of God</div>
             <div style="display: flex; justify-content: center;gap: 1vw;">
-                <div class="header-button text-white">Service Times</div>
-                <div class="header-button text-white">Service Times</div>
+                <div class="header-button text-white">Who We Are</div>
+                <div class="header-button text-white">What We Believe</div>
             </div>
         </div>
     </div>
@@ -85,14 +85,15 @@
 
     <!-- why Union Foursquare -->
     <div class="general-padding2">
-        <div class="first-smaller-text">Why Union Foursquare?</div>
+        <!-- <div class="first-smaller-text">Why Union Foursquare?</div> -->
+        <div class="first-smaller-text">Empowering lives, transforming communities</div>
         <div class="public-whyfoursquare-grid">
-            <div class="public-whyfoursquare-grid-left general-font-style">We're a conservative Christian community that encourages you to come the way you are</div>
+            <div class="public-whyfoursquare-grid-left general-font-style">We're a Bible-based, Spirit-filled family church, passionate about sharing God's love and hope worldwide</div>
             <div class="public-whyfoursquare-grid-right" style="font-weight: normal;">
                 <span class="public-whyfoursquare-grid-right-text">
-                    Adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis consectetur adipiscing nostrud exercitation ullamco.
+                    Our mission is to create a vibrant community of believers who are empowered to live out their faith boldly. We believe in the transformative power of the Gospel and are committed to spreading the message of God's love and redemption to all.
                     <br><br>
-                    Adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+                    Through our various ministries and outreach programs, we strive to make a positive impact on our communities and beyond. Join us on this journey of faith, growth, and service, as we seek to glorify God and make a difference in the world.
                 </span>
                 <div style="margin-top: 10px;font-weight: bold;">View More <i class="fa-regular fa-circle-right"></i></div>
             </div>

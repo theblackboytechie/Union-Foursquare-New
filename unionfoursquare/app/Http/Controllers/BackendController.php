@@ -1322,7 +1322,7 @@ class BackendController extends Controller
 
                     $allstyles .= "border-top: ;border-bottom: ;border-left: ;border-right: ;border-top-left-radius: 0px;border-top-right-radius: 0px;";
                     $allstyles .= "border-bottom-left-radius: 0px;border-bottom-right-radius: 0px;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;";
-                    $allstyles .= "margin-left: 0px;padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;font-size: 10px;font-weight: normal;";
+                    $allstyles .= "margin-left: 0px;padding-top: 30px;padding-right: 30px;padding-bottom: 30px;padding-left: 30px;font-size: 10px;font-weight: normal;";
                     $allstyles .= "font-style: normal;text-decoration: none;text-align: left;background: #000000;color: #ffffff;";
 
                     // "background-position: center;background-repeat: no-repeat;background-size: cover;";

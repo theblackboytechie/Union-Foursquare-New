@@ -223,7 +223,7 @@
                     gyfu tg uftyu ftgy udrtfyd utfyu tfyuh ftvyuh ifvyuh 
                     ifvyuh jfgyh udrtycgu rjcgy jdcrfu drtfbh uygvu tfgyuj
                 </div> -->
-                <div id="uploaded-pages-component-wraps" owner="whyfoursquare">
+                <div id="uploaded-pages-component-wraps" owner="whyfoursquare" style="padding-top: 22px;">
                     <i class="fa-solid fa-circle-notch fa-spin"></i>
                 </div>
             </div>
